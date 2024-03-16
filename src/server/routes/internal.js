@@ -1,8 +1,6 @@
 const express = require('express');
-const path = require('path');
 const fs = require('fs');
 const constants = require('../global/constants');
-// const committees = require('../../../json/data/committees.json');
 
 const route = express.Router();
 
@@ -16,13 +14,5 @@ for (const file of dataFiles) {
         res.json(clone);
     });
 }
-
-/*
-route.get('/committees.json', (req, res) => {
-    const committeesClone = {...committees};
-
-    res.json(committeesClone);
-});
-*/
 
 module.exports = route;
