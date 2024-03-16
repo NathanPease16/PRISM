@@ -1,7 +1,7 @@
 // Import used modules
 const express = require('express');
 const fs = require('fs');
-const constants = require('../global/constants');
+const constants = require('../utils/constants');
 
 // Create the router
 const route = express.Router();
