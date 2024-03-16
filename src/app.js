@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const heal = require('./server/scripts/jsonData');
 
+// Heal the JSON data
 heal();
 
 // Create the app and establish a port

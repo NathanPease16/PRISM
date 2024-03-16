@@ -59,10 +59,15 @@ time.textContent = formatTime(currentTime, 2, 2, 2);
 timerToggle.addEventListener('click', () => {
     timerActive = !timerActive;
 
+    // Tell the server the timer was changed
     socket.emit('timer', timerActive);
 
+    // If the timer is active, start updating the time
     if (timerActive) {
         lastTime = Date.now();
+        timerToggle.textContent = 'Stop';
         requestAnimationFrame(updateTimer);
+    } else {
+        timerToggle.textContent = 'Start';
     }
 });
