@@ -6,6 +6,12 @@
     <title>Timer</title>
 </head>
 <body>
-    <button id="toggle">Toggle</button>
+    <div id="timer" data-startTime="60">
+        <p id="time"></p>
+        <button id="timer-toggle">Start</button>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/timersManager.js"></script>
 </body>
 </html>
