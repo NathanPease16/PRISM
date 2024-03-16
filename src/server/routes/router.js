@@ -7,4 +7,9 @@ route.get('/', (req, res) => {
     res.render('index');
 });
 
+route.get('/timer', (req, res) => {
+    res.status(200);
+    res.render('timer');
+})
+
 module.exports = route;
