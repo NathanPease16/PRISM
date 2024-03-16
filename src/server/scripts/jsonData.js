@@ -24,7 +24,7 @@ function healDiscrepancies() {
         const name = data.split('.')[0] + '.template.json';
 
         if (!templateFiles.includes(name)) {
-            fs.rmSync(path.join(constants.JSON_TEMPLATES, name));
+            fs.rmSync(path.join(constants.JSON_DATA, data));
         }
     }
 }
