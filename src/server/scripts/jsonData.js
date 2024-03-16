@@ -1,4 +1,4 @@
-const constants = require('../global/constants');
+const constants = require('../utils/constants');
 const path = require('path');
 const fs = require('fs');
 

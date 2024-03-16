@@ -1,7 +1,7 @@
 // Import used modules
 const express = require('express');
 const fs = require('fs');
-const constants = require('../global/constants');
+const constants = require('../utils/constants');
 
 // Create the router
 const route = express.Router();
@@ -12,7 +12,7 @@ const dataFiles = fs.readdirSync(constants.JSON_DATA);
 for (const file of dataFiles) {
     // For each data file, create a route that clones it and sends it to the client
     route.get(`/${file}`, (req, res) => {
-        const fileData = require(`../../../${constants.JSON_DATA}/${file}`);
+        const fileData = JSON.parse(fs.readFileSync(`${constants.JSON_DATA}/${file}`));
         const clone = {...fileData};
 
         res.json(clone);

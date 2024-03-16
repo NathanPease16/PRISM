@@ -9,6 +9,14 @@
         "runtimeArgs": ["run", "start"],
         "outputCapture": "std"
       },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Run No Reload",
+        "runtimeExecutable": "node",
+        "runtimeArgs": ["src/app.js"],
+        "outputCapture": "std"
+      }
     ]
   }
   

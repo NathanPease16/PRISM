@@ -24,6 +24,8 @@ app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
 app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
 app.use('/img', express.static(path.join(__dirname, 'public', 'img')));
 
+app.use('/global', express.static(path.join(__dirname, 'global')));
+
 // Give the app the ability to parse body data
 app.use(bodyParser.json());
 
