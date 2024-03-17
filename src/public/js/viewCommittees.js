@@ -24,14 +24,18 @@ function displayDeleteConfirmation(name, id) {
     cancelButton.textContent = 'Cancel';
 
     confirmButton.addEventListener('click', async () => {
-        await fetch(`/delete/${id}`, {
+        const response = await fetch(`/delete/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
         });
 
-        confirmBg.remove();
+        if (response.ok) {
+            window.location = window.location;
+        } else {
+            confirmBg.remove();
+        }
     });
 
     cancelButton.addEventListener('click', () => {
