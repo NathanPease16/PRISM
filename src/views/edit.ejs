@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Edit</title>
+</head>
+<body>
+    <div class="spacing">
+        <p class="header">Edit Committee | <%= committee.name %></p>
+        <input class="full input item" type="text" name="name" id="name" value="<%= committee.name %>" data-id="<%= committee.id %>">
+        <p id="error" class="subtitle" style="display: none;">This is a required field</p>
+        <button class="full button item" id="confirm">Confirm Changes</button>
+        <button class="full button item" id="cancel">Cancel</button>
+    </div>
+    <script src="/js/editCommittee.js"></script>
+</body>
+</html>

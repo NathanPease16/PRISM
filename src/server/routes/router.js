@@ -22,6 +22,28 @@ route.get('/createCommittee', (req, res) => {
     res.render('createCommittee');
 });
 
+route.get('/edit/:id', (req, res) => {
+    const id = req.params.id;
+
+    const committees = getCommittees();
+
+    let committee;
+    for (const c of committees.committees) {
+        if (c.id == id) {
+            committee = c;
+            break;
+        }
+    }
+
+    if (!committee) {
+        res.status(400).end();
+        return;
+    }
+
+    res.status(200);
+    res.render('edit', { committee });
+});
+
 route.post('/createCommittee', (req, res) => {
     const data = req.body;
 
@@ -45,6 +67,34 @@ route.post('/createCommittee', (req, res) => {
     committees.committees.push(committee);
     fs.writeFileSync(`${constants.JSON_DATA}/committees.json`, JSON.stringify(committees));
 
+    res.status(200).end();
+});
+
+route.post('/edit/:id', (req, res) => {
+    if (!req.body.name) {
+        res.status(400).end();
+        return;
+    }
+
+    const id = req.params.id;
+
+    const committees = getCommittees();
+
+    let committee;
+    for (const c of committees.committees) {
+        if (c.id == id) {
+            committee = c;
+            break;
+        }
+    }
+
+    if (!committee) {
+        res.status(400).end();
+        return;
+    }
+
+    committee.name = req.body.name;
+    fs.writeFileSync(`${constants.JSON_DATA}/committees.json`, JSON.stringify(committees));
     res.status(200).end();
 });
 
