@@ -30,7 +30,8 @@ app.use('/global', express.static(path.join(__dirname, 'global')));
 app.use(bodyParser.json());
 
 // Give the app the routers
-app.use(require('./server/routes/router.js'));
+app.use(require('./server/routes/getRouter.js'));
+app.use(require('./server/routes/postRouter.js'));
 app.use(require('./server/routes/internal.js'));
 
 // Establish socket connection
