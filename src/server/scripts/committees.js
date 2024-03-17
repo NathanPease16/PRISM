@@ -38,6 +38,9 @@ function deleteCommittees(intentional) {
     }
 
     console.log(`All committees deleted by PERSON on ${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}`);
+
+    const template = JSON.parse(fs.readFileSync(`${constants.JSON_TEMPLATES}/committees.template.json`));
+    writeCommittees(template);
 }
 
 function deleteCommittee(id) {

@@ -8,7 +8,7 @@ const error = document.getElementById('error');
 const id = nameInput.getAttribute('data-id');
 
 confirmButton.addEventListener('click', async () => {
-    const response = await fetch(`/edit/${id}`, {
+    const response = await fetch(`/editCommittee/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
