@@ -1,0 +1,59 @@
+.committee-text {
+    font-size: var(--font-medium);
+    padding-left: var(--padding-small);
+    color: var(--dark-gray);
+}
+
+.committee-button {
+    font-size: var(--font-medium);
+    color: white;
+    border-radius: 10px;
+    padding: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
+    margin-left: var(--padding-small);
+    text-decoration: none;
+    transition: background-color 250ms;
+}
+
+.edit {
+    background-color: var(--blue);
+}
+
+.edit:hover {
+    background-color: var(--dark-blue);
+}
+
+.delete {
+    cursor:pointer;
+    background-color: var(--red);
+}
+
+.delete:hover {
+    background-color: var(--dark-red);
+}
+
+.committee {
+    display: flex;
+    width: calc(100% - calc(var(--padding) * 2));
+    align-items: center;
+    box-sizing: border-box;
+    margin-left: var(--padding);
+    margin-right: var(--padding);
+    margin-top: var(--padding);
+    border: solid 3px var(--gray);
+    border-radius: 10px; 
+    padding-top: var(--padding-small);
+    padding-bottom: var(--padding-small);
+}
+
+.committee-buttons {
+    display: flex;
+    flex-grow: 1;
+    justify-content: right;
+    padding-right: var(--padding-small);
+}
+
+.committee-container {
+    margin-top: var(--padding);
+    height: 750px;
+    overflow-y: auto;
+}

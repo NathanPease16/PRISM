@@ -14,11 +14,14 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     --blue: #679cff;
     --dark-blue: #314d81;
 
-    --red: #9e3434;
+    --red: #d34b4b;
+    --dark-red: #832424;
 
     --light-gray: #dfdfdf;
     --gray: #9b9b9b;
     --dark-gray: #414141;
+
+    --translucent-black: rgba(0, 0, 0, .5);
 
     --padding-small: 10px;
     --padding: 25px;
@@ -31,22 +34,22 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 .full {
     display: flex;
     width: calc(100% - calc(var(--padding) * 2));
-    justify-content: center;
-    align-items: center;
     box-sizing: border-box;
     margin-left: var(--padding);
     margin-right: var(--padding);
 }
 
 .button {
+    justify-content: center;
+    align-items: center;
     background-color: var(--blue);
     border: none;
     border-radius: 10px;
     font-size: var(--font-medium);
     color: white;
-    transition: background-color 250ms;
     height: calc(var(--font-medium) + calc(var(--padding-small) * 2));
     text-decoration: none;
+    transition: background-color 250ms;
 }
 
 .button:hover {
