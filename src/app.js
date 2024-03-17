@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const heal = require('./server/scripts/jsonData');
+const heal = require('./server/scripts/templates');
 
 // Heal the JSON data
 heal();
