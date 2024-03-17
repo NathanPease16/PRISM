@@ -3,6 +3,8 @@ const constants = require('../utils/constants');
 const id = require('../scripts/id');
 const fs = require('fs');
 
+const getCommittees = () => JSON.parse(fs.readFileSync(`${constants.JSON_DATA}/committees.json`));
+
 const route = express.Router();
 
 route.get('/', (req, res) => {
@@ -28,7 +30,7 @@ route.post('/createCommittee', (req, res) => {
         return;
     }
 
-    const committees = JSON.parse(fs.readFileSync(`${constants.JSON_DATA}/committees.json`));
+    const committees = getCommittees();
 
     const ids = committees.committees.map((committee) => committee.id);
     const committeeId = id(32, ids);
@@ -44,6 +46,23 @@ route.post('/createCommittee', (req, res) => {
     fs.writeFileSync(`${constants.JSON_DATA}/committees.json`, JSON.stringify(committees));
 
     res.status(200).end();
+});
+
+route.post('/delete/:id', (req, res) => {
+    const id = req.params.id;
+
+    const committees = getCommittees();
+
+    for (const i in committees.committees) {
+        if (committees.committees[i].id == id) {
+            committees.committees.splice(i, 1);
+            fs.writeFileSync(`${constants.JSON_DATA}/committees.json`, JSON.stringify(committees));
+            res.status(200).end();
+            return;
+        }
+    }
+
+    res.status(400).end();
 });
 
 module.exports = route;
