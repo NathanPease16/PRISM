@@ -1,5 +1,6 @@
 const committeeSearch = document.getElementById('search');
 const committeeContainer = document.getElementById('committee-container');
+const deleteAll = document.getElementById('delete-all');
 
 function displayDeleteConfirmation(name, id) {
     const confirmBg = document.createElement('div');
@@ -10,7 +11,11 @@ function displayDeleteConfirmation(name, id) {
 
     const confirmText = document.createElement('p');
     confirmText.className = 'confirm-text';
-    confirmText.textContent = `Are you sure you wish to delete the committee '${name}'?`
+    if (id != 'all') {
+        confirmText.textContent = `Are you sure you wish to delete the committee '${name}'?`
+    } else {
+        confirmText.textContent = 'Are you sure you wish to delete ALL committees? This is a dangerous operation';
+    }
 
     const confirmButtonsDiv = document.createElement('div');
     confirmButtonsDiv.className = 'confirm-buttons';
@@ -24,7 +29,12 @@ function displayDeleteConfirmation(name, id) {
     cancelButton.textContent = 'Cancel';
 
     confirmButton.addEventListener('click', async () => {
-        const response = await fetch(`/delete/${id}`, {
+        let post = `/deleteCommittee/${id}`;
+        if (id == 'all') {
+            post = '/deleteAllCommittees';
+        }
+
+        const response = await fetch(post, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -104,6 +114,10 @@ async function renderCommittees(filter) {
  (async () => {
     await renderCommittees('');
  })();
+
+ deleteAll.addEventListener('click', () => {
+    displayDeleteConfirmation('all', 'all');
+ });
 
 committeeSearch.addEventListener('input', async () => {
     await renderCommittees(committeeSearch.value.trimStart().toLowerCase());

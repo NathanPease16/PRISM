@@ -28,7 +28,7 @@ route.post('/createCommittee', (req, res) => {
     res.status(200).end();
 });
 
-route.post('/edit/:id', (req, res) => {
+route.post('/editCommittee/:id', (req, res) => {
     if (!req.body.name) {
         res.status(400).end();
         return;
@@ -54,7 +54,7 @@ route.post('/edit/:id', (req, res) => {
     res.status(200).end();
 });
 
-route.post('/delete/:id', (req, res) => {
+route.post('/deleteCommittee/:id', (req, res) => {
     const id = req.params.id;
 
     if (!committeeOperations.deleteCommittee(id)) {
@@ -62,6 +62,12 @@ route.post('/delete/:id', (req, res) => {
         return;
     }
 
+    committeeOperations.deleteCommittees(true);
+
+    res.status(200).end();
+});
+
+route.post('/deleteAllCommittees', (req, res) => {
     committeeOperations.deleteCommittees(true);
 
     res.status(200).end();

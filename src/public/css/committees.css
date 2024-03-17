@@ -54,6 +54,6 @@
 
 .committee-container {
     margin-top: var(--padding);
-    height: 750px;
+    height: 650px;
     overflow-y: auto;
 }

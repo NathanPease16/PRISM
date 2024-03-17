@@ -1,7 +1,5 @@
 const express = require('express');
 const committeeOperations = require('../scripts/committees');
-const constants = require('../utils/constants');
-const fs = require('fs');
 
 const route = express.Router();
 
