@@ -1,6 +1,5 @@
 const express = require('express');
 const database = require('../scripts/database');
-const committeeOperations = require('../scripts/committees');
 
 const route = express.Router();
 
@@ -22,8 +21,10 @@ route.get('/createCommittee', (req, res) => {
 route.get('/edit/:id', (req, res) => {
     const id = req.params.id;
 
-    const committee = committeeOperations.readCommittee(id);
+    // Get committee by id
+    const committee = database.committees.committees.getItemByKey('id', id);
 
+    // Make sure requested committee exists
     if (!committee) {
         res.status(400).end();
         return;
@@ -31,12 +32,6 @@ route.get('/edit/:id', (req, res) => {
 
     res.status(200);
     res.render('edit', { committee });
-});
-
-route.get('/test', (req, res) => {
-    
-
-    res.send('test page');
 });
 
 module.exports = route;
