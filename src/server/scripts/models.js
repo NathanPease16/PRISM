@@ -5,10 +5,9 @@ const models = fs.readdirSync(`${constants.JSON_MODELS}`);
 const moduleExports = {};
 
 for (const model of models) {
-    let modelName = model.split('.')[0];
-    modelName = modelName.charAt(0).toUpperCase() + modelName.substring(1).toLowerCase();
-
+    const modelName = model.split('.')[0];
     const modelJson = JSON.parse(fs.readFileSync(`${constants.JSON_MODELS}/${model}`));
+    
     moduleExports[modelName] = (obj) => {
         if (obj === undefined || obj === null) {
             throw new Error('Given object may not be null or undefined');

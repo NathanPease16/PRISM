@@ -1,6 +1,6 @@
 const express = require('express');
 const id = require('../scripts/id');
-const { Committee } = require('../scripts/models');
+const models = require('../scripts/models');
 const committeeOperations = require('../scripts/committees');
 
 const route = express.Router();
@@ -23,7 +23,7 @@ route.post('/createCommittee', (req, res) => {
         return;
     }
 
-    const committee = Committee({...req.body, id: committeeId});
+    const committee = models.committee({...req.body, id: committeeId});
     
     committeeOperations.writeCommittee(committee);
 

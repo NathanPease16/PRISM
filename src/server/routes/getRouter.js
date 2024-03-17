@@ -1,4 +1,5 @@
 const express = require('express');
+const database = require('../scripts/database');
 const committeeOperations = require('../scripts/committees');
 
 const route = express.Router();
@@ -30,6 +31,12 @@ route.get('/edit/:id', (req, res) => {
 
     res.status(200);
     res.render('edit', { committee });
+});
+
+route.get('/test', (req, res) => {
+    
+
+    res.send('test page');
 });
 
 module.exports = route;
