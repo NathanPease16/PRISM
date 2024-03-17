@@ -62,8 +62,6 @@ route.post('/deleteCommittee/:id', (req, res) => {
         return;
     }
 
-    committeeOperations.deleteCommittees(true);
-
     res.status(200).end();
 });
 
