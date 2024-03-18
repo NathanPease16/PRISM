@@ -48,7 +48,7 @@ const fs = require('fs');
 const path = require('path');
 const call = require('./databaseQueue');
 const constants = require('../utils/constants');
-const templates = require('../scripts/templates');
+const getTemplate = require('../scripts/templates');
 
 const dataFiles = fs.readdirSync(`${constants.JSON_DATA}`);
 
