@@ -50,10 +50,6 @@ const call = require('./databaseQueue');
 const constants = require('../utils/constants');
 const getTemplate = require('../scripts/templates');
 
-const dataFiles = fs.readdirSync(`${constants.JSON_DATA}`);
-
-let moduleExports = {}
-
 function heal() {
     let madeChanges = false;
 
@@ -89,8 +85,11 @@ function heal() {
     }
 }
 
-moduleExports = {
-    ...moduleExports,
+heal();
+
+const dataFiles = fs.readdirSync(`${constants.JSON_DATA}`);
+
+let moduleExports = {
     heal,
 }
 

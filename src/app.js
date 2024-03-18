@@ -2,10 +2,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const database = require('./server/scripts/database');
-
-// Heal the database
-database.heal();
 
 // Create the app and establish a port
 const app = express();
