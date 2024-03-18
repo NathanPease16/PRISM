@@ -6,6 +6,4 @@ function getTemplate(templateName) {
     return fs.readFileSync(path.join(constants.JSON_TEMPLATES, templateName + '.template.json'));
 }
 
-module.exports = {
-    getTemplate,
-};
+module.exports = getTemplate;
