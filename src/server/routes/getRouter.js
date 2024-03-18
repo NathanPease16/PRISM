@@ -18,11 +18,11 @@ route.get('/createCommittee', (req, res) => {
     res.render('createCommittee');
 });
 
-route.get('/edit/:id', (req, res) => {
+route.get('/edit/:id', async (req, res) => {
     const id = req.params.id;
 
     // Get committee by id
-    const committee = database.committees.committees.getItemByKey('id', id);
+    const committee = await database.committees.committees.getItemByKey('id', id);
 
     // Make sure requested committee exists
     if (!committee) {

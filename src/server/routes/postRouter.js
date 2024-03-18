@@ -5,7 +5,7 @@ const database = require('../scripts/database');
 
 const route = express.Router();
 
-route.post('/createCommittee', (req, res) => {
+route.post('/createCommittee', async (req, res) => {
     const data = req.body;
 
     // If name doesn't exist, it's a bad request
@@ -15,7 +15,7 @@ route.post('/createCommittee', (req, res) => {
     }
 
     // Get all committees
-    const committeesJson = database.committees.read();
+    const committeesJson = await database.committees.read();
 
     // Generate random ID
     const ids = committeesJson.committees.map((committee) => committee.id);
@@ -31,12 +31,12 @@ route.post('/createCommittee', (req, res) => {
     const committee = models.committee({...req.body, id: committeeId});
     
     // Add the new committee to the end of the committees array
-    database.committees.committees.append(committee);
+    await database.committees.committees.append(committee);
 
     res.status(200).end();
 });
 
-route.post('/editCommittee/:id', (req, res) => {
+route.post('/editCommittee/:id', async (req, res) => {
     // If name doesn't exist, bad request
     if (!req.body.name) {
         res.status(400).end();
@@ -49,7 +49,7 @@ route.post('/editCommittee/:id', (req, res) => {
     const committee = models.committee({name: req.body.name, id: parseInt(id)});
 
     // Attempt to overwrite the old committee
-    if (!database.committees.committees.overwriteItemByKey('id', id, committee)) {
+    if (!(await database.committees.committees.overwriteItemByKey('id', id, committee))) {
         // If it couldn't overwrite the old committee, it was a bad request
         res.status(400).end();
         return;
@@ -58,11 +58,11 @@ route.post('/editCommittee/:id', (req, res) => {
     res.status(200).end();
 });
 
-route.post('/deleteCommittee/:id', (req, res) => {
+route.post('/deleteCommittee/:id', async (req, res) => {
     const id = parseInt(req.params.id);
 
     // Try to discard the committee
-    if (!database.committees.committees.discardByKey('id', id)) {
+    if (!await database.committees.committees.discardByKey('id', id)) {
         // If it couldn't be discarded, it was a bad request
         res.status(400).end();
         return;
@@ -71,9 +71,9 @@ route.post('/deleteCommittee/:id', (req, res) => {
     res.status(200).end();
 });
 
-route.post('/deleteAllCommittees', (req, res) => {
+route.post('/deleteAllCommittees', async (req, res) => {
     // Write an empty array to committees array, effectively wiping it
-    database.committees.committees.write([]);
+    await database.committees.committees.write([]);
 
     res.status(200).end();
 });
