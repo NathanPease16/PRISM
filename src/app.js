@@ -2,10 +2,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const heal = require('./server/scripts/templates');
+const database = require('./server/scripts/database');
 
-// Heal the JSON data
-heal();
+// Heal the database
+database.heal();
 
 // Create the app and establish a port
 const app = express();

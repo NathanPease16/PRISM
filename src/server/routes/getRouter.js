@@ -1,5 +1,5 @@
 const express = require('express');
-const committeeOperations = require('../scripts/committees');
+const models = require('../scripts/models');
 
 const route = express.Router();
 
@@ -18,11 +18,13 @@ route.get('/createCommittee', (req, res) => {
     res.render('createCommittee');
 });
 
-route.get('/edit/:id', (req, res) => {
+route.get('/edit/:id', async (req, res) => {
     const id = req.params.id;
 
-    const committee = committeeOperations.readCommittee(id);
+    // Get committee by id
+    const committee = await models.committee.find('id', id);
 
+    // Make sure requested committee exists
     if (!committee) {
         res.status(400).end();
         return;
