@@ -45,13 +45,54 @@
  */
 
 const fs = require('fs');
+const path = require('path');
 const call = require('./databaseQueue');
 const constants = require('../utils/constants');
 const templates = require('../scripts/templates');
 
 const dataFiles = fs.readdirSync(`${constants.JSON_DATA}`);
 
-const moduleExports = {}
+let moduleExports = {}
+
+function heal() {
+    let madeChanges = false;
+
+    if (!fs.existsSync(constants.JSON_DATA)) {
+        fs.mkdirSync(constants.JSON_DATA);
+        madeChanges = true;
+    }
+
+    const databaseFiles = fs.readdirSync(constants.JSON_DATA).map((item) => item.split('.')[0]);
+    const templateFiles = fs.readdirSync(constants.JSON_TEMPLATES).map((item) => item.split('.')[0]);
+    const modelFiles = fs.readdirSync(constants.JSON_MODELS).map((item) => item.split('.')[0]);
+
+    for (const templateName of templateFiles) {
+        if (!databaseFiles.includes(templateName)) {
+            const template = getTemplate(templateName);
+
+            fs.writeFileSync(path.join(constants.JSON_DATA, templateName + '.json'), template);
+            madeChanges = true;
+        }
+    }
+
+    for (const modelName of modelFiles) {
+        if (!databaseFiles.includes(modelName + 's')) {
+            const contents = '{"data":[]}';
+
+            fs.writeFileSync(path.join(constants.JSON_DATA, modelName + 's.json'), contents);
+            madeChanges = true;
+        }
+    }
+
+    if (madeChanges) {
+        console.log('Healed database files successfully');
+    }
+}
+
+moduleExports = {
+    ...moduleExports,
+    heal,
+}
 
 /**
  * Generates an object containing all the methods that can be

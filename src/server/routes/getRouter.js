@@ -1,5 +1,5 @@
 const express = require('express');
-const database = require('../scripts/database');
+const models = require('../scripts/models');
 
 const route = express.Router();
 
@@ -22,7 +22,7 @@ route.get('/edit/:id', async (req, res) => {
     const id = req.params.id;
 
     // Get committee by id
-    const committee = await database.committees.committees.getItemByKey('id', id);
+    const committee = await models.committee.find('id', id);
 
     // Make sure requested committee exists
     if (!committee) {

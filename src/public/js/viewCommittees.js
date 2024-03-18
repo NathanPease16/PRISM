@@ -82,7 +82,7 @@ async function renderCommittees(filter) {
     // Get committees from internal.js
     const committeesJson = await committees;
 
-    for (const committee of committeesJson.committees) {
+    for (const committee of committeesJson.data) {
         // If committee's name doesn't match with the filter,
         // don't show it
         if (!committee.name.toLowerCase().startsWith(filter)) {
