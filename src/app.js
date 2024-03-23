@@ -25,6 +25,9 @@ app.use('/global', express.static(path.join(__dirname, 'global')));
 // Give the app the ability to parse body data
 app.use(bodyParser.json());
 
+// If config isn't setup, force all to reroute to config
+app.use(require('./server/scripts/config'));
+
 // Give the app the routers
 app.use(require('./server/routes/getRouter.js'));
 app.use(require('./server/routes/postRouter.js'));

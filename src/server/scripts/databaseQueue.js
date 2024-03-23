@@ -1,4 +1,7 @@
 const EventEmitter = require('events');
+const idGenerator = require('./id');
+
+const ids = [];
 
 const queue = [];
 const eventEmitter = new EventEmitter();
@@ -23,7 +26,8 @@ async function executeCallbacks() {
 
 async function call(callback, ...dependents) {
     return new Promise(async (resolve, reject) => {
-        const id = Date.now();
+        const id = idGenerator(64, ids);
+        ids.push(id);
 
         const dependentResults = [];
 
@@ -37,6 +41,8 @@ async function call(callback, ...dependents) {
         const onCallback = (data) => {
             if (data.id == id) {
                 eventEmitter.off('callback', onCallback);
+                const index = ids.findIndex((element) => element == id);
+                ids.splice(index, 1);
                 resolve(data.result);
             }
         };
