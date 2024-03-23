@@ -8,6 +8,11 @@ route.get('/', (req, res) => {
     res.render('index');
 });
 
+route.get('/config', (req, res) => {
+    res.status(200);
+    res.render('config');
+})
+
 route.get('/timer', (req, res) => {
     res.status(200);
     res.render('timer');
