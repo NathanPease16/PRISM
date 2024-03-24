@@ -1,6 +1,8 @@
 const express = require('express');
 const id = require('../scripts/id');
 const models = require('../scripts/models');
+const database = require('../scripts/database');
+const save = require('../scripts/cookies');
 
 const route = express.Router();
 
@@ -71,11 +73,67 @@ route.post('/deleteCommittee/:id', async (req, res) => {
 });
 
 route.post('/deleteAllCommittees', async (req, res) => {
-    // Write an empty array to committees array, effectively wiping it
-    // await database.committees.committees.write([]);
+    // Clear the database
     await models.committee.clear();
 
     res.status(200).end();
+});
+
+route.post('/config', async (req, res) => {
+    if (!req.body.accessCode || !req.body.adminCode) {
+        res.status(400).end();
+        return;
+    }
+
+    await database.config.accessCode.write(req.body.accessCode);
+    await database.config.adminCode.write(req.body.adminCode);
+    await database.config.configured.write(true);
+
+    res.status(200).end();
+});
+
+route.post('/auth', async (req, res) => {
+    const accessCode = await database.config.accessCode.read();
+
+    if (accessCode == req.body.accessCode) {
+        save(res, 'accessCode', accessCode);
+
+        const users = await models.user.findAll();
+
+        const firstName = req.body.firstName;
+        const lastName = req.body.lastName;
+
+        for (const user of users) {
+            if (user.firstName == firstName && user.lastName == lastName) {
+                save(res, 'firstName', firstName);
+                save(res, 'lastName', lastName);
+                res.status(200).end();
+                return;
+            }
+        }
+
+        await models.user.save({firstName, lastName});
+        save(res, 'firstName', firstName);
+        save(res, 'lastName', lastName);
+
+        res.status(200).end();
+        return;
+    }
+
+    res.status(400).end();
+});
+
+route.post('/adminAuth', async (req, res) => {
+    const adminCode = await database.config.adminCode.read();
+
+    if (adminCode == req.body.adminCode) {
+        save(res, 'adminCode', adminCode);
+
+        res.status(200).end();
+        return;
+    }
+
+    res.status(400).end();
 });
 
 module.exports = route;

@@ -1,5 +1,17 @@
 <%- include ('./templates/_header.ejs', { title: 'Config'} ); %>
 <body>
-    
+    <p class="header">Configure Server</p>
+    <% if (accessCode) { %>
+        <input class="full input item" type="text" name="accessCode" id="accessCode" placeholder="Access Code" value="<%= accessCode %>">
+    <% } else {%>
+        <input class="full input item" type="text" name="accessCode" id="accessCode" placeholder="Access Code">
+    <% } %>
+    <% if (adminCode) { %>
+        <input class="full input item" type="text" name="adminCode" id="adminCode" placeholder="Admin Code" value="<%= adminCode %>">
+    <% } else {%>
+        <input class="full input item" type="text" name="adminCode" id="adminCode" placeholder="Admin Code">
+    <% } %>
+    <button class="full button item" id="save">Save</button>
+    <script src="/js/config.js"></script>
 </body>
 </html>

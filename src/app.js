@@ -1,6 +1,7 @@
 // Import needed modules
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const path = require('path');
 
 // Create the app and establish a port
@@ -24,9 +25,12 @@ app.use('/global', express.static(path.join(__dirname, 'global')));
 
 // Give the app the ability to parse body data
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 // If config isn't setup, force all to reroute to config
 app.use(require('./server/scripts/config'));
+
+app.use(require('./server/scripts/auth'));
 
 // Give the app the routers
 app.use(require('./server/routes/getRouter.js'));

@@ -1,5 +1,6 @@
 const express = require('express');
 const models = require('../scripts/models');
+const database = require('../scripts/database');
 
 const route = express.Router();
 
@@ -8,14 +9,25 @@ route.get('/', (req, res) => {
     res.render('index');
 });
 
-route.get('/config', (req, res) => {
+route.get('/auth', (req, res) => {
+    const firstName = req.cookies.firstName;
+    const lastName = req.cookies.lastName;
+
     res.status(200);
-    res.render('config');
+    res.render('auth', {firstName, lastName});
+});
+
+route.get('/adminAuth', (req, res) => {
+    res.status(200);
+    res.render('adminAuth');
 })
 
-route.get('/timer', (req, res) => {
+route.get('/config', async (req, res) => {
+    const accessCode = await database.config.accessCode.read();
+    const adminCode = await database.config.adminCode.read();
+
     res.status(200);
-    res.render('timer');
+    res.render('config', {accessCode, adminCode});
 });
 
 route.get('/createCommittee', (req, res) => {
@@ -37,6 +49,18 @@ route.get('/edit/:id', async (req, res) => {
 
     res.status(200);
     res.render('edit', { committee });
+});
+
+
+
+
+
+
+
+// TEST
+route.get('/timer', (req, res) => {
+    res.status(200);
+    res.render('timer');
 });
 
 module.exports = route;

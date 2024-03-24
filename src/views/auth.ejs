@@ -1,0 +1,18 @@
+<%- include ('./templates/_header.ejs', { title: 'Auth'} ); %>
+<body>
+    <p class="header">Authorize Access</p>
+    <% if (firstName) { %>
+        <input class="full input item" type="text" name="firstName" id="firstName" placeholder="First Name" value="<%= firstName %>">
+    <% } else { %>
+        <input class="full input item" type="text" name="firstName" id="firstName" placeholder="First Name">
+    <% } %>
+    <% if (lastName) { %>
+        <input class="full input item" type="text" name="lastName" id="lastName" placeholder="Last Name" value="<%= lastName %>">
+    <% } else { %>
+        <input class="full input item" type="text" name="lastName" id="lastName" placeholder="Last Name">
+    <% } %>
+    <input class="full input item" type="text" name="accessCode" id="accessCode" placeholder="Access Code">
+    <button class="full button item" id="submit">Submit</button>
+    <script src="/js/auth.js"></script>
+</body>
+</html>
