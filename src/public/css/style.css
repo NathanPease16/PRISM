@@ -1,3 +1,8 @@
+/* Imports */
+@import 'committees.css';
+@import 'confirmation.css';
+/* /Imports */
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, input, button {
     margin: 0;
     padding: 0;
@@ -26,6 +31,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     --padding-small: 10px;
     --padding: 25px;
 
+    --side-space: 100px;
+
     --font-small: 20px;
     --font-medium: 40px;
     --font-large: 60px;
@@ -33,10 +40,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 .full {
     display: flex;
-    width: calc(100% - calc(var(--padding) * 2));
+    width: calc(100% - calc(var(--side-space) * 2));
     box-sizing: border-box;
-    margin-left: var(--padding);
-    margin-right: var(--padding);
+    margin-left: var(--side-space);
+    margin-right: var(--side-space);
 }
 
 .button {
@@ -81,7 +88,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 .header {
     font-size: var(--font-large);
-    padding-left: var(--padding);
+    padding-left: var(--side-space);
     padding-top: var(--padding);
     color: var(--dark-gray);
 }

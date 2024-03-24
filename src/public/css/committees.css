@@ -15,29 +15,29 @@
 }
 
 .edit {
-    background-color: var(--blue);
+    background-color: var(--blue) !important;
 }
 
 .edit:hover {
-    background-color: var(--dark-blue);
+    background-color: var(--dark-blue) !important;
 }
 
 .delete {
     cursor:pointer;
-    background-color: var(--red);
+    background-color: var(--red) !important;
 }
 
 .delete:hover {
-    background-color: var(--dark-red);
+    background-color: var(--dark-red) !important;
 }
 
 .committee {
     display: flex;
-    width: calc(100% - calc(var(--padding) * 2));
+    width: calc(100% - calc(var(--side-space) * 2));
     align-items: center;
     box-sizing: border-box;
-    margin-left: var(--padding);
-    margin-right: var(--padding);
+    margin-left: var(--side-space);
+    margin-right: var(--side-space);
     margin-top: var(--padding);
     border: solid 3px var(--gray);
     border-radius: 10px; 
