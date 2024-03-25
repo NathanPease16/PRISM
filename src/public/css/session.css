@@ -1,0 +1,27 @@
+.country-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.un-country-box {
+    border: solid 3px var(--gray);
+    border-radius: 10px;
+    margin-left: var(--side-space);
+    margin-top: var(--padding);
+    max-height: 75vh;
+    overflow: auto;
+    width: 40vw;
+    height: 80vh;
+}
+
+.country-box {
+    border: solid 3px var(--gray);
+    border-radius: 10px;
+    margin-left: var(--side-space);
+    margin-right: var(--side-space);
+    margin-top: var(--padding);
+    max-height: 75vh;
+    overflow: auto;
+    width: 50vw;
+    height: 80vh;
+}

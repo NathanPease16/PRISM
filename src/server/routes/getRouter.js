@@ -30,6 +30,21 @@ route.get('/config', async (req, res) => {
     res.render('config', {accessCode, adminCode});
 });
 
+route.get('/session/:id', async (req, res) => {
+    let name = '';
+    try {
+        const committee = await models.committee.find('id', req.params.id);
+        name = committee.name;
+    } catch (err) {
+        console.log(err);
+        res.status(400).end();
+        return;
+    }
+
+    res.status(200);
+    res.render('session', {name});
+});
+
 route.get('/createCommittee', (req, res) => {
     res.status(200);
     res.render('createCommittee');
