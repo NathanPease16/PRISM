@@ -21,7 +21,23 @@
     margin-right: var(--side-space);
     margin-top: var(--padding);
     max-height: 75vh;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: none;
     width: 50vw;
     height: 80vh;
+}
+
+.session-searchbar {
+    border: solid 3px var(--gray);
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: var(--font-small);
+    color: var(--dark-gray);
+    padding-left: var(--padding-small);
+    padding-top: var(--padding-small);
+    padding-bottom: var(--padding-small);
+    margin-left: var(--padding-small);
+    margin-right: var(--padding-small);
+    margin-top: var(--padding-small);
+    width:max-content;
 }

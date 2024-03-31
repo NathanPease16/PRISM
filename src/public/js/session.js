@@ -1,8 +1,10 @@
+const allCountries = document.getElementById('all-countries');
+
 (async () => {
     const response = await fetch('/global/UN_Nations.txt');
     const data = await response.text();
 
-    const countryNames = data.split('\r\n');
+    const countryNames = data.split('\n');
 
     const countries = [];
 
@@ -22,4 +24,10 @@
     }
 
     console.log(countries);
+    for (const country of countries) {
+        const p = document.createElement('p');
+        p.textContent = country.title;
+
+        allCountries.appendChild(p);
+    }
 })();
