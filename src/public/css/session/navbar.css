@@ -27,11 +27,11 @@
 }
 
 .session-navbar-element:hover {
-    color: var(--dark-blue);
+    color: var(--dark-gray);
 }
 
 .session-navbar-selected {
-    color: var(--dark-gray) !important;
+    color: var(--dark-blue) !important;
 }
 
 .session-navbar-img {
