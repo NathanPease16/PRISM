@@ -31,7 +31,19 @@ route.get('/config', async (req, res) => {
 });
 
 route.get('/session/:id', async (req, res) => {
-    const committee = await models.committee.find('id', req.params.id);
+    let committee;
+    try {
+        committee = await models.committee.find('id', req.params.id);
+    } catch (err) {
+        console.log(err);
+        res.status(400).end();
+        return;
+    }
+
+    if (!committee) {
+        res.status(400).end();
+        return;
+    }
 
     if (committee.setup) {
         res.status(200);
