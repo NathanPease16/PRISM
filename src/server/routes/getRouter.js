@@ -42,7 +42,7 @@ route.get('/session/:id', async (req, res) => {
     }
 
     res.status(200);
-    res.render('session', {name});
+    res.render('session/session', {name});
 });
 
 route.get('/createCommittee', (req, res) => {

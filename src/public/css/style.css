@@ -13,13 +13,18 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     vertical-align: baseline;
     background: transparent;
 
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 :root {
+    --light-green: #b0ffc4;
+    --green: #67ff8d;
+    --dark-green: #419b57;
+
     --blue: #679cff;
     --dark-blue: #314d81;
 
+    --light-red: #f5adad;
     --red: #d34b4b;
     --dark-red: #832424;
 
