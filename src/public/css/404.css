@@ -1,0 +1,28 @@
+body {
+    background-color: var(--dark-gray) !important;
+}
+
+.container-404 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.p-container-404 {
+    position: absolute;
+    text-align: center;
+    z-index: 100;
+}
+
+.img-404 {
+    width: 40vw;
+    opacity: .2;
+    filter: grayscale(1);
+}
+
+.p-404 {
+    color: var(--light-gray);
+    font-size: 75px;
+
+}
