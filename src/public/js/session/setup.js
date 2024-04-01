@@ -11,7 +11,7 @@ const countries = [];
 let selectedCountries = [];
 
 (async () => {
-    const committees = await fetch('/committees.json').then((response) => response.json());
+    const allCommittees = await committees;
 
     const response = await fetch('/global/UN_Nations.txt');
     const data = await response.text();
@@ -98,7 +98,7 @@ let selectedCountries = [];
         }
     }
 
-    for (const committee of committees.data) {
+    for (const committee of allCommittees.data) {
         if (committee.id == id) {
             selectedCountries = committee.countries;
             break;

@@ -182,7 +182,7 @@ Tuvalu | TUV | TV
 Uganda | UGA | UG
 Ukraine | UKR | UA
 United Arab Emirates | UAE | ARE | AE
-United Kingdom | United Kingdom of Great Britain and Northern Ireland | GBR | GB
+United Kingdom | United Kingdom of Great Britain and Northern Ireland | GBR | UK | GB
 United States of America | united States | USA | US
 Uruguay | URY | UY
 Uzbekistan | UZB | UZ
