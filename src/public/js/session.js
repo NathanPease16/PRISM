@@ -2,12 +2,17 @@ const allCountries = document.getElementById('all-countries');
 const selectedCountriesDiv = document.getElementById('selected-countries');
 const countryCount = document.getElementById('country-count');
 const search = document.getElementById('search');
-const clear =document.getElementById('clear');
+const clear = document.getElementById('clear');
+const setup = document.getElementById('setup');
+
+const id = window.location.pathname.split('/')[2];
 
 const countries = [];
 let selectedCountries = [];
 
 (async () => {
+    const committees = await fetch('/committees.json').then((response) => response.json());
+
     const response = await fetch('/global/UN_Nations.txt');
     const data = await response.text();
 
@@ -58,13 +63,15 @@ let selectedCountries = [];
                 appendTo.append(div);
             }
 
-            if (selectedCountries.includes(country)) {
-                addCountry(() => {
-                    selectedCountries = selectedCountries.filter((c) => c != country);
-                    loadCountries('');
-                }, selectedCountriesDiv);
-
-                continue;
+            for (const selectedCountry of selectedCountries) {
+                if (selectedCountry.title == country.title) {
+                    addCountry(() => {
+                        selectedCountries = selectedCountries.filter((c) => c.title != country.title);
+                        loadCountries('');
+                    }, selectedCountriesDiv);
+    
+                    continue loop;
+                }
             }
 
             const allCountriesEvent = () => {
@@ -91,6 +98,13 @@ let selectedCountries = [];
         }
     }
 
+    for (const committee of committees.data) {
+        if (committee.id == id) {
+            selectedCountries = committee.countries;
+            break;
+        }
+    }
+
     loadCountries('');
 
     search.addEventListener('input', () => {
@@ -100,5 +114,19 @@ let selectedCountries = [];
     clear.addEventListener('click', () => {
         selectedCountries = [];
         loadCountries('');
+    });
+
+    setup.addEventListener('click', async () => {
+        const response = await fetch(`/setup/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({id, selectedCountries}),
+        });
+
+        if (response.ok) {
+            window.location = `/session/${id}`;
+        }
     });
 })();

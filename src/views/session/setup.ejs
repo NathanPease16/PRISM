@@ -1,0 +1,18 @@
+<%- include ('../templates/_header.ejs', { title: 'Session'} ); %>
+<body>
+    <p class="header"><%= name %> Setup</p>
+    <div class="country-container">
+        <div class="session-box-container box-shadow">
+            <input class="session-searchbar" type="text" name="search" id="search" placeholder="Search &#x1F50E;&#xFE0E;">
+            <div class="country-box" id="all-countries"></div>
+        </div>
+        <div class="session-box-container box-shadow">
+            <p class="session-box-text" id="country-count">0 Countries</p>
+            <div class="country-box" id="selected-countries"></div>
+            <button class="session-button setup-red-button" id="clear">Clear</button>
+            <button class="session-button" id="setup">Finish Setup</button>
+        </div>
+    </div>
+    <script src="/js/session.js"></script>
+</body>
+</html>

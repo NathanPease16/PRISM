@@ -103,6 +103,22 @@ for (const model of models) {
         });
     }
 
+    const overwriteKey = async (identifier, identifierValue, keyName, newValue) => {
+        return new Promise(async (resolve, reject) => {
+            const oldObject = await find(identifier, identifierValue);
+
+            const newObject = {};
+            for (const key of Object.keys(oldObject)) {
+                newObject[key] = oldObject[key];
+            }
+            
+            newObject[keyName] = newValue;
+
+            const result = await overwrite(identifier, identifierValue, newObject);
+            resolve(result);
+        });
+    }
+
     /**
      * Removes an object based on the identifier
      * @param {*} identifier Identifier to look for
@@ -128,11 +144,13 @@ for (const model of models) {
         findAll,
         find,
         overwrite,
+        overwriteKey,
         remove,
         clear,
     };
 
     modelExports[modelName] = validate;
+    modelExports['model'] = modelJson;
     
     moduleExports[modelName] = modelExports;
 }

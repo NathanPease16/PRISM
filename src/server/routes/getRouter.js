@@ -31,7 +31,20 @@ route.get('/config', async (req, res) => {
 });
 
 route.get('/session/:id', async (req, res) => {
+    const committee = await models.committee.find('id', req.params.id);
+
+    if (committee.setup) {
+        res.status(200);
+        res.render('session/session');
+    } else {
+        res.redirect(`/session/${req.params.id}/setup`);
+    }
+});
+
+route.get('/session/:id/setup', async (req, res) => {
     let name = '';
+
+
     try {
         const committee = await models.committee.find('id', req.params.id);
         name = committee.name;
@@ -42,7 +55,7 @@ route.get('/session/:id', async (req, res) => {
     }
 
     res.status(200);
-    res.render('session/session', {name});
+    res.render('session/setup', {name});
 });
 
 route.get('/createCommittee', (req, res) => {
