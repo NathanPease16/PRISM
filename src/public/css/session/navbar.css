@@ -1,0 +1,45 @@
+.session {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.session-page {
+    flex-grow: 1;
+}
+
+.session-navbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-left: calc(var(--side-space) * 3);
+    padding-right: calc(var(--side-space) * 3);
+    padding-top: var(--padding-small);
+    padding-bottom: var(--padding-small);
+    box-shadow: 0 0 5px 5px var(--light-gray);
+}
+
+.session-navbar-element {
+    text-align: center;
+    color: var(--translucent-black);
+    transition: color 250ms;
+    text-decoration: none;
+}
+
+.session-navbar-element:hover {
+    color: var(--dark-gray);
+}
+
+.session-navbar-selected {
+    color: var(--dark-blue) !important;
+}
+
+.session-navbar-img {
+    width: 3vw;
+}
+
+.session-navbar-text {
+    color: inherit;
+    font-size: var(--font-small);
+    text-decoration: none;
+}

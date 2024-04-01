@@ -105,8 +105,8 @@ async function renderCommittees(filter) {
         // Moderate button
         const moderateButton = document.createElement('a');
         moderateButton.className = 'committee-button edit';
-        moderateButton.href = `/moderate/${committee.id}`;
-        moderateButton.textContent = 'Moderate';
+        moderateButton.href = `/session/${committee.id}`;
+        moderateButton.textContent = 'Session';
 
         // Button for editing
         const editButton = document.createElement('a');

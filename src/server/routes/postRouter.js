@@ -28,8 +28,17 @@ route.post('/createCommittee', async (req, res) => {
         return;
     }
 
+    const otherKeyValues = {};
+    for (const key of Object.keys(models.committee.model)) {
+        if (key == 'name' || key == 'id') {
+            continue;
+        }
+
+        otherKeyValues[key] = models.committee.model[key];
+    }
+
     // Create a new committee based on the committee model
-    const committee = models.committee.committee({...req.body, id: committeeId});
+    const committee = models.committee.committee({...req.body, id: committeeId, ...otherKeyValues});
     
     // Add the new committee to the end of the committees array
     await models.committee.save(committee);
@@ -46,16 +55,14 @@ route.post('/editCommittee/:id', async (req, res) => {
 
     const id = parseInt(req.params.id);
 
-    // Create new committee with new name but same ID based on committee model
-    const committee = models.committee.committee({name: req.body.name, id: parseInt(id)});
-
-    // Attempt to overwrite the old committee
-    if (!(await models.committee.overwrite('id', id, committee))) {
-        // If it couldn't overwrite the old committee, it was a bad request
+    try {
+        await models.committee.overwriteKey('id', id, 'name', req.body.name);
+    } catch (err) {
+        console.log(err);
         res.status(400).end();
         return;
     }
-    
+
     res.status(200).end();
 });
 
@@ -75,6 +82,28 @@ route.post('/deleteCommittee/:id', async (req, res) => {
 route.post('/deleteAllCommittees', async (req, res) => {
     // Clear the database
     await models.committee.clear();
+
+    res.status(200).end();
+});
+
+route.post('/setup/:id', async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        await models.committee.overwriteKey('id', id, 'countries', req.body.selectedCountries);
+    } catch (err) {
+        console.log(err);
+        res.status(400).end();
+        return;
+    }
+
+    try {
+        await models.committee.overwriteKey('id', id, 'setup', true);
+    } catch (err) {
+        console.log(err);
+        res.status(400).end();
+        return;
+    }
 
     res.status(200).end();
 });

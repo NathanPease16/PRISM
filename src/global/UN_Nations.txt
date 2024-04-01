@@ -1,0 +1,194 @@
+Afghanistan | AFG | AF
+Albania | ALB | AL
+Algeria | DZA | DZ
+Andorra | AND | AD
+Angola | AGO | AO
+Antigua and Barbuda | ATG | AG
+Argentina | ARG | AR
+Armenia | ARM | AM
+Australia | AUS | AU
+Austria | AUT | AT
+Azerbaijan | AZE | AZ
+Bahamas | BHS | BS
+Bahrain | BHR | BH
+Bangladesh | BGD | BD
+Barbados | BRB | BB
+Belarus | BLR | BY
+Belgium | BEL | BE
+Belize | BLZ | BZ
+Benin | BEN | BJ
+Bhutan | BTN | BT
+Bolivia | BOL | BO
+Bosnia and Herzegovina | BIH | BA
+Botswana | BWA | BW
+Brazil | BRA | BR
+Brunei Darussalam | Brunei | BRN | BN
+Bulgaria | BGR | BG
+Burkina Faso | BFA | BF
+Burundi | BDI | BI
+Cabo Verde | Cape Verde | CPV | CV
+Cambodia | KHM | KH
+Cameroon | CMR | CM
+Canada | CAN | CA
+Central African Republic | CAR | CAF | CF
+Chad | TCD | TD
+Chile | CHL | CL
+China | CHN | CN
+Colombia | COL | CO
+Comoros | COM | KM
+Costa Rica | CRI | CR
+Croatia | HRV | HR
+Cuba | CUB | CU
+Cyprus | CYP | CY
+Czechia | Czech Republic | CZE | CZ
+Côte D'Ivoire | Ivory Coast | CI
+Democratic Republic of the Congo | DRC | COD | CD
+Denmark | DNK | DK
+Djibouti | DJI | DJ
+Dominica | DMA | DM
+Dominican Republic | DOM | DO
+Ecuador | ECU | EC
+Egypt | EGY | EG
+El Salvador | SLV | SV
+Equatorial Guinea | GNQ | GQ
+Eritrea | ERI | ER
+Estonia | EST | EE
+Eswatini | SWZ | SZ
+Ethiopia | ETH | ET
+Fiji | FJI | FJ
+Finland | FIN | FI
+France | FRA | FR
+Gabon | GAB | GA
+Gambia | GMB | GM
+Georgia | GEO | GE
+Germany | DEU | DE
+Ghana | GHA | GH
+Greece | GRC | GR
+Grenada | GRD | GD
+Guatemala | GTM | GT
+Guinea | GIN | GN
+Guinea Bissau | GNB | GW
+Guyana | GUY | GY
+Haiti | HTI | HT
+Honduras | HND | HN
+Hungary | HUN | HU
+Iceland | ISL | IS
+India | IND | IN
+Indonesia | IDN | ID
+Iran | Islamic Republic of Iran | IRN | IR
+Iraq | IRQ | IQ
+Ireland | IRL | IE
+Israel | ISR | IL
+Italy | ITA | IT
+Jamaica | JAM | JM
+Japan | JPN | JP
+Jordan | JOR | JO
+Kazakhstan | KAZ | KZ
+Kenya | KEN | KE
+Kiribati | KIR | KI
+Kuwait | KWT | KW
+Kyrgyzstan | KGZ | KG
+Lao People's Democratic Republic | Laos | LAO | LA
+Latvia | LVA | LV
+Lebanon | LBN | LB
+Lesotho | LES | LS
+Liberia | LBR | LR
+Libya | LBY | LY
+Liechtenstein | LIE | LI
+Lithuania | LTU | LT
+Luxembourg | LUX | LU
+Madagascar | MDG | MG
+Malawi | MWI | MW
+Malaysia | MYS | MY
+Maldives | MDV | MV
+Mali | MLI | ML
+Malta | MLT | MT
+Marshall Islands | MHL | MH
+Mauritania | MRT | MR
+Mauritius | MUS | MU
+Mexico | MEX | MX
+Micronesia | Federated States of Micronesia | FSM | FM
+Moldova | Republic of Moldova | MDA | MD
+Monaco | MCO | MC
+Mongolia | MNG | MN
+Montenegro | MNE | ME
+Morocco | MAR | MA
+Mozambique | MOZ | MZ
+Myanmar | MMR | MM
+Namibia | NAM | NA
+Nauru | NRU | NR
+Nepal | NPL | NP
+Netherlands | NLD | NL
+New Zealand | NZL | NZ
+Nicaragua | NIC | NI
+Niger | NER | NE
+Nigeria | NGA | NG
+North Korea | Democratic People's Republic of Korea | DPRK | PRK | KP
+North Macedonia | Republic of North Macedonia | MKD | MK
+Norway | NOR | NO
+Oman | OMN | OM
+Pakistan | PAK | PK
+Palau | PLW | PW
+Palestine | State of Palestine | PSE | PS
+Panama | PAN | PA
+Papua New Guinea | PNG | PG
+Paraguay | PRY | PY
+Peru | PER | PE
+Philippines | PHL | PH
+Poland | POL | PL
+Portugal | PRT | PT
+Qatar | QAT | QA
+Republic of the Congo | Congo | COG | CG
+Romania | ROU | RO
+Russia | Russian Federation | RUS | RU
+Rwanda | RWA | RW
+Saint Kitts and Nevis | KNA | KN
+Saint Lucia | LCA | LC
+Saint Vincent and the Grenadines | VCT | VC
+Samoa | WSM | WS
+San Marino | SMR | SM
+Sao Tome and Principe | STP | ST
+Saudi Arabia | SAU | SA
+Senegal | SEN | SN
+Serbia | SRB | RS
+Seychelles | SYC | SC
+Sierra Leone | SLE | SL
+Singapore | SGP | SG
+Slovakia | SVK | SK
+Slovenia | SVN | SI
+Solomon Islands | SLB | SB
+Somalia | SOM | SO
+South Africa | ZAF | ZA
+South Korea | Republic of Korea | KOR | KR
+South Sudan | SSD | SS
+Spain | ESP | ES
+Sri Lanka | LKA | LK
+Sudan | SDN | SD
+Suriname | SUR | SR
+Sweden | SWE | SE
+Switzerland | CHE | CH
+Syria | Syrian Arab Republic | SYR | SY
+Tajikistan | TJK | TJ
+Tanzania | United Republic of Tanzania | TZA | TZ
+Thailand | THA | TH
+Timor-Leste | Timor Leste | TLS | TL
+Togo | TGO | TG
+Tonga | TON | TO
+Trinidad and Tobago | TTO | TT
+Tunisia | TUN | TN
+Türkiye | Turkey | Turkiye | TUR | TR
+Turkmenistan | TKM | TM
+Tuvalu | TUV | TV
+Uganda | UGA | UG
+Ukraine | UKR | UA
+United Arab Emirates | UAE | ARE | AE
+United Kingdom | United Kingdom of Great Britain and Northern Ireland | GBR | UK | GB
+United States of America | united States | USA | US
+Uruguay | URY | UY
+Uzbekistan | UZB | UZ
+Vanuatu | VUT | VU
+Venezuela | Bolivarian Republic of | VEN | VE
+Viet Nam | Vietnam | VNM | VN
+Yemen | YEM | YE
+Zambia | ZMB | ZM
+Zimbabwe | ZWE | ZW

@@ -1,6 +1,8 @@
 /* Imports */
 @import 'committees.css';
 @import 'confirmation.css';
+@import 'session/setup.css';
+@import 'session/navbar.css';
 /* /Imports */
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, input, button {
@@ -12,13 +14,18 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     vertical-align: baseline;
     background: transparent;
 
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 :root {
+    --light-green: #b0ffc4;
+    --green: #67ff8d;
+    --dark-green: #419b57;
+
     --blue: #679cff;
     --dark-blue: #314d81;
 
+    --light-red: #f5adad;
     --red: #d34b4b;
     --dark-red: #832424;
 
@@ -88,9 +95,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 .header {
     font-size: var(--font-large);
-    padding-left: var(--side-space);
     padding-top: var(--padding);
     color: var(--dark-gray);
+    text-align: center;
 }
 
 .subtitle {

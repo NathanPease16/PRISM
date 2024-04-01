@@ -30,6 +30,36 @@ route.get('/config', async (req, res) => {
     res.render('config', {accessCode, adminCode});
 });
 
+route.get('/session/:id', async (req, res) => {
+    const committee = await models.committee.find('id', req.params.id);
+
+    if (!committee) {
+        res.redirect(`/badGateway?old=${req.originalUrl}`);
+        return;
+    }
+
+    if (committee.setup) {
+        res.status(200);
+        res.render('session/session', {id: req.params.id});
+    } else {
+        res.redirect(`/session/${req.params.id}/setup`);
+    }
+});
+
+route.get('/session/:id/setup', async (req, res) => {
+    const committee = await models.committee.find('id', req.params.id);
+
+    if (!committee) {
+        res.redirect(`/badGateway?old=${req.originalUrl}`);
+        return;
+    }
+
+    const name = committee.name;
+
+    res.status(200);
+    res.render('session/setup', {name});
+});
+
 route.get('/createCommittee', (req, res) => {
     res.status(200);
     res.render('createCommittee');
@@ -43,7 +73,7 @@ route.get('/edit/:id', async (req, res) => {
 
     // Make sure requested committee exists
     if (!committee) {
-        res.status(400).end();
+        res.redirect(`/badGateway?old=${req.originalUrl}`);
         return;
     }
 

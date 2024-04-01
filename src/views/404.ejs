@@ -1,0 +1,13 @@
+<%- include ('./templates/_header.ejs', { title: '404'} ); %>
+<link rel="stylesheet" href="/css/404.css">
+<body>
+    <div class="container-404">
+        <div class="p-container-404">
+            <p class="p-404-red">404 Bad Gateway</p>
+            <p class="p-404">Page Not Found:</p>
+            <p class="p-404-small"><%= originalUrl %></p>
+        </div>
+        <img src="/img/MUN_PRISM_1024.png" class="img-404">
+    </div>
+</body>
+</html>
