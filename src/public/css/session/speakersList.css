@@ -1,0 +1,42 @@
+.speakers-list-container {
+    display: flex;
+}
+
+.speakers-list {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 5px 5px var(--light-gray);
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: var(--padding) var(--padding) var(--padding) var(--padding);
+    width: 60vw;
+    height: 80vh;
+}
+
+.add-speakers {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 5px 5px var(--light-gray);
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: var(--padding) var(--padding) var(--padding) var(--padding);
+    width: 40vw;
+    height: 80vh;
+}
+
+.add-speakers-search {
+    border: solid 3px var(--gray);
+    max-height: calc( calc( calc( var(--font-small) * 1.2 ) + calc( var(--padding-small) * 2 ) ) + 6px);
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: var(--font-small);
+    color: var(--dark-gray);
+    padding-left: var(--padding-small);
+    padding-top: var(--padding-small);
+    padding-bottom: var(--padding-small);
+    margin-left: var(--padding-small);
+    margin-right: var(--padding-small);
+    margin-top: var(--padding-small);
+    margin-bottom: var(--padding-small);
+    flex-grow: 1;
+}
