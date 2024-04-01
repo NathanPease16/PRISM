@@ -40,7 +40,7 @@ route.get('/session/:id', async (req, res) => {
 
     if (committee.setup) {
         res.status(200);
-        res.render('session/session');
+        res.render('session/session', {id: req.params.id});
     } else {
         res.redirect(`/session/${req.params.id}/setup`);
     }
