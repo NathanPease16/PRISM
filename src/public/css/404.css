@@ -21,8 +21,17 @@ body {
     filter: grayscale(1);
 }
 
+.p-404-red {
+    color: var(--dark-red);
+    font-size: 75px;
+}
+
 .p-404 {
     color: var(--light-gray);
     font-size: 75px;
+}
 
+.p-404-small {
+    color: var(--light-gray);
+    font-size: var(--font-medium);
 }
