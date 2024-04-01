@@ -91,11 +91,6 @@ route.get('/edit/:id', async (req, res) => {
     res.render('edit', { committee });
 });
 
-route.get('*', (req, res) => {
-    res.status(404);
-    res.render('404', { originalUrl: req.originalUrl.substring(1) });
-});
-
 
 
 

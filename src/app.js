@@ -36,6 +36,7 @@ app.use(require('./server/scripts/auth'));
 app.use(require('./server/routes/getRouter.js'));
 app.use(require('./server/routes/postRouter.js'));
 app.use(require('./server/routes/internal.js'));
+app.use(require('./server/routes/badGatewayRouter.js'));
 
 // Establish socket connection
 io.on('connection', (socket) => {
