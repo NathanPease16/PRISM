@@ -187,7 +187,7 @@ United States of America | united States | USA | US
 Uruguay | URY | UY
 Uzbekistan | UZB | UZ
 Vanuatu | VUT | VU
-Venezuela | Bolivarian Republic of | VEN | VE
+Venezuela | Bolivarian Republic of Venezuela | VEN | VE
 Viet Nam | Vietnam | VNM | VN
 Yemen | YEM | YE
 Zambia | ZMB | ZM

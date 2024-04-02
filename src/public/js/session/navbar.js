@@ -15,6 +15,15 @@ for (const tab of tabs) {
         }
 
         tab.className = 'session-navbar-element session-navbar-selected';
+
+        const scripts = sessionPage.querySelectorAll('script');
+        scripts.forEach((oldScript) => {
+            const newScript = document.createElement('script');
+
+            newScript.src = oldScript.src;
+
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+        })
     }
 
     tab.addEventListener('click', event);
