@@ -63,7 +63,7 @@ function main() {
                     currentTime = speakersListTime;
 
                     const formattedTime = formatTime(currentTime, 2, 2, 0);
-                    timeText.textContent = `${formattedTime} / ${formattedTimeMax}`;
+                    timeText.textContent = `${formattedTime} / ${speakTimeFormatted}`;
 
                     playImage.style = '';
                     pauseImage.style = 'display: none;';
