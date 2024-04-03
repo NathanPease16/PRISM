@@ -79,7 +79,7 @@ let selectedCountries = [];
                 loadCountries('');
             }
             
-            if (country.title.toLowerCase().startsWith(searchValue.toLowerCase())) {
+            if (country.title.toLowerCase().startsWith(searchValue.toLowerCase()) || country.code.startsWith(searchValue)) {
                 addCountry(allCountriesEvent, allCountries);
                 continue;
             }
@@ -87,13 +87,7 @@ let selectedCountries = [];
             for (alternative of country.alternatives) {
                 if (alternative.toLowerCase().startsWith(searchValue.toLowerCase())) {
                     addCountry(allCountriesEvent, allCountries);
-                    continue loop;
                 }
-            }
-
-            if (country.code.startsWith(searchValue)) {
-                addCountry(allCountriesEvent, allCountries);
-                continue;
             }
         }
     }

@@ -81,6 +81,10 @@ route.get('/edit/:id', async (req, res) => {
     res.render('edit', { committee });
 });
 
+route.get('/test', (req, res) => {
+    res.render('test');
+});
+
 
 
 

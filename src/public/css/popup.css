@@ -1,0 +1,120 @@
+.popup-blackout {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: var(--translucent-black);
+    z-index: 999;
+}
+
+.popup-container {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-menu {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 0 5px 5px var(--dark-gray);
+    border-radius: 10px;
+    width: 500px;
+    position: absolute;
+    padding-bottom: var(--padding-small);
+    z-index: 1000;
+}
+
+.popup-header, .popup-small-header, .popup-text {
+    color: var(--dark-gray);
+    text-align: center;
+    padding: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
+}
+
+.popup-header {
+    font-size: var(--font-large);
+}
+
+.popup-small-header {
+    font-size: var(--font-medium);
+}
+
+.popup-text {
+    font-size: var(--font-small);
+}
+
+.popup-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 250ms;
+    margin-top: var(--padding-small);
+    margin-bottom: var(--padding-small);
+    margin-left: var(--padding);
+    margin-right: var(--padding);
+}
+
+.popup-input {
+    border: solid 3px var(--gray);
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: var(--dark-gray);
+    padding-left: var(--padding-small);
+    padding-top: var(--padding-small);
+    padding-bottom: var(--padding-small);
+    margin-left: var(--padding);
+    margin-right: var(--padding);
+    margin-top: var(--padding-small);
+    margin-bottom: var(--padding-small);
+    flex-grow: 1;
+}
+
+.popup-gray {
+    background-color: var(--gray);
+}
+
+.popup-gray:hover {
+    background-color: var(--dark-gray);
+}
+
+.popup-green {
+    background-color: var(--green);
+}
+
+.popup-green:hover {
+    background-color: var(--dark-green);
+}
+
+.popup-blue {
+    background-color: var(--blue);
+}
+
+.popup-blue:hover {
+    background-color: var(--dark-blue);
+}
+
+.popup-red {
+    background-color: var(--red);
+}
+
+.popup-red:hover {
+    background-color: var(--dark-red);
+}
+
+.popup-orange {
+    background-color: var(--orange);
+}
+
+.popup-orange:hover {
+    background-color: var(--dark-orange);
+}

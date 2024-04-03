@@ -5,6 +5,8 @@ const tabs = sessionNavbar.getElementsByTagName('div');
 
 const defaultTab = 'gsl';
 
+let previousScripts;
+
 for (const tab of tabs) {
     const event = async () => {
         const innerHtml = (await (await fetch(`/${tab.id}.ejs`)).json()).innerHtml;
@@ -15,6 +17,18 @@ for (const tab of tabs) {
         }
 
         tab.className = 'session-navbar-element session-navbar-selected';
+
+        const scripts = sessionPage.querySelectorAll('script');
+
+        scripts.forEach((oldScript) => {
+            const newScript = document.createElement('script');
+
+            newScript.src = oldScript.src;
+
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
+
+        previousScripts = scripts;
     }
 
     tab.addEventListener('click', event);
