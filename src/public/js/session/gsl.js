@@ -6,6 +6,7 @@ function main() {
 
     const timeText = document.getElementById('time');
 
+    const settings = document.getElementById('settings');
     const play = document.getElementById('play');
     const next = document.getElementById('next');
 
@@ -13,7 +14,6 @@ function main() {
     const pauseImage = document.getElementById('pause-img');
 
     let speakersListTime = 60;
-    let speakTimeFormatted = formatTime(speakersListTime, 2, 2, 0);
     currentTime = speakersListTime;
 
     let timerActive = false;
@@ -21,6 +21,47 @@ function main() {
     const id = window.location.pathname.split('/')[2];
 
     let speakersList = [];
+
+    settings.addEventListener('click', () => {
+        const settingsPopup = new Popup();
+
+        settingsPopup.addSmallHeader('Settings');
+        settingsPopup.addText('Speaking Time (Minutes)');
+
+        const initMinutes = Math.floor(speakersListTime / 60);
+        const initSeconds = Math.floor(speakersListTime % 60);
+
+        const minutes = settingsPopup.addInput(`${initMinutes}`);
+        minutes.type = 'number';
+
+        settingsPopup.addText('Speaking Time (Seconds)');
+
+        const seconds = settingsPopup.addInput(`${initSeconds}`);
+        seconds.type = 'number';
+
+        settingsPopup.addButton('Confirm Changes', 'blue', () => {
+            timerActive = false;
+
+            const min = minutes.value == '' ? initMinutes : parseFloat(minutes.value);
+            const sec = seconds.value == '' ? initSeconds : parseFloat(seconds.value);
+
+            speakersListTime = min * 60 + sec;
+            currentTime = speakersListTime;
+
+            timeText.textContent = `${formatTime(currentTime, 2, 2)} / ${formatTime(speakersListTime, 2, 2)}`;
+
+            playImage.style = '';
+            pauseImage.style = 'display: none;';
+
+            settingsPopup.remove();
+        });
+
+        settingsPopup.addButton('Cancel', 'red', () => {
+            settingsPopup.remove();
+        });
+
+        settingsPopup.show();
+    });
 
     (async () => {
         const allCommittees = await committees;
@@ -58,15 +99,20 @@ function main() {
 
             for (const country of speakersList) {
                 const event = () => {
+                    const isSpeaker = speakersList[0].title == country.title;
+
                     speakersList = speakersList.filter((speaker) => speaker.title != country.title);
-                    timerActive = false;
-                    currentTime = speakersListTime;
+                    
+                    if (isSpeaker) {
+                        timerActive = false;
+                        currentTime = speakersListTime;
 
-                    const formattedTime = formatTime(currentTime, 2, 2, 0);
-                    timeText.textContent = `${formattedTime} / ${speakTimeFormatted}`;
+                        const formattedTime = formatTime(currentTime, 2, 2);
+                        timeText.textContent = `${formattedTime} / ${formatTime(speakersListTime, 2, 2)}`;
 
-                    playImage.style = '';
-                    pauseImage.style = 'display: none;';
+                        playImage.style = '';
+                        pauseImage.style = 'display: none;';
+                    }
 
                     loadCountries('');
                 };
@@ -118,9 +164,9 @@ function main() {
                 const run = () => {
                     if (timerActive) {
                         updateTimer();
-                        const formattedTime = formatTime(currentTime, 2, 2, 0);
+                        const formattedTime = formatTime(currentTime, 2, 2);
 
-                        timeText.textContent = `${formattedTime} / ${speakTimeFormatted}`;
+                        timeText.textContent = `${formattedTime} / ${formatTime(speakersListTime, 2, 2)}`;
 
                         if (currentTime > 0) {
                             requestAnimationFrame(run);
@@ -146,8 +192,8 @@ function main() {
             timerActive = false;
             currentTime = speakersListTime;
 
-            const formattedTime = formatTime(currentTime, 2, 2, 0);
-            timeText.textContent = `${formattedTime} / ${speakTimeFormatted}`;
+            const formattedTime = formatTime(currentTime, 2, 2);
+            timeText.textContent = `${formattedTime} / ${formatTime(speakersListTime, 2, 2)}`;
 
             playImage.style = '';
             pauseImage.style = 'display: none;';
