@@ -29,8 +29,12 @@ route.get('/adminAuth', (req, res) => {
 route.get('/config', async (req, res) => {
     const config = await Config.findOne({});
     
-    const accessCode = config.accessCode;
-    const adminCode = config.adminCode;
+    let accessCode;
+    let adminCode;
+    if (config) {
+        accessCode = config.accessCode;
+        adminCode = config.adminCode;
+    }
 
     res.status(200);
     res.render('config', {accessCode, adminCode});
