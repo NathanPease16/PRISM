@@ -2,11 +2,22 @@
 <body>
     <a class="full button item" href="/createCommittee">Create New Committee</a>
     <input class="full input item" type="text" name="search" id="search" placeholder="&#x1F50E;&#xFE0E; Search Committees">
-    <div id="committee-container" class="committee-container"></div>
-    <button class="full button item confirm" id="delete-all">Delete All Committees</button>
+    <div id="committee-container" class="committee-container">
+        <% for (const committee of committees) { %>
+            <div class="committee" data-name="<%= committee.name %>">
+                <p class="committee-text"><%= committee.name %></p>
+                <div class="committee-buttons">
+                    <a class="committee-button edit" href="/session/<%= committee.id %>">Session</a>
+                    <a class="committee-button edit" href="/edit/<%= committee.id %>">Edit</a>
+                    <button class="committee-button delete committee-delete" id="<%= committee.id %>" name="<%= committee.name %>">Delete</button>
+                </div>
+            </div>
+        <% } %>
+    </div>
+    <button class="full button item delete" id="delete-all">Delete All Committees</button>
     <script src="/js/popup.js"></script>
-    <script src="/js/internal.js"></script>
-    <script src="/js/committees/viewCommittees.js"></script>
+    <script src="/js/committees/searchCommittees.js"></script>
+    <script src="/js/committees/deleteCommittee.js"></script>
     
     <!--
     <script src="/socket.io/socket.io.js"></script>

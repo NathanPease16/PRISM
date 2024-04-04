@@ -16,7 +16,7 @@
     padding-right: calc(var(--side-space) * 3);
     padding-top: var(--padding-small);
     padding-bottom: var(--padding-small);
-    box-shadow: 0 0 5px 5px var(--light-gray);
+    box-shadow: 0 0 .25vw .25vw var(--light-gray);
 }
 
 .session-navbar-element {

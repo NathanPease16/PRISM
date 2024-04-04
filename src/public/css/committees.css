@@ -7,7 +7,7 @@
 .committee-button {
     font-size: var(--font-medium);
     color: white;
-    border-radius: 10px;
+    border-radius: .5vw;
     padding: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
     margin-left: var(--padding-small);
     text-decoration: none;
@@ -39,8 +39,8 @@
     margin-left: var(--side-space);
     margin-right: var(--side-space);
     margin-top: var(--padding);
-    box-shadow: 0 0 5px 5px var(--light-gray);
-    border-radius: 10px; 
+    box-shadow: 0 0 .25vw .25vw var(--light-gray);
+    border-radius: .5vw; 
     padding-top: var(--padding-small);
     padding-bottom: var(--padding-small);
 }
@@ -54,6 +54,7 @@
 
 .committee-container {
     margin-top: var(--padding);
-    height: 650px;
+    height: 60vw;
+    max-height: 65vh;
     overflow-y: auto;
 }

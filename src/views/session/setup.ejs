@@ -1,6 +1,6 @@
 <%- include ('../templates/_header.ejs', { title: 'Setup'} ); %>
 <body>
-    <p class="header"><%= name %> Setup</p>
+    <p class="header"><%= committee.name %> Setup</p>
     <div class="country-container">
         <div class="setup-box-container box-shadow">
             <input class="setup-searchbar" type="text" name="search" id="search" placeholder="&#x1F50E;&#xFE0E; Search">
@@ -13,7 +13,7 @@
             <button class="setup-button" id="setup">Finish Setup</button>
         </div>
     </div>
-    <script src="/js/internal.js"></script>
+    <script>let selectedCountries = JSON.parse('<%- JSON.stringify(committee.countries) %>'.replace(/[\\'\n\r\t]/g, ''));</script>
     <script src="/js/session/setup.js"></script>
 </body>
 </html>

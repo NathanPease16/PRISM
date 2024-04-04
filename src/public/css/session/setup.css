@@ -7,8 +7,8 @@
 .setup-box-container {
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 5px 5px var(--light-gray);
-    border-radius: 10px;
+    box-shadow: 0 0 .25vw .25vw var(--light-gray);
+    border-radius: .5vw;
     box-sizing: border-box;
     margin-top: var(--padding);
     width: 50vw;
@@ -40,9 +40,9 @@
 }
 
 .setup-searchbar {
-    border: solid 3px var(--gray);
-    max-height: calc( calc( calc( var(--font-small) * 1.2 ) + calc( var(--padding-small) * 2 ) ) + 6px);
-    border-radius: 10px;
+    border: solid .15vw var(--gray);
+    max-height: calc( calc( calc( var(--font-small) * 1.2 ) + calc( var(--padding-small) * 2 ) ) + .3vw);
+    border-radius: .5vw;
     box-sizing: border-box;
     font-size: var(--font-small);
     color: var(--dark-gray);
@@ -95,7 +95,7 @@
     align-items: center;
     background-color: var(--blue);
     border: none;
-    border-radius: 10px;
+    border-radius: .5vw;
     font-size: var(--font-medium);
     color: white;
     height: calc(var(--font-medium) + calc(var(--padding-small) * 2));
