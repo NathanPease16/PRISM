@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <script>let countries = JSON.parse('<%- JSON.stringify(committee.countries) %>'.replace(/[\\'\n\r\t]/g, ''));</script>
+    <script>let countries = <%- JSON.stringify(committee.countries) %>;</script>
     <script src="/js/popup.js"></script>
     <script src="/js/session/timer.js"></script>
     <script src="/js/session/navbar.js"></script>

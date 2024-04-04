@@ -41,7 +41,7 @@ Croatia | HRV | HR
 Cuba | CUB | CU
 Cyprus | CYP | CY
 Czechia | Czech Republic | CZE | CZ
-Côte D'Ivoire | Ivory Coast | CI
+Côte D'Ivoire | Cote D'Ivoire | Cote Divoire | Ivory Coast | CIV | CI
 Democratic Republic of the Congo | DRC | COD | CD
 Denmark | DNK | DK
 Djibouti | DJI | DJ
