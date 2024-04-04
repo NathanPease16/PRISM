@@ -84,6 +84,7 @@ const countries = [];
             for (alternative of country.alternatives) {
                 if (alternative.toLowerCase().startsWith(searchValue.toLowerCase())) {
                     addCountry(allCountriesEvent, allCountries);
+                    continue loop;
                 }
             }
         }
