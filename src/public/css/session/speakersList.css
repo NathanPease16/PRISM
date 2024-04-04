@@ -5,8 +5,8 @@
 .speakers-list-container {
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 5px 5px var(--light-gray);
-    border-radius: 10px;
+    box-shadow: 0 0 .25vw .25vw var(--light-gray);
+    border-radius: .5vw;
     box-sizing: border-box;
     margin: var(--padding) var(--padding) var(--padding) var(--side-space);
     width: 60vw;
@@ -27,8 +27,8 @@
     font-size: var(--font-large);
     text-align: center;
     color: var(--dark-gray);
-    border: solid 3px var(--gray);
-    border-radius: 10px;
+    border: solid .15vw var(--gray);
+    border-radius: .5vw;
     padding-bottom: var(--padding-small);
     padding-top: var(--padding-small);
     margin-left: var(--padding);
@@ -42,7 +42,7 @@
     padding-left: var(--padding);
     padding-right: var(--padding);
     justify-content: space-evenly;
-    border-bottom: solid 3px var(--gray);
+    border-bottom: solid .15vw var(--gray);
     padding-bottom: var(--padding-small);
     padding-top: var(--padding-small);
 }
@@ -52,7 +52,7 @@
     justify-content: center;
     align-items: center;
     border: none;
-    border-radius: 10px;
+    border-radius: .5vw;
     font-size: var(--font-medium);
     color: white;
     height: calc(var(--font-medium) + calc(var(--padding-small) * 2));
@@ -91,7 +91,7 @@
 }
 
 .current-speaker {
-    border-bottom: solid 3px var(--gray);
+    border-bottom: solid .15vw var(--gray);
     padding-top: var(--padding-small);
     padding-bottom: var(--padding-small);
     margin-bottom: var(--padding-small);
@@ -114,8 +114,8 @@
 .add-speakers {
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 5px 5px var(--light-gray);
-    border-radius: 10px;
+    box-shadow: 0 0 .25vw .25vw var(--light-gray);
+    border-radius: .5vw;
     box-sizing: border-box;
     margin: var(--padding) var(--side-space) var(--padding) var(--padding);
     width: 40vw;
@@ -131,9 +131,9 @@
 }
 
 .add-speakers-search {
-    border: solid 3px var(--gray);
-    max-height: calc( calc( calc( var(--font-small) * 1.2 ) + calc( var(--padding-small) * 2 ) ) + 6px);
-    border-radius: 10px;
+    border: solid .15vw var(--gray);
+    max-height: calc( calc( calc( var(--font-small) * 1.2 ) + calc( var(--padding-small) * 2 ) ) + .3vw);
+    border-radius: .5vw;
     box-sizing: border-box;
     font-size: var(--font-small);
     color: var(--dark-gray);

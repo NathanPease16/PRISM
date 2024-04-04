@@ -18,62 +18,9 @@ function main() {
 
     let timerActive = false;
 
-    const id = window.location.pathname.split('/')[2];
-
     let speakersList = [];
 
-    settings.addEventListener('click', () => {
-        const settingsPopup = new Popup();
-
-        settingsPopup.addSmallHeader('Settings');
-        settingsPopup.addText('Speaking Time (Minutes)');
-
-        const initMinutes = Math.floor(speakersListTime / 60);
-        const initSeconds = Math.floor(speakersListTime % 60);
-
-        const minutes = settingsPopup.addInput(`${initMinutes}`);
-        minutes.type = 'number';
-
-        settingsPopup.addText('Speaking Time (Seconds)');
-
-        const seconds = settingsPopup.addInput(`${initSeconds}`);
-        seconds.type = 'number';
-
-        settingsPopup.addButton('Confirm Changes', 'blue', () => {
-            timerActive = false;
-
-            const min = minutes.value == '' ? initMinutes : parseFloat(minutes.value);
-            const sec = seconds.value == '' ? initSeconds : parseFloat(seconds.value);
-
-            speakersListTime = min * 60 + sec;
-            currentTime = speakersListTime;
-
-            timeText.textContent = `${formatTime(currentTime, 2, 2)} / ${formatTime(speakersListTime, 2, 2)}`;
-
-            playImage.style = '';
-            pauseImage.style = 'display: none;';
-
-            settingsPopup.remove();
-        });
-
-        settingsPopup.addButton('Cancel', 'red', () => {
-            settingsPopup.remove();
-        });
-
-        settingsPopup.show();
-    });
-
     (async () => {
-        const allCommittees = await committees;
-
-        let countries;
-        for (const c of allCommittees.data) {
-            if (c.id == id) {
-                countries = c.countries;
-                break;
-            }
-        }
-
         const loadCountries = (searchValue) => {
             countriesDiv.innerHTML = '';
             speakersListDiv.innerHTML = '';
@@ -123,6 +70,10 @@ function main() {
                     addCountry(country, speakersListDiv, event);
                 }
             }
+
+            countries.sort((a, b) => {
+                return a.title.localeCompare(b.title);
+            });
 
             for (const country of countries) {
                 const filteredSpeakers = speakersList.filter((speaker) => speaker.title == country.title);
@@ -199,6 +150,47 @@ function main() {
             pauseImage.style = 'display: none;';
 
             loadCountries('');
+        });
+
+        settings.addEventListener('click', () => {
+            const settingsPopup = new Popup();
+    
+            settingsPopup.addSmallHeader('Settings');
+            settingsPopup.addText('Speaking Time (Minutes)');
+    
+            const initMinutes = Math.floor(speakersListTime / 60);
+            const initSeconds = Math.floor(speakersListTime % 60);
+    
+            const minutes = settingsPopup.addInput(`${initMinutes}`);
+            minutes.type = 'number';
+    
+            settingsPopup.addText('Speaking Time (Seconds)');
+    
+            const seconds = settingsPopup.addInput(`${initSeconds}`);
+            seconds.type = 'number';
+    
+            settingsPopup.addButton('Confirm Changes', 'blue', () => {
+                timerActive = false;
+    
+                const min = minutes.value == '' ? initMinutes : parseFloat(minutes.value);
+                const sec = seconds.value == '' ? initSeconds : parseFloat(seconds.value);
+    
+                speakersListTime = min * 60 + sec;
+                currentTime = speakersListTime;
+    
+                timeText.textContent = `${formatTime(currentTime, 2, 2)} / ${formatTime(speakersListTime, 2, 2)}`;
+    
+                playImage.style = '';
+                pauseImage.style = 'display: none;';
+    
+                settingsPopup.remove();
+            });
+    
+            settingsPopup.addButton('Cancel', 'red', () => {
+                settingsPopup.remove();
+            });
+    
+            settingsPopup.show();
         });
 
         loadCountries('');

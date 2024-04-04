@@ -1,12 +1,16 @@
 const express = require('express');
-const models = require('../scripts/models');
-const database = require('../scripts/database');
+
+// Models
+const Committee = require('../models/committee');
+const Config = require('../models/config');
 
 const route = express.Router();
 
-route.get('/', (req, res) => {
+route.get('/', async (req, res) => {
+    const committees = await Committee.find();
+
     res.status(200);
-    res.render('index');
+    res.render('index', { committees });
 });
 
 route.get('/auth', (req, res) => {
@@ -23,41 +27,46 @@ route.get('/adminAuth', (req, res) => {
 })
 
 route.get('/config', async (req, res) => {
-    const accessCode = await database.config.accessCode.read();
-    const adminCode = await database.config.adminCode.read();
+    const config = await Config.findOne({});
+    
+    const accessCode = config.accessCode;
+    const adminCode = config.adminCode;
 
     res.status(200);
     res.render('config', {accessCode, adminCode});
 });
 
 route.get('/session/:id', async (req, res) => {
-    const committee = await models.committee.find('id', req.params.id);
+    const id = parseInt(req.params.id);
+    
+    const committee = await Committee.findOne({ id });
 
     if (!committee) {
         res.redirect(`/badGateway?old=${req.originalUrl}`);
         return;
     }
 
-    if (committee.setup) {
-        res.status(200);
-        res.render('session/session', {id: req.params.id});
-    } else {
-        res.redirect(`/session/${req.params.id}/setup`);
+    if (!committee.setup) {
+        res.redirect(`/session/${id}/setup`);
+        return;
     }
+
+    res.status(200);
+    res.render('session/session', { committee });
 });
 
 route.get('/session/:id/setup', async (req, res) => {
-    const committee = await models.committee.find('id', req.params.id);
+    const id = req.params.id;
+
+    const committee = await Committee.findOne({ id });
 
     if (!committee) {
         res.redirect(`/badGateway?old=${req.originalUrl}`);
         return;
     }
 
-    const name = committee.name;
-
     res.status(200);
-    res.render('session/setup', {name});
+    res.render('session/setup', { committee });
 });
 
 route.get('/createCommittee', (req, res) => {
@@ -66,12 +75,10 @@ route.get('/createCommittee', (req, res) => {
 });
 
 route.get('/edit/:id', async (req, res) => {
-    const id = req.params.id;
+   const id = req.params.id;
 
-    // Get committee by id
-    const committee = await models.committee.find('id', id);
+    const committee = await Committee.findOne({ id });
 
-    // Make sure requested committee exists
     if (!committee) {
         res.redirect(`/badGateway?old=${req.originalUrl}`);
         return;

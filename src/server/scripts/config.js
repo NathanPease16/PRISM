@@ -1,7 +1,9 @@
-const database = require('./database');
+const Config = require('../models/config');
 
 async function routeToConfig(req, res, next) {
-    if ((database.config && !await database.config.configured.read() && req.originalUrl != '/config') || !database.config) {
+    const configFile = await Config.findOne({});
+
+    if (!configFile && req.originalUrl != '/config') {
         res.redirect('/config');
         return;
     }

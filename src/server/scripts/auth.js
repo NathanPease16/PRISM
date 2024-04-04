@@ -1,3 +1,36 @@
+const Config = require('../models/config');
+
+const adminRoutes = [
+    '/config',
+]
+
+async function authorize(req, res, next) {
+    const config = await Config.findOne({});
+    const originalUrl = req.originalUrl.split('?')[0];
+    const userCode = req.cookies.accessCode;
+    const userAdminCode = req.cookies.adminCode;
+
+    if (config) {
+        if (userCode != config.accessCode && originalUrl != '/auth') {
+            res.redirect(`/auth?redirect=${encodeURIComponent(originalUrl)}`);
+            return;
+        } else if (userCode == config.accessCode) {
+            if (originalUrl == '/auth') {
+                res.redirect('/');
+                return;
+            } else if (adminRoutes.includes(originalUrl) && userAdminCode != config.adminCode) {
+                res.redirect(`/adminAuth?redirect=${encodeURIComponent(originalUrl)}`);
+                return;
+            }
+        }
+    }
+
+    next();
+}
+
+module.exports = authorize;
+
+/*
 const database = require('./database');
 
 const adminAuthRoutes = [
@@ -28,3 +61,4 @@ async function authorize(req, res, next) {
 }
 
 module.exports = authorize;
+*/

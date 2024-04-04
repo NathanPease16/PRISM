@@ -2,11 +2,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv');
+const db = require('./server/scripts/db');
 const path = require('path');
 
 // Create the app and establish a port
 const app = express();
 const PORT = 8080;
+
+dotenv.config({ path: '.env'});
+db(process.env.MONGO_URI);
 
 // Create a server for socket connections
 const server = require('http').createServer(app);
@@ -35,7 +40,7 @@ app.use(require('./server/scripts/auth'));
 // Give the app the routers
 app.use(require('./server/routes/getRouter.js'));
 app.use(require('./server/routes/postRouter.js'));
-app.use(require('./server/routes/internal.js'));
+app.use(require('./server/routes/views.js'));
 app.use(require('./server/routes/badGatewayRouter.js'));
 
 // Establish socket connection

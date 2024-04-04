@@ -23,12 +23,12 @@ body {
 
 .p-404-red {
     color: var(--dark-red);
-    font-size: 75px;
+    font-size: 3.75vw;
 }
 
 .p-404 {
     color: var(--light-gray);
-    font-size: 75px;
+    font-size: 3.75vw;
 }
 
 .p-404-small {
