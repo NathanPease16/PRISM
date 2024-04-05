@@ -47,9 +47,9 @@
 .session-navbar-attendance {
     display: flex;
     flex-direction: row;
-    margin-right: var(--padding);
+    margin-left: var(--padding);
     position: absolute;
-    right: var(--padding);
+    left: var(--padding);
 }
 
 .attendance-container {
@@ -69,4 +69,15 @@
 
 .session-navbar-attendance-img {
     width: 3vw;
+}
+
+.agenda {
+    position: absolute;
+    right: var(--padding);
+    text-align: center;
+    margin-right: var(--padding);
+    font-size: var(--font-small);
+    color: var(--dark-gray);
+    width: 15vw;
+    word-wrap: break-word;
 }

@@ -7,11 +7,11 @@ const committeeSchema = new mongoose.Schema({
         type: Array,
         default: [],
     },
-    setup: {
-        type: Boolean,
-        default: false,
+    agenda: {
+        type: String,
+        default: '',
     },
-    conductedRollCall: {
+    setup: {
         type: Boolean,
         default: false,
     },

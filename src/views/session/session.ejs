@@ -3,6 +3,8 @@
     <div class="session">
         <div class="session-page" id="session-page"></div>
         <div class="session-navbar" id="session-navbar">
+            <p class="agenda">Agenda: <%= committee.agenda %></p>
+
             <!-- Setup -> Wrench -->
             <a class="session-navbar-element" href="/session/<%= committee.id %>/setup">
                 <svg class="session-navbar-img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -11,12 +13,19 @@
                 <p class="session-navbar-text">Setup</p>                
             </a>
 
-            <a class="session-navbar-element" href="/session/<%= committee.id %>/rollCall">
+            <button class="session-navbar-element" id="roll-call">
                 <svg class="session-navbar-img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                 </svg>  
                 <p class="session-navbar-text">Roll Call</p>                
-            </a>
+            </button>
+
+            <button class="session-navbar-element" id="set-agenda">
+                <svg class="session-navbar-img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                </svg>      
+                <p class="session-navbar-text">Set Agenda</p>            
+            </button>
 
             <!-- General Speaker's List -> Microphone -->
             <div class="session-navbar-element btn" id="gsl">
@@ -44,22 +53,25 @@
 
             <div class="session-navbar-attendance">
                 <div class="attendance-container">
-                    <img class="session-navbar-attendance-img" src="/img/oneHalf.png" alt="">
-                    <p><%= Math.floor(committee.countries.filter((c) => c.attendance != 'A').length / 2) + 1 %></p>
+                    <img class="session-navbar-attendance-img" src="/img/all.png" alt="">
+                    <p><%= committee.countries.filter((c) => c.attendance != 'A').length %></p>
                 </div>
                 <div class="attendance-container">
                     <img class="session-navbar-attendance-img" src="/img/twoThirds.png" alt="">
                     <p><%= Math.ceil(committee.countries.filter((c) => c.attendance != 'A').length * 2 / 3) %></p>
                 </div>
                 <div class="attendance-container">
-                    <img class="session-navbar-attendance-img" src="/img/all.png" alt="">
-                    <p><%= committee.countries.filter((c) => c.attendance != 'A').length %></p>
+                    <img class="session-navbar-attendance-img" src="/img/oneHalf.png" alt="">
+                    <p><%= Math.floor(committee.countries.filter((c) => c.attendance != 'A').length / 2) + 1 %></p>
                 </div>
             </div>
         </div>
     </div>
-    <script>let countries = <%- JSON.stringify(committee.countries) %>.filter((country) => country.attendance != 'A');</script>
+    <script>let committee = <%- JSON.stringify(committee) %>;</script>
+    <script>let countries = committee.countries.filter((country) => country.attendance != 'A');</script>
     <script src="/js/popup.js"></script>
+    <script src="/js/session/rollCall.js"></script>
+    <script src="/js/session/setAgenda.js"></script>
     <script src="/js/session/timer.js"></script>
     <script src="/js/session/navbar.js"></script>
 </body>
