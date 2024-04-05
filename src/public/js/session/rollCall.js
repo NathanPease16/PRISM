@@ -25,7 +25,7 @@ for (const country of countries) {
     div.className = 'rollCall-country';
 
     const picture = document.createElement('img');
-    picture.src = `/global/flags/${country.flagCode}.png`;
+    picture.src = `/global/flags/${country.flagCode.toLowerCase()}.png`;
 
     const text = document.createElement('p');
     text.textContent = country.title;
