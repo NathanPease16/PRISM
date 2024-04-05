@@ -23,6 +23,7 @@ const countries = [];
         country.code = names[names.length - 2];
         country.flagCode = names[names.length - 1].substring(0, 2);
         country.alternatives = [];
+        country.attendance = 'A';
 
         for (i = 1; i < names.length - 2; i++) {
             country.alternatives.push(names[i]);    
