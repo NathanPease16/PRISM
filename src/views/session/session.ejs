@@ -62,16 +62,16 @@
 
             <div class="session-navbar-attendance">
                 <div class="attendance-container">
-                    <img class="session-navbar-attendance-img" src="/img/oneHalf.png" alt="">
-                    <p><%= Math.floor(committee.countries.filter((c) => c.attendance != 'A').length / 2) + 1 %></p>
+                    <img class="session-navbar-attendance-img" src="/img/all.png" alt="">
+                    <p><%= committee.countries.filter((c) => c.attendance != 'A').length %></p>
                 </div>
                 <div class="attendance-container">
                     <img class="session-navbar-attendance-img" src="/img/twoThirds.png" alt="">
                     <p><%= Math.ceil(committee.countries.filter((c) => c.attendance != 'A').length * 2 / 3) %></p>
                 </div>
                 <div class="attendance-container">
-                    <img class="session-navbar-attendance-img" src="/img/all.png" alt="">
-                    <p><%= committee.countries.filter((c) => c.attendance != 'A').length %></p>
+                    <img class="session-navbar-attendance-img" src="/img/oneHalf.png" alt="">
+                    <p><%= Math.floor(committee.countries.filter((c) => c.attendance != 'A').length / 2) + 1 %></p>
                 </div>
             </div>
         </div>
