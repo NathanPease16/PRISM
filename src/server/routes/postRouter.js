@@ -75,6 +75,36 @@ route.post('/setup/:id', async (req, res) => {
     res.status(200).end();
 });
 
+route.post('/rollCall/:id', async (req, res) => {
+    if (!req.body) {
+        res.status(400).end();
+        return;
+    }
+
+    const id = req.params.id;
+
+    const committee = await Committee.findOne({ id }).exec();
+
+    if (committee) {
+        for (const country of req.body.countries) {
+            if (!country.title || !country.code || !country.flagCode || !country.alternatives || !country.attendance) {
+                res.status(400).end();
+                return;
+            }
+        }
+
+        committee.countries = req.body.countries;
+        committee.conductedRollCall = true;
+
+        await committee.save();
+    } else {
+        res.status(400).end();
+        return;
+    }
+
+    res.status(200).end();
+});
+
 route.post('/config', async (req, res) => {
     if (!req.body.accessCode || !req.body.adminCode) {
         res.status(400).end();

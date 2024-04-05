@@ -2,11 +2,14 @@ const none = 'display: none;';
 
 class Popup {
     toggled;
+    width;
 
-    constructor() {
+    constructor(w) {
+        this.width = w;
+
         this.popup = document.createElement('div');
         this.popup.id = 'popup';
-        this.popup.style = none;
+        this.popup.style = none + `width: ${this.width};`;
 
         this.blackout = document.createElement('div');
         this.blackout.className = 'popup-blackout';
@@ -16,6 +19,8 @@ class Popup {
 
         this.menu = document.createElement('div');
         this.menu.className = 'popup-menu';
+
+        this.menu.style = `min-width: ${this.width}`;
 
         this.container.appendChild(this.menu);
         

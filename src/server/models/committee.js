@@ -11,6 +11,10 @@ const committeeSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    conductedRollCall: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 const Committee = mongoose.model('Committee', committeeSchema);
