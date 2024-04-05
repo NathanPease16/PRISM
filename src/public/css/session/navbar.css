@@ -70,3 +70,14 @@
 .session-navbar-attendance-img {
     width: 3vw;
 }
+
+.agenda {
+    position: absolute;
+    left: var(--padding);
+    text-align: center;
+    margin-left: var(--padding);
+    font-size: var(--font-small);
+    color: var(--dark-gray);
+    width: 15vw;
+    word-wrap: break-word;
+}

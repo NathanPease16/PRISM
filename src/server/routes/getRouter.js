@@ -53,9 +53,6 @@ route.get('/session/:id', async (req, res) => {
     if (!committee.setup) {
         res.redirect(`/session/${id}/setup`);
         return;
-    } else if (!committee.conductedRollCall) {
-        res.redirect(`/session/${id}/rollCall`);
-        return;
     }
 
     res.status(200);
@@ -74,20 +71,6 @@ route.get('/session/:id/setup', async (req, res) => {
 
     res.status(200);
     res.render('session/setup', { committee });
-});
-
-route.get('/session/:id/rollCall', async (req, res) => {
-    const id = req.params.id;
-
-    const committee = await Committee.findOne({ id });
-
-    if (!committee) {
-        res.redirect(`/badGateway?old=${req.originalUrl}`);
-        return;
-    }
-
-    res.status(200);
-    res.render('session/rollCall', { committee });
 });
 
 route.get('/createCommittee', (req, res) => {

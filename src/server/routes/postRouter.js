@@ -94,7 +94,28 @@ route.post('/rollCall/:id', async (req, res) => {
         }
 
         committee.countries = req.body.countries;
-        committee.conductedRollCall = true;
+
+        await committee.save();
+    } else {
+        res.status(400).end();
+        return;
+    }
+
+    res.status(200).end();
+});
+
+route.post('/setAgenda/:id', async (req, res) => {
+    if (!req.body.agenda) {
+        res.status(400).end();
+        return;
+    }
+
+    const id = req.params.id;
+
+    const committee = await Committee.findOne({ id }).exec();
+
+    if (committee) {
+        committee.agenda = req.body.agenda;
 
         await committee.save();
     } else {
