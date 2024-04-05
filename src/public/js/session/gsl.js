@@ -3,6 +3,7 @@ function main() {
     const countriesDiv = document.getElementById('add-speakers-countries');
     const currentSpeakerDiv = document.getElementById('current-speaker');
     const speakersListDiv = document.getElementById('speakers-list');
+    const addSpeakers = document.getElementById('add-speakers');
 
     const timeText = document.getElementById('time');
 
@@ -25,6 +26,8 @@ function main() {
             countriesDiv.innerHTML = '';
             speakersListDiv.innerHTML = '';
             currentSpeakerDiv.innerHTML = '';
+
+            addSpeakers.textContent = `Add Speakers | ${speakersList.length}`;
 
             const addCountry = (c, appendTo, event) => {
                 const div = document.createElement('div');

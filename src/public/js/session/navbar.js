@@ -1,7 +1,7 @@
 const sessionPage = document.getElementById('session-page');
 const sessionNavbar = document.getElementById('session-navbar');
 
-const tabs = sessionNavbar.getElementsByTagName('div');
+const tabs = sessionNavbar.querySelectorAll('.btn');
 
 const defaultTab = 'gsl';
 

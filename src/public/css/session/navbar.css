@@ -43,3 +43,30 @@
     font-size: var(--font-small);
     text-decoration: none;
 }
+
+.session-navbar-attendance {
+    display: flex;
+    flex-direction: row;
+    margin-right: var(--padding);
+    position: absolute;
+    right: var(--padding);
+}
+
+.attendance-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: var(--padding-small);
+    margin-right: var(--padding-small);
+}
+
+.attendance-container p {
+    color: var(--blue);
+    font-size: var(--font-small);
+    text-decoration: none;
+}
+
+.session-navbar-attendance-img {
+    width: 3vw;
+}

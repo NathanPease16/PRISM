@@ -1,0 +1,90 @@
+.rollCall-container {
+    max-height: 50vh;
+    overflow: auto;
+}
+
+.rollCall-country {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.rollCall-country p {
+    padding-top: var(--padding-small);
+    padding-bottom: var(--padding-small);
+    font-size: var(--font-small);
+    color: var(--dark-gray);
+    cursor:default;
+}
+
+.rollCall-country img {
+    padding-left: var(--padding-small);
+    padding-right: var(--padding-small);
+    padding-top: var(--padding-small);
+    padding-bottom: var(--padding-small);
+    justify-self: center;
+    object-fit: cover;
+    height: calc(var(--font-small) * 2.5);
+    width: calc(var(--font-small) * 2.5);
+    border-radius: 50%;
+}
+
+.rollCall-buttons {
+    display: flex;
+    flex-grow: 1;
+    justify-content: right;
+}
+
+.rollCall-button {
+    justify-content: center;
+    align-items: center;
+    min-width: 2.5vw;
+    border: solid .15vw;
+    border-radius: .5vw;
+    font-size: var(--font-small);
+    padding: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
+    margin: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
+    transition: background-color 250ms;
+}
+
+.rollCall-red {
+    border-color: var(--red);
+    color: var(--red);
+}
+
+.rollCall-red-selected {
+    background-color: var(--red);
+    color: white;
+}
+
+.rollCall-red:hover {
+    background-color: var(--light-red);
+}
+
+.rollCall-orange {
+    border-color: var(--orange);
+    color: var(--orange);
+}
+
+.rollCall-orange-selected {
+    background-color: var(--orange);
+    color: white;
+}
+
+.rollCall-orange:hover {
+    background-color: var(--light-orange);
+}
+
+.rollCall-blue {
+    border-color: var(--blue);
+    color: var(--blue);
+}
+
+.rollCall-blue:hover {
+    background-color: var(--light-blue);
+}
+
+.rollCall-blue-selected {
+    background-color: var(--blue);
+    color: white;
+}
