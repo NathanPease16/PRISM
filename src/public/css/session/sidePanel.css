@@ -1,0 +1,111 @@
+.side-panel {
+    position: absolute;
+    left: var(--padding-small);
+
+    width: 2.5vw;
+    color: var(--gray);
+    transition: color 250ms;
+}
+
+.side-panel:hover {
+    color: var(--dark-gray);
+    transition: color 250ms;
+}
+
+.side-panel-internal {
+    position: absolute;
+    top: 0;
+    left: calc(12.5vw - var(--padding-small));
+    padding-top: var(--padding-small);
+    width: 2.5vw;
+    color: var(--gray);
+    transition: color 250ms;
+}
+
+.side-panel-internal:hover {
+    color: var(--dark-gray);
+    transition: color 250ms;
+}
+
+.side-panel-open {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15vw;
+    height: 100vh;
+    max-height: calc(100vh - 3.5vw);
+    background-color: white;
+    z-index: 899;
+    overflow: hidden;
+    padding-top: 3.5vw;
+    transition: width 500ms;
+}
+
+.side-panel-closed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100vh;
+    max-height: calc(100vh - 3.5vw);
+    background-color: white;
+    z-index: 899;
+    overflow: hidden;
+    padding-top: 3.5vw;
+    transition: width 500ms;
+}
+
+.side-panel-header {
+    position: absolute;
+    left: var(--padding-small);
+    top: var(--padding-small);
+    font-size: var(--font-medium);
+    white-space: nowrap;
+    color: var(--blue);
+}
+
+.side-panel-cover {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--translucent-black);
+    z-index: 799;
+}
+
+.side-panel-element {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: fit-content;
+    color: var(--gray);
+    margin-left: var(--padding-small);
+    margin-bottom: var(--padding);
+    overflow: hidden;
+    text-decoration: none;
+    transition: color 250ms;
+
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    cursor: pointer;
+}
+
+.side-panel-element:hover {
+    color: var(--dark-gray);
+}
+
+.side-panel-img {
+    color: inherit;
+    width: 3vw;
+}
+
+.side-panel-text {
+    padding-left: var(--padding-small);
+    color: inherit;
+    font-size: var(--font-medium);
+    white-space: nowrap;
+    text-decoration: none;
+}

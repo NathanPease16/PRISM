@@ -10,7 +10,7 @@
     box-sizing: border-box;
     margin: var(--padding) var(--padding) var(--padding) var(--side-space);
     width: 60vw;
-    height: 80vh;
+    height: 78vh;
 }
 
 .speakers-list {
@@ -119,7 +119,7 @@
     box-sizing: border-box;
     margin: var(--padding) var(--side-space) var(--padding) var(--padding);
     width: 40vw;
-    height: 80vh;
+    height: 78vh;
 }
 
 .add-speakers-text {

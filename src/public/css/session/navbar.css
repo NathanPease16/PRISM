@@ -24,6 +24,13 @@
     color: var(--translucent-black);
     transition: color 250ms;
     text-decoration: none;
+
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
 }
 
 .session-navbar-element:hover {
@@ -47,9 +54,8 @@
 .session-navbar-attendance {
     display: flex;
     flex-direction: row;
-    margin-left: var(--padding);
     position: absolute;
-    left: var(--padding);
+    right: var(--padding);
 }
 
 .attendance-container {
@@ -59,6 +65,11 @@
     align-items: center;
     margin-left: var(--padding-small);
     margin-right: var(--padding-small);
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .attendance-container p {
@@ -68,7 +79,7 @@
 }
 
 .session-navbar-attendance-img {
-    width: 3vw;
+    width: 1.5vw;
 }
 
 .agenda {

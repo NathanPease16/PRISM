@@ -3,10 +3,6 @@ const adminCode = document.getElementById('adminCode');
 const save = document.getElementById('save');
 
 save.addEventListener('click', async () => {
-    if (!accessCode.value || !adminCode.value) {
-        console.log('Failed to save');
-    }
-
     const response = await fetch('/config', {
         method: 'POST',
         headers: {
@@ -21,6 +17,8 @@ save.addEventListener('click', async () => {
     if (response.ok) {
         window.location = '/';
     } else {
-        console.log('Failed');
+        const error = await response.json();
+        const notification = new Notification(error, 'red');
+        notification.show();
     }
 });

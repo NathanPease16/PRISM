@@ -1,11 +1,12 @@
-<%- include ('./templates/_header.ejs', { title: 'Create'} ); %>
+<%- include ('../templates/_header.ejs', { title: 'Create'} ); %>
 <body>
     <div class="spacing">
         <p class="header">Create Committee</p>
         <input class="full input item" type="text" name="name" id="name" placeholder="Committee Name">
-        <p id="error" class="subtitle" style="display: none;">This is a required field</p>
         <button class="full button item" id="create">Create</button>
+        <a class="full button item delete" href="/">Cancel</a>
     </div>
+    <script src="/js/notification.js"></script>
     <script src="/js/committees/createCommittee.js"></script>
 </body>
 </html>

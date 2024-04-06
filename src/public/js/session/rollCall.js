@@ -92,10 +92,11 @@ rollCall.addEventListener('click', () => {
         });
 
         if (response.ok) {
-            //window.location = `/session/${committee.id}`;
             window.location = window.location;
         } else {
-            console.log('Failed to conduct roll call');
+            const error = await response.json();
+            const notification = new Notification(error, 'red');
+            notification.show();
         }
 
         popup.hide();
