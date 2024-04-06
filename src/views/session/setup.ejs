@@ -1,10 +1,14 @@
 <%- include ('../templates/_header.ejs', { title: 'Setup'} ); %>
 <body>
+    <div class="country template" data-name="country" data-route="country">
+        <img data-route="flag">
+        <p data-route="name"></p>
+    </div>
     <p class="header"><%= committee.name %> Setup</p>
     <div class="country-container">
         <div class="setup-box-container box-shadow">
             <input class="setup-searchbar" type="text" name="search" id="search" placeholder="&#x1F50E;&#xFE0E; Search">
-            <div class="country-box" id="all-countries"></div>
+            <div class="country-box" id="unselected-countries"></div>
         </div>
         <div class="setup-box-container box-shadow">
             <p class="setup-box-text" id="country-count">0 Countries</p>
@@ -13,8 +17,11 @@
             <button class="setup-button" id="setup">Finish Setup</button>
         </div>
     </div>
-    <script>let selectedCountries = <%- JSON.stringify(committee.countries) %>;</script>
+    <script>const committee = <%- JSON.stringify(committee) %>;</script>
+    <script src="/js/templates.js"></script>
     <script src="/js/notification.js"></script>
+    <script src="/js/session/search.js"></script>
+    <script src="/js/session/countrySelection.js"></script>
     <script src="/js/session/setup.js"></script>
 </body>
 </html>

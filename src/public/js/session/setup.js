@@ -1,15 +1,26 @@
-const allCountries = document.getElementById('all-countries');
-const selectedCountriesDiv = document.getElementById('selected-countries');
+const unselectedCountries = document.getElementById('unselected-countries');
+const selectedCountries = document.getElementById('selected-countries');
+
 const countryCount = document.getElementById('country-count');
-const search = document.getElementById('search');
+
 const clear = document.getElementById('clear');
 const setup = document.getElementById('setup');
 
-const id = window.location.pathname.split('/')[2];
+const countries = committee.countries;
+const unCountries = [];
 
-const countries = [];
+function setCountryCount() {
+    if (countries.length == 1) {
+        countryCount.textContent = `${countries.length} Country`;
+    } else {
+        countryCount.textContent = `${countries.length} Countries`;
+    }
+}
+
+setCountryCount();
 
 (async () => {
+    // Get all UN recognized nations
     const response = await fetch('/global/UN_Nations.txt');
     const data = await response.text();
 
@@ -29,90 +40,35 @@ const countries = [];
             country.alternatives.push(names[i]);    
         }
 
-        countries.push(country);
+        unCountries.push(country);
     }
 
-    const loadCountries = (searchValue) => {
-        allCountries.innerHTML = '';
-        selectedCountriesDiv.innerHTML = '';
+    countrySelector(unCountries, countries, 
+        { parent: unselectedCountries, sort: true, event: setCountryCount }, 
+        { parent: selectedCountries, sort: true, event: setCountryCount });
 
-        if (selectedCountries.length == 1) {
-            countryCount.textContent = `${selectedCountries.length} Country`;
-        } else {
-            countryCount.textContent = `${selectedCountries.length} Countries`;
-        }
-
-        loop: for (const country of countries) {
-            const addCountry = (eventListener, appendTo) => {
-                const div = document.createElement('div');
-                div.className = 'country';
-
-                const p = document.createElement('p');
-                p.textContent = country.title;
-
-                const img = document.createElement('img');
-                img.src = `/global/flags/${country.flagCode.toLowerCase()}.png`;
-
-                div.appendChild(img);
-                div.appendChild(p);
-
-                div.addEventListener('click', eventListener);
-
-                appendTo.append(div);
-            }
-
-            for (const selectedCountry of selectedCountries) {
-                if (selectedCountry.title == country.title) {
-                    addCountry(() => {
-                        selectedCountries = selectedCountries.filter((c) => c.title != country.title);
-                        loadCountries('');
-                    }, selectedCountriesDiv);
-    
-                    continue loop;
-                }
-            }
-
-            const allCountriesEvent = () => {
-                selectedCountries.push(country);
-                loadCountries('');
-            }
-            
-            if (country.title.toLowerCase().startsWith(searchValue.toLowerCase()) || country.code.startsWith(searchValue)) {
-                addCountry(allCountriesEvent, allCountries);
-                continue;
-            }
-
-            for (alternative of country.alternatives) {
-                if (alternative.toLowerCase().startsWith(searchValue.toLowerCase())) {
-                    addCountry(allCountriesEvent, allCountries);
-                    continue loop;
-                }
-            }
-        }
-    }
-
-    loadCountries('');
-
-    search.addEventListener('input', () => {
-        loadCountries(search.value);
-    });
+    setupSearch(unCountries, countries);
 
     clear.addEventListener('click', () => {
-        selectedCountries = [];
-        loadCountries('');
+        countries.splice(0, countries.length);
+        for (const country of unCountries) {
+            document.getElementById(`${country.title}-selected`).style = 'display: none;';
+            document.getElementById(`${country.title}-unselected`).style = '';
+            countryCount.textContent = '0 Countries';
+        }
     });
 
     setup.addEventListener('click', async () => {
-        const response = await fetch(`/setup/${id}`, {
+        const response = await fetch(`/setup/${committee.id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({id, selectedCountries}),
+            body: JSON.stringify({ countries }),
         });
 
         if (response.ok) {
-            window.location = `/session/${id}`;
+            window.location = `/session/${committee.id}`;
         } else {
             const error = await response.json();
             const notification = new Notification(error, 'red');

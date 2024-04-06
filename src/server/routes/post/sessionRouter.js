@@ -9,7 +9,16 @@ route.post('/setup/:id', async (req, res) => {
     const committee = await Committee.findOne({ id }).exec();
 
     if (committee) {
-        committee.countries = req.body.selectedCountries;
+        req.body.countries.sort((a, b) => {
+            if (a.title < b.title) {
+                return -1;
+            } else if (a.title > b.title) {
+                return 1;
+            }
+            return 0;
+        });
+
+        committee.countries = req.body.countries;
         committee.setup = true;
         await committee.save();
     } else {
