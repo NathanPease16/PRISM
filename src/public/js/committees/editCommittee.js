@@ -1,10 +1,8 @@
 // Buttons for operations
 const confirmButton = document.getElementById('confirm');
-const cancelButton = document.getElementById('cancel');
 
 // Document elements
 const nameInput = document.getElementById('name');
-const error = document.getElementById('error');
 
 const id = nameInput.getAttribute('data-id');
 
@@ -21,11 +19,8 @@ confirmButton.addEventListener('click', async () => {
     if (response.ok) {
         window.location = '/';
     } else {
-        error.style = 'display: block;';
+        const error = await response.json();
+        const notification = new Notification(error, 'red');
+        notification.show();
     }
-});
-
-// Route to index, no post req
-cancelButton.addEventListener('click', () => {
-    window.location = '/';
 });

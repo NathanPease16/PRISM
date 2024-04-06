@@ -1,12 +1,12 @@
-<%- include ('./templates/_header.ejs', { title: 'Edit'} ); %>
+<%- include ('../templates/_header.ejs', { title: 'Edit'} ); %>
 <body>
     <div class="spacing">
         <p class="header">Edit Committee | <%= committee.name %></p>
         <input class="full input item" type="text" name="name" id="name" value="<%= committee.name %>" data-id="<%= committee.id %>">
-        <p id="error" class="subtitle" style="display: none;">This is a required field</p>
         <button class="full button item" id="confirm">Confirm Changes</button>
-        <button class="full button item" id="cancel">Cancel</button>
+        <a class="full button item delete" href="/">Cancel</a>
     </div>
+    <script src="/js/notification.js"></script>
     <script src="/js/committees/editCommittee.js"></script>
 </body>
 </html>

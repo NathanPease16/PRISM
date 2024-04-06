@@ -113,6 +113,10 @@ const countries = [];
 
         if (response.ok) {
             window.location = `/session/${id}`;
+        } else {
+            const error = await response.json();
+            const notification = new Notification(error, 'red');
+            notification.show();
         }
     });
 })();

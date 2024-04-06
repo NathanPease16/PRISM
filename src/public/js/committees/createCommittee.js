@@ -1,7 +1,6 @@
 // Get elements from document
 const nameInput = document.getElementById('name');
 const submit = document.getElementById('create');
-const error = document.getElementById('error');
 
 submit.addEventListener('click', async () => {
     // Send post req to server at /createCommittee with the input
@@ -18,6 +17,8 @@ submit.addEventListener('click', async () => {
         window.location = '/';
     } else {
         // Show error if failed (needs to be updated to discern error types)
-        error.style = 'display: block;';
+        const error = await response.json();
+        const notification = new Notification(error, 'red');
+        notification.show();
     }
 });

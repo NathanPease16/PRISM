@@ -18,7 +18,9 @@ setAgenda.addEventListener('click', () => {
         if (response.ok) {
             window.location = window.location;
         } else {
-            console.log('Failed to set the agenda');
+            const error = await response.json();
+            const notification = new Notification(error, 'red');
+            notification.show();
         }
 
         popup.hide();

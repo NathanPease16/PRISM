@@ -26,6 +26,8 @@ submit.addEventListener('click', async () => {
             window.location = `${redirect}`;
         }
     } else {
-        console.log('Failed');
+        const error = await response.json();
+        const notification = new Notification(error, 'red');
+        notification.show();
     }
 });

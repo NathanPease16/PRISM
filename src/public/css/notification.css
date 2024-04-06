@@ -1,0 +1,51 @@
+.notification-container {
+    display: flex;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.notification {
+    z-index: 20000;
+    position: fixed;
+    top: -10vw;
+    max-width: 30vw;
+    padding: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
+    color: white;
+    font-size: 1.5vw;
+    text-align: center;
+    border-radius: .5vw;
+    animation: slideIn 5s linear;
+}
+
+.notification-red {
+    background-color: var(--red);
+}
+
+.notification-green {
+    background-color: var(--green);
+}
+
+.notification-blue {
+    background-color: var(--blue);
+}
+
+.notification-orange {
+    background-color: var(--orange);
+}
+
+@keyframes slideIn {
+    0% {
+        top: -10vw;
+        animation-timing-function: cubic-bezier(.25, .1, .25, 1);
+    }
+    10% {
+        top: 1vw;
+    }
+    90% {
+        top: 1vw;
+        animation-timing-function: cubic-bezier(.25, .1, .25, 1);
+    }
+    100% {
+        top: -10vw;
+    }
+}

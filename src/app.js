@@ -37,11 +37,19 @@ app.use(require('./server/scripts/config'));
 
 app.use(require('./server/scripts/auth'));
 
-// Give the app the routers
-app.use(require('./server/routes/getRouter.js'));
-app.use(require('./server/routes/postRouter.js'));
-app.use(require('./server/routes/views.js'));
-app.use(require('./server/routes/badGatewayRouter.js'));
+// Give the app the get routers
+app.use(require('./server/routes/get/committeeRouter.js'));
+app.use(require('./server/routes/get/sessionRouter.js'));
+app.use(require('./server/routes/get/authRouter.js'));
+app.use(require('./server/routes/get/views.js'));
+app.use(require('./server/routes/get/badGatewayRouter.js'));
+app.use(require('./server/routes/get/getRouter.js'));
+
+app.use(require('./server/routes/post/authRouter.js'));
+app.use(require('./server/routes/post/committeeRouter.js'));
+app.use(require('./server/routes/post/postRouter.js'));
+app.use(require('./server/routes/post/sessionRouter.js'));
+
 
 // Establish socket connection
 io.on('connection', (socket) => {
