@@ -19,6 +19,15 @@
     overflow: auto;
 }
 
+.speakers-list > :first-child {
+    border-bottom: solid .15vw var(--gray);
+    position: -webkit-sticky;
+    position: sticky;
+    background-color: white;
+    top: 0;
+    z-index: 2;
+}
+
 .speakers-list div:hover {
     background-color: var(--light-red);
 }
@@ -88,27 +97,6 @@
 
 .gsl-orange:hover {
     background-color: var(--dark-orange);
-}
-
-.current-speaker {
-    border-bottom: solid .15vw var(--gray);
-    padding-top: var(--padding-small);
-    padding-bottom: var(--padding-small);
-    margin-bottom: var(--padding-small);
-}
-
-.speaker-text {
-    font-size: var(--font-small);
-    color: var(--dark-gray);
-    margin-left: var(--padding-small);
-}
-
-#current-speaker div {
-    margin-bottom: calc(-1 * var(--padding-small)) !important;
-}
-
-#current-speaker div:hover {
-    background-color: var(--light-red);
 }
 
 .add-speakers {

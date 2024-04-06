@@ -1,6 +1,10 @@
 <%- include ('../templates/_header.ejs', { title: 'Session'} ); %>
 <% const c = committee.countries.filter((c) => c.attendance != 'A'); %>
 <body>
+    <div class="country template" data-name="country" data-route="country">
+        <img data-route="flag">
+        <p data-route="name"></p>
+    </div>
     <div class="session">
         <div class="top-bar">
             <% if (!committee.agenda) { %>
@@ -95,6 +99,8 @@
     <script src="/js/popup.js"></script>
     <script src="/js/notification.js"></script>
     <script src="/js/session/sidePanel.js"></script>
+    <script src="/js/session/countrySelection.js"></script>
+    <script src="/js/templates.js"></script>
     <script src="/js/session/rollCall.js"></script>
     <script src="/js/session/setAgenda.js"></script>
     <script src="/js/session/timer.js"></script>

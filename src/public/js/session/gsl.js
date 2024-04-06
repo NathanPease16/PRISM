@@ -1,11 +1,10 @@
-function main() {
-    const search = document.getElementById('search');
-    const countriesDiv = document.getElementById('add-speakers-countries');
-    const currentSpeakerDiv = document.getElementById('current-speaker');
-    const speakersListDiv = document.getElementById('speakers-list');
-    const addSpeakers = document.getElementById('add-speakers');
+(() => {
+    const unselectedCountries = document.getElementById('unselected-countries');
+    const selectedCountries = document.getElementById('selected-countries');
 
-    const timeText = document.getElementById('time');
+    let speakingTime = 60;
+    currentTime = speakingTime;
+    let timerActive = false;
 
     const settings = document.getElementById('settings');
     const play = document.getElementById('play');
@@ -14,190 +13,114 @@ function main() {
     const playImage = document.getElementById('play-img');
     const pauseImage = document.getElementById('pause-img');
 
-    let speakersListTime = 60;
-    currentTime = speakersListTime;
+    const timeText = document.getElementById('time');
 
-    let timerActive = false;
+    const totalSpeakers = document.getElementById('total-speakers');
 
-    let speakersList = [];
+    const speakersList = [];
 
-    (async () => {
-        const loadCountries = (searchValue) => {
-            countriesDiv.innerHTML = '';
-            speakersListDiv.innerHTML = '';
-            currentSpeakerDiv.innerHTML = '';
+    const updateSpeakersText = () => {
+        totalSpeakers.textContent = `Speakers List | ${speakersList.length}`;
 
-            addSpeakers.textContent = `Add Speakers | ${speakersList.length}`;
+        console.log('help');
+    }
 
-            const addCountry = (c, appendTo, event) => {
-                const div = document.createElement('div');
-                div.className = 'country';
+    updateSpeakersText();
 
-                const p = document.createElement('p');
-                p.textContent = c.title;
+    const pauseTime = () => {
+        playImage.style = '';
+        pauseImage.style = 'display: none;';
+        timerActive = false;
+    }
 
-                const img = document.createElement('img');
-                img.src = `/global/flags/${c.flagCode.toLowerCase()}.png`;
+    const resetTime = () => {
+        pauseTime();
 
-                div.appendChild(img);
-                div.appendChild(p);
+        currentTime = speakingTime;
+        timeText.textContent = `${formatTime(currentTime, 2, 2)} / ${formatTime(speakingTime, 2, 2)}`;
+    }
 
-                div.addEventListener('click', event);
-
-                appendTo.appendChild(div);
+    countrySelector(countries, speakersList, 
+        { parent: unselectedCountries, afterEvent: updateSpeakersText }, 
+        { parent: selectedCountries, sort: false, afterEvent: updateSpeakersText, beforeEvent: (selected) => {
+            const name = selected.id.split('-')[0];
+            if (name == speakersList[0].title) {
+                resetTime();
             }
+        } });
 
-            for (const country of speakersList) {
-                const event = () => {
-                    const isSpeaker = speakersList[0].title == country.title;
+    setupSearch(countries, speakersList);
 
-                    speakersList = speakersList.filter((speaker) => speaker.title != country.title);
-                    
-                    if (isSpeaker) {
-                        timerActive = false;
-                        currentTime = speakersListTime;
+    play.addEventListener('click', () => {
+        lastTime = Date.now();
 
-                        const formattedTime = formatTime(currentTime, 2, 2);
-                        timeText.textContent = `${formattedTime} / ${formatTime(speakersListTime, 2, 2)}`;
+        if (!timerActive) {
+            pauseImage.style = '';
+            playImage.style = 'display: none;';
+            timerActive = true;
 
-                        playImage.style = '';
-                        pauseImage.style = 'display: none;';
-                    }
+            const run = () => {
+                if (timerActive) {
+                    updateTimer();
 
-                    loadCountries('');
-                };
+                    timeText.textContent = `${formatTime(currentTime, 2, 2)} / ${formatTime(speakingTime, 2, 2)}`;
 
-                if (country.title == speakersList[0].title) {
-                    addCountry(country, currentSpeakerDiv, event);
-                } else {
-                    addCountry(country, speakersListDiv, event);
-                }
-            }
-
-            countries.sort((a, b) => {
-                return a.title.localeCompare(b.title);
-            });
-
-            for (const country of countries) {
-                const filteredSpeakers = speakersList.filter((speaker) => speaker.title == country.title);
-
-                if (filteredSpeakers.length > 0) {
-                    continue;
-                }
-
-                const e = () => {
-                    speakersList.push(country);
-                    loadCountries('');
-                }
-
-                if (country.title.toLowerCase().startsWith(searchValue.toLowerCase()) || country.code.startsWith(searchValue)) {
-                    addCountry(country, countriesDiv, e);
-                    continue;
-                }
-
-                for (alternative of country.alternatives) {
-                    if (alternative.toLowerCase().startsWith(searchValue.toLowerCase())) {
-                        addCountry(country, countriesDiv, e);
+                    if (currentTime > 0) {
+                        requestAnimationFrame(run);
+                    } else {
+                        pauseTime();
                     }
                 }
             }
+            
+            run();
+        } else {
+            pauseTime();
+        }
+    });
+
+    next.addEventListener('click', () => {
+        const country = speakersList[0];
+
+        if (country) {
+            executeSelected(country.title);
         }
 
-        search.addEventListener('input', () => {
-            loadCountries(search.value);
+        resetTime();
+    });
+
+    settings.addEventListener('click', () => {
+        const settingsPopup = new Popup();
+        const initMinutes = Math.floor(speakingTime / 60);
+        const initSeconds = Math.floor(speakingTime % 60);
+
+        settingsPopup.addSmallHeader('Settings');
+        settingsPopup.addText('Speaking Time (Minutes)');
+
+        const minutes = settingsPopup.addInput(`${initMinutes}`);
+        minutes.type = 'number';
+
+        settingsPopup.addText('Speaking Time (Seconds)');
+
+        const seconds = settingsPopup.addInput(`${initSeconds}`);
+        seconds.type = 'number';
+
+        settingsPopup.addButton('Confirm Changes', 'blue', () => {
+            pauseTime();
+
+            const min = minutes.value == '' ? initMinutes : parseFloat(minutes.value);
+            const sec = seconds.value == '' ? initSeconds : parseFloat(seconds.value);
+
+            speakingTime = min * 60 + sec;
+            resetTime();
+
+            settingsPopup.remove();
         });
 
-        play.addEventListener('click', () => {
-            lastTime = Date.now();
-
-            if (!timerActive) {
-                pauseImage.style = '';
-                playImage.style = 'display: none;';
-                timerActive = true;
-
-                const run = () => {
-                    if (timerActive) {
-                        updateTimer();
-                        const formattedTime = formatTime(currentTime, 2, 2);
-
-                        timeText.textContent = `${formattedTime} / ${formatTime(speakersListTime, 2, 2)}`;
-
-                        if (currentTime > 0) {
-                            requestAnimationFrame(run);
-                        } else {
-                            playImage.style = '';
-                            pauseImage.style = 'display: none;';
-                            timerActive = false;
-                        }
-                    }
-                }
-                
-                run();
-            } else {
-                playImage.style = '';
-                pauseImage.style = 'display: none;';
-                timerActive = false;
-            }
+        settingsPopup.addButton('Cancel', 'red', () => {
+            settingsPopup.remove();
         });
 
-        next.addEventListener('click', () => {
-            speakersList.shift();
-            
-            timerActive = false;
-            currentTime = speakersListTime;
-
-            const formattedTime = formatTime(currentTime, 2, 2);
-            timeText.textContent = `${formattedTime} / ${formatTime(speakersListTime, 2, 2)}`;
-
-            playImage.style = '';
-            pauseImage.style = 'display: none;';
-
-            loadCountries('');
-        });
-
-        settings.addEventListener('click', () => {
-            const settingsPopup = new Popup();
-    
-            settingsPopup.addSmallHeader('Settings');
-            settingsPopup.addText('Speaking Time (Minutes)');
-    
-            const initMinutes = Math.floor(speakersListTime / 60);
-            const initSeconds = Math.floor(speakersListTime % 60);
-    
-            const minutes = settingsPopup.addInput(`${initMinutes}`);
-            minutes.type = 'number';
-    
-            settingsPopup.addText('Speaking Time (Seconds)');
-    
-            const seconds = settingsPopup.addInput(`${initSeconds}`);
-            seconds.type = 'number';
-    
-            settingsPopup.addButton('Confirm Changes', 'blue', () => {
-                timerActive = false;
-    
-                const min = minutes.value == '' ? initMinutes : parseFloat(minutes.value);
-                const sec = seconds.value == '' ? initSeconds : parseFloat(seconds.value);
-    
-                speakersListTime = min * 60 + sec;
-                currentTime = speakersListTime;
-    
-                timeText.textContent = `${formatTime(currentTime, 2, 2)} / ${formatTime(speakersListTime, 2, 2)}`;
-    
-                playImage.style = '';
-                pauseImage.style = 'display: none;';
-    
-                settingsPopup.remove();
-            });
-    
-            settingsPopup.addButton('Cancel', 'red', () => {
-                settingsPopup.remove();
-            });
-    
-            settingsPopup.show();
-        });
-
-        loadCountries('');
-    })();
-}
-
-main();
+        settingsPopup.show();
+    });
+})();
