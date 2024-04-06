@@ -7,6 +7,7 @@
     <p class="header"><%= committee.name %> Setup</p>
     <div class="country-container">
         <div class="setup-box-container box-shadow">
+            <button class="setup-button" id="custom">Custom</button>
             <input class="setup-searchbar" type="text" name="search" id="search" placeholder="&#x1F50E;&#xFE0E; Search">
             <div class="country-box" id="unselected-countries"></div>
         </div>
@@ -20,6 +21,7 @@
     <script>const committee = <%- JSON.stringify(committee) %>;</script>
     <script src="/js/templates.js"></script>
     <script src="/js/notification.js"></script>
+    <script src="/js/popup.js"></script>
     <script src="/js/session/search.js"></script>
     <script src="/js/session/countrySelection.js"></script>
     <script src="/js/session/setup.js"></script>

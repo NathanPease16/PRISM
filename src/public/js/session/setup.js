@@ -1,6 +1,8 @@
 const unselectedCountries = document.getElementById('unselected-countries');
 const selectedCountries = document.getElementById('selected-countries');
 
+const custom = document.getElementById('custom');
+
 const countryCount = document.getElementById('country-count');
 
 const clear = document.getElementById('clear');
@@ -47,7 +49,70 @@ setCountryCount();
         { parent: unselectedCountries, sort: true, afterEvent: setCountryCount }, 
         { parent: selectedCountries, sort: true, afterEvent: setCountryCount });
 
+        for (const country of countries) {
+            if (country.flagCode !== 'xx') {
+                continue;
+            }
+
+            const div = instantiate('country', selectedCountries, {
+                country: { id: country.title + '-selected' },
+                flag: { src: `/global/flags/${country.flagCode.toLowerCase()}.png` }, 
+            }, {
+                name: { textContent: country.title },
+            });
+
+            div.addEventListener('click', () => {
+                div.remove();
+                countries.splice(countries.indexOf(country), 1);
+
+                setCountryCount();
+            });
+        }
+
     setupSearch(unCountries, countries);
+
+    custom.addEventListener('click', () => {
+        const popup = new Popup();
+        
+        popup.addSmallHeader('Custom');
+        const name = popup.addInput('Name');
+        
+        popup.addButton('Submit', 'blue', () => {
+            const country = {};
+
+            country.title = name.value;
+            country.code = '';
+            country.flagCode = 'xx';
+            country.alternatives = [];
+            country.attendance = 'A';
+
+            countries.push(country);
+
+            const div = instantiate('country', selectedCountries, {
+                country: { id: country.title + '-selected' },
+                flag: { src: `/global/flags/${country.flagCode.toLowerCase()}.png` }, 
+            }, {
+                name: { textContent: country.title },
+            });
+
+            setCountryCount();
+
+            div.addEventListener('click', () => {
+                div.remove();
+                countries.splice(countries.indexOf(country), 1);
+
+                setCountryCount();
+            });
+
+            popup.remove();
+        });
+
+        popup.addButton('Cancel', 'red', () => {
+            popup.remove();
+        });
+
+        popup.show();
+    });
 
     clear.addEventListener('click', () => {
         countries.splice(0, countries.length);
