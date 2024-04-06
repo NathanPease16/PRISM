@@ -35,6 +35,7 @@
     height: 100vh;
     max-height: calc(100vh - 3.5vw);
     background-color: white;
+    box-shadow: 0 0 .25vw .25vw var(--translucent-black);
     z-index: 899;
     overflow: hidden;
     padding-top: 3.5vw;

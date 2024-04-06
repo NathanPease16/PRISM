@@ -1,20 +1,29 @@
 <%- include ('../templates/_header.ejs', { title: 'Session'} ); %>
+<% const c = committee.countries.filter((c) => c.attendance != 'A'); %>
 <body>
     <div class="session">
         <div class="top-bar">
-            <p class="top-bar-text">Agenda: <%= committee.agenda %></p>
+            <% if (!committee.agenda) { %>
+                <p class="top-bar-text">Agenda: None Set</p>
+            <% } else { %>
+                <p class="top-bar-text">Agenda: <%= committee.agenda %></p>
+            <% } %>
             <div class="session-navbar-attendance">
                 <div class="attendance-container">
                     <img class="session-navbar-attendance-img" src="/img/oneHalf.png" alt="">
-                    <p><%= Math.floor(committee.countries.filter((c) => c.attendance != 'A').length / 2) + 1 %></p>
+                    <% if (c.length == 0) { %>
+                        <p>0</p>
+                    <% } else { %>
+                        <p><%= Math.floor(c.length / 2) + 1 %></p>
+                    <% } %>
                 </div>
                 <div class="attendance-container">
                     <img class="session-navbar-attendance-img" src="/img/twoThirds.png" alt="">
-                    <p><%= Math.ceil(committee.countries.filter((c) => c.attendance != 'A').length * 2 / 3) %></p>
+                    <p><%= Math.ceil(c.length * 2 / 3) %></p>
                 </div>
                 <div class="attendance-container">
                     <img class="session-navbar-attendance-img" src="/img/all.png" alt="">
-                    <p><%= committee.countries.filter((c) => c.attendance != 'A').length %></p>
+                    <p><%= c.length %></p>
                 </div>
             </div>
         </div>
