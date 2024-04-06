@@ -10,8 +10,15 @@ function setupSearch(countries, selectedCountries) {
             const titleMatches = country.title.toLowerCase().startsWith(search.value.toLowerCase());
             const codeMatches = country.code.startsWith(search.value);
 
+            let alternativeMatches = false;
+            for (const alternative of country.alternatives) {
+                if (alternative.toLowerCase().startsWith(search.value.toLowerCase())) {
+                    alternativeMatches = true;
+                    break;
+                }
+            }
 
-            if (titleMatches || codeMatches) {
+            if (titleMatches || codeMatches || alternativeMatches) {
                 document.getElementById(`${country.title}-unselected`).style = '';
             } else {
                 document.getElementById(`${country.title}-unselected`).style = 'display: none;';

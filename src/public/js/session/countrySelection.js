@@ -4,11 +4,13 @@ function countrySelector(allCountries, countriesSelected, unselected, selected) 
     let countries = countriesSelected;
     const unselectedParent = unselected.parent || unselected;
     const unselectedSort = unselected.sort !== undefined ? unselected.sort : true;
-    const unselectedEvent = unselected.event || (() => {});
+    const unselectedBeforeEvent = unselected.beforeEvent || (() => {});
+    const unselectedAfterEvent = unselected.afterEvent || (() => {});
 
     const selectedParent = selected.parent || selected;
     const selectedSort = selected.sort !== undefined ? selected.sort : true;
-    const selectedEvent = selected.event || (() => {});
+    const selectedBeforeEvent = selected.beforeEvent || (() => {});
+    const selectedAfterEvent = selected.afterEvent || (() => {});
 
     // Add ALL countries to selected and unselected
     for (const country of allCountries) {
@@ -35,6 +37,7 @@ function countrySelector(allCountries, countriesSelected, unselected, selected) 
         });
 
         const unselectedFunction = () => {
+            unselectedBeforeEvent(unselectedCountry, selectedCountry);
             countries.push(country);
 
             if (selectedSort) {
@@ -66,10 +69,12 @@ function countrySelector(allCountries, countriesSelected, unselected, selected) 
                 unselectedParent.appendChild(unselectedCountry);
             }
 
-            unselectedEvent(unselectedCountry, selectedCountry);
+            unselectedAfterEvent(unselectedCountry, selectedCountry);
         }
 
         const selectedFunction = () => {
+            selectedBeforeEvent(selectedCountry, unselectedCountry);
+
             let index = -1;
             for (const i in countries) {
                 if (countries[i].title == country.title) {
@@ -109,7 +114,7 @@ function countrySelector(allCountries, countriesSelected, unselected, selected) 
                 selectedParent.appendChild(selectedCountry);
             }
 
-            selectedEvent(selectedCountry, unselectedCountry);
+            selectedAfterEvent(selectedCountry, unselectedCountry);
         }
 
         

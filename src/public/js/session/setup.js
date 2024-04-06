@@ -44,8 +44,8 @@ setCountryCount();
     }
 
     countrySelector(unCountries, countries, 
-        { parent: unselectedCountries, sort: true, event: setCountryCount }, 
-        { parent: selectedCountries, sort: true, event: setCountryCount });
+        { parent: unselectedCountries, sort: true, afterEvent: setCountryCount }, 
+        { parent: selectedCountries, sort: true, afterEvent: setCountryCount });
 
     setupSearch(unCountries, countries);
 

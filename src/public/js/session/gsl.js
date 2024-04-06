@@ -21,6 +21,8 @@
 
     const updateSpeakersText = () => {
         totalSpeakers.textContent = `Speakers List | ${speakersList.length}`;
+
+        console.log('help');
     }
 
     updateSpeakersText();
@@ -39,14 +41,12 @@
     }
 
     countrySelector(countries, speakersList, 
-        { parent: unselectedCountries, event: updateSpeakersText }, 
-        { parent: selectedCountries, sort: false, event: (selected) => {
+        { parent: unselectedCountries, afterEvent: updateSpeakersText }, 
+        { parent: selectedCountries, sort: false, afterEvent: updateSpeakersText, beforeEvent: (selected) => {
             const name = selected.id.split('-')[0];
             if (name == speakersList[0].title) {
                 resetTime();
             }
-
-            updateSpeakersText();
         } });
 
     setupSearch(countries, speakersList);
