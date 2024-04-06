@@ -2,6 +2,7 @@ const e = new CustomEvent('execute');
 
 function countrySelector(allCountries, countriesSelected, unselected, selected) {
     let countries = countriesSelected;
+
     const unselectedParent = unselected.parent || unselected;
     const unselectedSort = unselected.sort !== undefined ? unselected.sort : true;
     const unselectedBeforeEvent = unselected.beforeEvent || (() => {});
@@ -11,6 +12,10 @@ function countrySelector(allCountries, countriesSelected, unselected, selected) 
     const selectedSort = selected.sort !== undefined ? selected.sort : true;
     const selectedBeforeEvent = selected.beforeEvent || (() => {});
     const selectedAfterEvent = selected.afterEvent || (() => {});
+
+
+    unselectedParent.innerHtml = '';
+    selectedParent.innerHtml = '';
 
     // Add ALL countries to selected and unselected
     for (const country of allCountries) {

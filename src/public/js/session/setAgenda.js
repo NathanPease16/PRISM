@@ -23,11 +23,11 @@ setAgenda.addEventListener('click', () => {
             notification.show();
         }
 
-        popup.hide();
+        popup.remove();
     });
 
     popup.addButton('Cancel', 'red', () => {
-        popup.hide();
+        popup.remove();
     });
 
     popup.show();
