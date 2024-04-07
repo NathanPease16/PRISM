@@ -1,10 +1,56 @@
 <%- include ('../templates/_header.ejs', { title: 'Session'} ); %>
 <% const c = committee.countries.filter((c) => c.attendance != 'A'); %>
 <body>
+    <!-- <Templates> -->
     <div class="country template" data-name="country" data-route="country">
         <img data-route="flag">
         <p data-route="name"></p>
     </div>
+
+    <div class="motion template" data-name="custom">
+        <p class="motion-input-label" data-route="title">Custom Caucus</p>
+        <svg class="motion-x" data-route="delete" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+        <div class="motion-country">
+            <img src="/global/flags/xx.png" data-route="flag">
+            <p data-route="name"></p>
+        </div>
+        <p class="motion-text" data-route="topic"></p>
+        <p class="motion-text" data-route="duration"></p>
+        <div class="border"></div>
+    </div>
+
+    <div class="motion template" data-name="unmod">
+        <p class="motion-input-label" data-route="title">Unmoderated Caucus</p>
+        <svg class="motion-x" data-route="delete" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+        <div class="motion-country">
+            <img src="/global/flags/xx.png" data-route="flag">
+            <p data-route="name"></p>
+        </div>
+        <p class="motion-text" data-route="duration"></p>
+        <div class="border"></div>
+    </div>
+
+    <div class="motion template" data-name="mod">
+        <p class="motion-input-label" data-route="title">Moderated Caucus</p>
+        <svg class="motion-x" data-route="delete" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+        <div class="motion-country">
+            <img src="/global/flags/xx.png" data-route="flag">
+            <p data-route="name"></p>
+        </div>
+        <p class="motion-text" data-route="topic"></p>
+        <p class="motion-text" data-route="duration"></p>
+        <p class="motion-text" data-route="speakingTime"></p>
+        <p class="motion-text" data-route="speakers"></p>
+        <div class="border"></div>
+    </div>
+    <!-- </Templates> -->
+
     <div class="session">
         <div class="top-bar">
             <% if (!committee.agenda) { %>
@@ -36,7 +82,10 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
         <div class="side-panel-closed" id="side-panel">
-            <p class="side-panel-header">PRISM</p>   
+            <div class="side-panel-header-container">
+                <img src="/img/MUN_PRISM.png" style="width: 2vw; height: 2vw;" alt="">
+                <p class="side-panel-header">PRISM</p>   
+            </div>
             <svg class="side-panel-internal" id="close-side-panel" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
             </svg>
