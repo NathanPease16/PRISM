@@ -13,3 +13,8 @@ closeButton.addEventListener('click', () => {
     sidePanel.className = 'side-panel-closed';
     cover.style = 'display: none;';
 });
+
+cover.addEventListener('click', () => {
+    sidePanel.className = 'side-panel-closed';
+    cover.style = 'display: none;';
+});

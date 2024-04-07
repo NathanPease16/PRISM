@@ -1,3 +1,4 @@
+const agendaText = document.getElementById('agenda');
 const setAgenda = document.getElementById('set-agenda');
 
 setAgenda.addEventListener('click', () => {
@@ -15,13 +16,13 @@ setAgenda.addEventListener('click', () => {
             body: JSON.stringify({ agenda: agenda.value }),
         });
 
-        if (response.ok) {
-            window.location = window.location;
-        } else {
+        if (!response.ok) {
             const error = await response.json();
             const notification = new Notification(error, 'red');
             notification.show();
         }
+
+        agendaText.textContent = `Agenda: ${agenda.value}`;
 
         popup.remove();
     });

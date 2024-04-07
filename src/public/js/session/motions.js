@@ -1,4 +1,4 @@
-(() => {
+function loadMotions() { 
     const pass = document.getElementById('pass');
     const fail = document.getElementById('fail');
 
@@ -35,6 +35,7 @@
     let currentCountry = { title: '', flagCode: 'xx' };
 
     submittingCountry.remove();
+    submittingCountry.style.display = '';
 
     for (const motionTabButton of motionTabButtons) {
         const id = motionTabButton.getAttribute('data-page');
@@ -209,7 +210,9 @@
 
         reloadMotions();
     });
-
+  
     reloadMotions();
     setSubmittingCountryInput();
-})();
+}
+
+loadMotions();

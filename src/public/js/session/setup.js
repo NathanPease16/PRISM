@@ -9,7 +9,7 @@ const clear = document.getElementById('clear');
 const setup = document.getElementById('setup');
 
 const countries = committee.countries;
-const unCountries = [];
+let unCountries = [];
 
 function setCountryCount() {
     if (countries.length == 1) {
@@ -45,31 +45,45 @@ setCountryCount();
         unCountries.push(country);
     }
 
-    countrySelector(unCountries, countries, 
-        { parent: unselectedCountries, sort: true, afterEvent: setCountryCount }, 
-        { parent: selectedCountries, sort: true, afterEvent: setCountryCount });
-
-        for (const country of countries) {
-            if (country.flagCode !== 'xx') {
-                continue;
+    // Filter out countries that have already been selected
+    unCountries = unCountries.filter((country) => {
+        for (const selected of countries) {
+            if (selected.title == country.title) {
+                return false;
             }
 
-            const div = instantiate('country', selectedCountries, {
-                country: { id: country.title + '-selected' },
-                flag: { src: `/global/flags/${country.flagCode.toLowerCase()}.png` }, 
-            }, {
-                name: { textContent: country.title },
-            });
-
-            div.addEventListener('click', () => {
-                div.remove();
-                countries.splice(countries.indexOf(country), 1);
-
-                setCountryCount();
-            });
+            return true;
         }
+    });
 
-    setupSearch(unCountries, countries);
+    const sort = (a, b) => {
+        const titleA = a.title.toLowerCase();
+        const titleB = b.title.toLowerCase();
+        if (titleA > titleB) {
+            return 1;
+        } else if (titleA < titleB) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+    const unselected = {
+        countries: unCountries,
+        parent: unselectedCountries,
+        sort,
+        afterEvent: setCountryCount,
+    }
+
+    const selected = {
+        countries,
+        parent: selectedCountries,
+        sort,
+        afterEvent: setCountryCount,
+    }
+
+    const countrySelector = new CountrySelector('setup', unselected, selected);
+    countrySelector.render();
 
     custom.addEventListener('click', () => {
         const popup = new Popup();
@@ -86,22 +100,10 @@ setCountryCount();
             country.alternatives = [];
             country.attendance = 'A';
 
-            countries.push(country);
+            countrySelector.add(country, true);
 
-            const div = instantiate('country', selectedCountries, {
-                country: { id: country.title + '-selected' },
-                flag: { src: `/global/flags/${country.flagCode.toLowerCase()}.png` }, 
-            }, {
-                name: { textContent: country.title },
-            });
-
-            setCountryCount();
-
-            div.addEventListener('click', () => {
-                div.remove();
-                countries.splice(countries.indexOf(country), 1);
-
-                setCountryCount();
+            document.getElementById(`${country.title}-setup-selected`).addEventListener('click', () => {
+                countrySelector.remove(country);
             });
 
             popup.remove();
@@ -114,13 +116,10 @@ setCountryCount();
         popup.show();
     });
 
+    setupSearch('setup');
+
     clear.addEventListener('click', () => {
-        countries.splice(0, countries.length);
-        for (const country of unCountries) {
-            document.getElementById(`${country.title}-selected`).style = 'display: none;';
-            document.getElementById(`${country.title}-unselected`).style = '';
-            countryCount.textContent = '0 Countries';
-        }
+        countrySelector.clear();
     });
 
     setup.addEventListener('click', async () => {

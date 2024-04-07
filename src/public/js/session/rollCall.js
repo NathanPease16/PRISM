@@ -109,12 +109,14 @@ rollCall.addEventListener('click', () => {
             body: JSON.stringify(committee),
         });
 
-        if (response.ok) {
-            window.location = window.location;
-        } else {
+        if (!response.ok) {
             const error = await response.json();
             const notification = new Notification(error, 'red');
             notification.show();
+        } else {
+            countries = committee.countries.filter((c) => c.attendance != 'A');
+            loadGSL();
+            loadMotions();
         }
 
         popup.remove();
