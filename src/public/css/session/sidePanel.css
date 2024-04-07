@@ -12,6 +12,29 @@
     transition: color 250ms;
 }
 
+.side-panel-header-container {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    left: var(--padding-small);
+    top: var(--padding-small);
+}
+
+.side-panel-header-container img {
+    width: 2vw;
+    height: 2vw;
+    padding-right: var(--padding-small);
+}
+
+.side-panel-header {
+    font-size: var(--font-medium);
+    white-space: nowrap;
+    color: var(--blue);
+    text-align: center;
+}
+
 .side-panel-internal {
     position: absolute;
     top: 0;
@@ -54,15 +77,6 @@
     overflow: hidden;
     padding-top: 3.5vw;
     transition: width 500ms;
-}
-
-.side-panel-header {
-    position: absolute;
-    left: var(--padding-small);
-    top: var(--padding-small);
-    font-size: var(--font-medium);
-    white-space: nowrap;
-    color: var(--blue);
 }
 
 .side-panel-cover {
