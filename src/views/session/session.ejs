@@ -2,7 +2,7 @@
 <% const c = committee.countries.filter((c) => c.attendance != 'A'); %>
 <body>
     <!-- <Templates> -->
-    <div class="country template" data-name="country" data-route="country">
+    <div class="country template" data-name="country" data-route="country">         
         <img data-route="flag">
         <p data-route="name"></p>
     </div>
@@ -77,7 +77,95 @@
                 </div>
             </div>
         </div>
-        <div class="session-page" id="session-page"></div>
+        <div class="session-page" id="session-page">
+            <div class="gsl-container" style="display: none;" id="gsl">
+                <div class="speakers-list-container">
+                    <p class="add-speakers-text" id="total-speakers">Speakers List</p>
+                    <p class="gsl-time" id="time">01:00 / 01:00</p>
+                    <div class="speakers-list-buttons">
+                        <button class="gsl-button gsl-gray" id="settings">
+                            <svg class="gsl-button-img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z" />
+                            </svg>              
+                        </button>
+                        <button class="gsl-button gsl-blue" id="play">
+                            <svg class="gsl-button-img" id="play-img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                            </svg>
+                            <svg class="gsl-button-img" id="pause-img" style="display: none;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
+                            </svg>                                        
+                        </button>
+                        <button class="gsl-button gsl-orange" id="next">
+                            <svg class="gsl-button-img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                            </svg>              
+                        </button>
+                    </div>
+                    <div class="speakers-list" id="selected-countries"></div>
+                </div>
+                <div class="add-speakers">
+                    <p class="add-speakers-text">Add Speakers</p>
+                    <input class="add-speakers-search" type="text" name="search" id="search" placeholder="&#x1F50E;&#xFE0E; Search">
+                    <div class="add-speakers-countries" id="unselected-countries"></div>
+                </div>
+            </div>
+
+            <div class="motions-container" style="display: none;" id="motion">
+                <div class="motion-submitting-country" id="submitting-country" style="display: none;">
+                    <p class="motion-input-label">Submitting Country</p>
+                    <div class="submitting-country-container">
+                        <input class="motion-input" type="text" name="" id="submitting-country-input" placeholder="&#x1F50E;&#xFE0E; Country">
+                        <div class="motion-country">
+                            <img src="/global/flags/xx.png" id="submitting-country-img">
+                            <p id="submitting-country-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="motions">
+                    <div class="motion-buttons">
+                        <button class="motion-vote-pass" id="pass">Pass</button>
+                        <button class="motion-vote-fail" id="fail">Fail</button>
+                    </div>
+                    <div id="motions"></div>
+                </div>
+                <div class="motion-creator">
+                    <div class="motion-nav">
+                        <button class="motion-nav-button" data-page="mod">Mod</button>
+                        <button class="motion-nav-button" data-page="unmod">Unmod</button>
+                        <button class="motion-nav-button" data-page="custom">Custom</button>
+                    </div>
+                    <div class="motion-page" id="mod" style="display: none;">
+                        <p class="motion-input-label">Topic</p>
+                        <input class="motion-input" type="text" id="mod-topic" placeholder="Topic">
+                        <p class="motion-input-label">Duration</p>
+                        <input class="motion-input" type="number" id="mod-dur-min" placeholder="Minutes">
+                        <input class="motion-input" type="number" id="mod-dur-sec" placeholder="Seconds">
+                        <p class="motion-input-label">Speaking Time</p>
+                        <input class="motion-input" type="number" id="mod-st-min" placeholder="Minutes">
+                        <input class="motion-input" type="number" id="mod-st-sec" placeholder="Seconds">
+                        <button class="motion-button" id="submit-mod">Submit</button>
+                    </div>
+                    <div class="motion-page" id="unmod" style="display: none;">
+                        <p class="motion-input-label">Duration</p>
+                        <input class="motion-input" type="number" id="unmod-min" placeholder="Minutes">
+                        <input class="motion-input" type="number" id="unmod-sec" placeholder="Seconds">
+                        <button class="motion-button" id="submit-unmod">Submit</button>
+                    </div>
+                    <div class="motion-page" id="custom" style="display: none;">
+                        <p class="motion-input-label">Topic</p>
+                        <input class="motion-input" type="text" id="custom-topic" placeholder="Topic">
+                        <p class="motion-input-label">Duration</p>
+                        <input class="motion-input" type="number" id="custom-min" placeholder="Minutes">
+                        <input class="motion-input" type="number" id="custom-sec" placeholder="Seconds">
+                        <button class="motion-button" id="submit-custom">Submit</button>
+                    </div>
+                </div>
+            </div>
+
+            <p id="voting" style="display: none;">Voting</p>
+        </div>
+
         <svg class="side-panel" id="open-side-panel" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
@@ -119,7 +207,7 @@
 
         <div class="session-navbar" id="session-navbar">
             <!-- General Speaker's List -> Microphone -->
-            <div class="session-navbar-element btn" id="gsl">
+            <div class="session-navbar-element btn" data-id="gsl">
                 <svg class="session-navbar-img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
                 </svg>
@@ -127,7 +215,7 @@
             </div>
             
             <!-- Motions -> Hand Raised -->
-            <div class="session-navbar-element btn" id="motions">
+            <div class="session-navbar-element btn" data-id="motion">
                 <svg class="session-navbar-img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.05 4.575a1.575 1.575 0 1 0-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 0 1 3.15 0v1.5m-3.15 0 .075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 0 1 3.15 0V15M6.9 7.575a1.575 1.575 0 1 0-3.15 0v8.175a6.75 6.75 0 0 0 6.75 6.75h2.018a5.25 5.25 0 0 0 3.712-1.538l1.732-1.732a5.25 5.25 0 0 0 1.538-3.712l.003-2.024a.668.668 0 0 1 .198-.471 1.575 1.575 0 1 0-2.228-2.228 3.818 3.818 0 0 0-1.12 2.687M6.9 7.575V12m6.27 4.318A4.49 4.49 0 0 1 16.35 15m.002 0h-.002" />
                 </svg>  
@@ -135,7 +223,7 @@
             </div> 
             
             <!-- Voting -> Thumbs Up-->
-            <div class="session-navbar-element btn" id="voting">
+            <div class="session-navbar-element btn" data-id="voting">
                 <svg class="session-navbar-img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z" />
                 </svg> 
@@ -151,8 +239,10 @@
     <script src="/js/session/countrySelection.js"></script>
     <script src="/js/templates.js"></script>
     <script src="/js/session/rollCall.js"></script>
-    <script src="/js/session/setAgenda.js"></script>
     <script src="/js/session/timer.js"></script>
     <script src="/js/session/navbar.js"></script>
+    <script src="/js/session/search.js"></script>
+    <script src="/js/session/gsl.js"></script>
+    <script src="/js/session/motionTabs.js"></script>
 </body>
 </html>
