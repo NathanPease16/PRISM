@@ -28,6 +28,10 @@ class Popup {
         this.popup.appendChild(this.container);
 
         document.body.appendChild(this.popup);
+
+        this.blackout.addEventListener('click', () => {
+            this.remove();
+        });
     }
 
     show() {
