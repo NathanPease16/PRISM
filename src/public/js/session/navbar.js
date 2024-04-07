@@ -3,7 +3,7 @@ const sessionNavbar = document.getElementById('session-navbar');
 
 const tabs = sessionNavbar.querySelectorAll('.btn');
 
-const defaultTab = 'motions';
+const defaultTab = 'gsl';
 
 let previousScripts;
 
