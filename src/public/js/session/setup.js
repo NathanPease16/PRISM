@@ -51,10 +51,11 @@ setCountryCount();
             if (selected.title == country.title) {
                 return false;
             }
-
-            return true;
         }
+        return true;
     });
+
+    console.log(unCountries);
 
     const sort = (a, b) => {
         const titleA = a.title.toLowerCase();
