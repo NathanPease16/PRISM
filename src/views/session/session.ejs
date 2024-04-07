@@ -54,9 +54,9 @@
     <div class="session">
         <div class="top-bar">
             <% if (!committee.agenda) { %>
-                <p class="top-bar-text">Agenda: None Set</p>
+                <p class="top-bar-text" id="agenda">Agenda: None Set</p>
             <% } else { %>
-                <p class="top-bar-text">Agenda: <%= committee.agenda %></p>
+                <p class="top-bar-text" id="agenda">Agenda: <%= committee.agenda %></p>
             <% } %>
             <div class="session-navbar-attendance">
                 <div class="attendance-container">
@@ -239,6 +239,7 @@
     <script src="/js/session/countrySelection.js"></script>
     <script src="/js/templates.js"></script>
     <script src="/js/session/rollCall.js"></script>
+    <script src="/js/session/setAgenda.js"></script>
     <script src="/js/session/timer.js"></script>
     <script src="/js/session/navbar.js"></script>
     <script src="/js/session/search.js"></script>

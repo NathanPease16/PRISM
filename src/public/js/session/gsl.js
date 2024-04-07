@@ -55,7 +55,7 @@ const unselected = {
 }
 
 const selected = {
-    countries: [],
+    countries: speakersList,
     parent: selectedCountries,
     sort: (a, b) => 0,
     afterEvent: updateSpeakersText,
