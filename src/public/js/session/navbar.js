@@ -3,10 +3,10 @@ const sessionNavbar = document.getElementById('session-navbar');
 
 const tabs = sessionNavbar.querySelectorAll('.btn');
 
-const pages = [];
+const tabDocs = [];
 
 for (const tab of tabs) {
-    pages.push(document.getElementById(tab.getAttribute('data-id')));
+    tabDocs.push(document.getElementById(tab.getAttribute('data-id')));
 }
 
 const defaultTab = 'gsl';
@@ -23,7 +23,7 @@ for (const tab of tabs) {
 
         tab.className = 'session-navbar-element session-navbar-selected';
 
-        for (const page of pages) {
+        for (const page of tabDocs) {
             page.style.display = 'none';
         }
 

@@ -37,16 +37,35 @@ const resetTime = () => {
     timeText.textContent = `${formatTime(currentTime, 2, 2)} / ${formatTime(speakingTime, 2, 2)}`;
 }
 
-countrySelector(countries, speakersList, 
-    { parent: unselectedCountries, afterEvent: updateSpeakersText }, 
-    { parent: selectedCountries, sort: false, afterEvent: updateSpeakersText, beforeEvent: (selected) => {
-        const name = selected.id.split('-')[0];
-        if (name == speakersList[0].title) {
-            resetTime();
+const unselected = {
+    countries: countries,
+    parent: unselectedCountries,
+    sort: (a, b) => {
+        const titleA = a.title.toLowerCase();
+        const titleB = b.title.toLowerCase();
+        if (titleA > titleB) {
+            return 1;
+        } else if (titleA < titleB) {
+            return -1;
+        } else {
+            return 0;
         }
-    } });
+    },
+    afterEvent: updateSpeakersText,
+}
 
-setupSearch(countries, speakersList);
+const selected = {
+    countries: [],
+    parent: selectedCountries,
+    sort: (a, b) => 0,
+    afterEvent: updateSpeakersText,
+}
+
+console.log(countries);
+const countrySelector = new CountrySelector('gsl', unselected, selected);
+countrySelector.render();
+
+setupSearch('gsl');
 
 play.addEventListener('click', () => {
     lastTime = Date.now();

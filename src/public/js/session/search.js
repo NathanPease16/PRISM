@@ -1,27 +1,39 @@
-function setupSearch(countries, selectedCountries) {
-    const search = document.getElementById('search');
+class Search {
+    constructor(name, parent) {
+        this.name = name;
+        this.parent = parent;
 
-    search.addEventListener('input', () => {
-        for (const country of countries) {
-            if (selectedCountries.filter((c) => c.title == country.title).length > 0) {
-                continue;
-            }
+        this.searchBar = document.getElementById(`search-${name}`);
 
-            const titleMatches = country.title.toLowerCase().startsWith(search.value.toLowerCase());
-            const codeMatches = country.code.startsWith(search.value);
+        this.searchBar.addEventListener('input', () => {
+
+        });
+    }
+}
+
+function setupSearch(name) {
+    const searchBar = document.getElementById(`search-${name}`);
+    const selector = CountrySelector.findInstance(name);
+
+    searchBar.addEventListener('input', () => {
+        const unselected = selector.getUnselected();
+        
+        for (const country of unselected) {
+            const titleMatches = country.title.toLowerCase().startsWith(searchBar.value.toLowerCase());
+            const codeMatches = country.code.startsWith(searchBar.value);
 
             let alternativeMatches = false;
             for (const alternative of country.alternatives) {
-                if (alternative.toLowerCase().startsWith(search.value.toLowerCase())) {
+                if (alternative.toLowerCase().startsWith(searchBar.value.toLowerCase())) {
                     alternativeMatches = true;
                     break;
                 }
             }
 
             if (titleMatches || codeMatches || alternativeMatches) {
-                document.getElementById(`${country.title}-unselected`).style = '';
+                document.getElementById(`${country.title}-${name}-unselected`).style = '';
             } else {
-                document.getElementById(`${country.title}-unselected`).style = 'display: none;';
+                document.getElementById(`${country.title}-${name}-unselected`).style = 'display: none;';
             }
         }
     });
