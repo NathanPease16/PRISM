@@ -1,5 +1,9 @@
 const rollCall = document.getElementById('roll-call');
 
+const half = document.getElementById('half');
+const twoThirds = document.getElementById('twoThirds');
+const all = document.getElementById('all');
+
 rollCall.addEventListener('click', () => {
     const popup = new Popup('30vw');
 
@@ -115,6 +119,15 @@ rollCall.addEventListener('click', () => {
             notification.show();
         } else {
             countries = committee.countries.filter((c) => c.attendance != 'A');
+
+            all.textContent = countries.length;
+            twoThirds.textContent = Math.ceil(countries.length * 2 / 3);
+            if (countries.length == 0) {
+                half.textContent = 0;
+            } else {
+                half.textContent = Math.floor(countries.length / 2) + 1;
+            }
+
             loadGSL();
             loadMotions();
         }

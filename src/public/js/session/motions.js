@@ -34,9 +34,6 @@ function loadMotions() {
     const submittingCountryText = document.getElementById('submitting-country-text');
     let currentCountry = { title: '', flagCode: 'xx' };
 
-    submittingCountry.remove();
-    submittingCountry.style.display = '';
-
     for (const motionTabButton of motionTabButtons) {
         const id = motionTabButton.getAttribute('data-page');
         const page = document.getElementById(id);
@@ -48,6 +45,7 @@ function loadMotions() {
 
             submittingCountry.remove();
             page.style = '';
+            submittingCountry.style.display = '';
             page.insertBefore(submittingCountry, document.getElementById(`submit-${id}`));
 
             for (const motionTabButton of motionTabButtons) {

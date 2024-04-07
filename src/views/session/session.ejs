@@ -62,18 +62,18 @@
                 <div class="attendance-container">
                     <img class="session-navbar-attendance-img" src="/img/oneHalf.png" alt="">
                     <% if (c.length == 0) { %>
-                        <p>0</p>
+                        <p id="half">0</p>
                     <% } else { %>
-                        <p><%= Math.floor(c.length / 2) + 1 %></p>
+                        <p id="half"><%= Math.floor(c.length / 2) + 1 %></p>
                     <% } %>
                 </div>
                 <div class="attendance-container">
                     <img class="session-navbar-attendance-img" src="/img/twoThirds.png" alt="">
-                    <p><%= Math.ceil(c.length * 2 / 3) %></p>
+                    <p id="twoThirds"><%= Math.ceil(c.length * 2 / 3) %></p>
                 </div>
                 <div class="attendance-container">
                     <img class="session-navbar-attendance-img" src="/img/all.png" alt="">
-                    <p><%= c.length %></p>
+                    <p id="all"><%= c.length %></p>
                 </div>
             </div>
         </div>
