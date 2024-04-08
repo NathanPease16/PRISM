@@ -144,7 +144,7 @@ rollCall.addEventListener('click', () => {
             }
 
             loadGSL();
-            loadMotions();
+            setSubmittingCountryInput();
         }
 
         popup.remove();
