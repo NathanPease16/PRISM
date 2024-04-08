@@ -8,6 +8,7 @@ function loadGSL() {
 
     const settings = document.getElementById('settings');
     const play = document.getElementById('play');
+    const reset = document.getElementById('reset');
     const next = document.getElementById('next');
 
     const playImage = document.getElementById('play-img');
@@ -59,6 +60,11 @@ function loadGSL() {
         countries: speakersList,
         parent: selectedCountries,
         sort: (a, b) => 0,
+        beforeEvent: (country) => {
+            if (speakersList.length > 0 && country.title === speakersList[0].title) {
+                resetTime();
+            }
+        },
         afterEvent: updateSpeakersText,
     }
 
@@ -99,9 +105,13 @@ function loadGSL() {
         const country = speakersList[0];
 
         if (country) {
-            executeSelected(country.title);
+            countrySelector.unselect(country.title);
         }
 
+        resetTime();
+    });
+
+    reset.addEventListener('click', () => {
         resetTime();
     });
 

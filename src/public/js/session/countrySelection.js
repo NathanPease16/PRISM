@@ -81,12 +81,11 @@ class CountrySelector {
     }
 
     select(name) {
-        if (this.selectBeforeEvent) {
-            this.selectBeforeEvent();
-        }
-        
-
         const country = this.findCountry(name, this.unselectedCountries);
+
+        if (this.unselectBeforeEvent) {
+            this.unselectBeforeEvent(country);
+        }
 
         if (country) {
             this.unselectedCountries.splice(this.unselectedCountries.indexOf(country), 1);
@@ -95,16 +94,16 @@ class CountrySelector {
         }
 
         if (this.selectAfterEvent) {
-            this.selectAfterEvent();
+            this.selectAfterEvent(country);
         }
     }
 
     unselect(name) {
-        if (this.unselectBeforeEvent) {
-            this.unselectBeforeEvent();
-        }
-
         const country = this.findCountry(name, this.selectedCountries);
+
+        if (this.selectBeforeEvent) {
+            this.selectBeforeEvent(country);
+        }
 
         if (country) {
             this.selectedCountries.splice(this.selectedCountries.indexOf(country), 1);
@@ -113,7 +112,7 @@ class CountrySelector {
         }
 
         if (this.unselectAfterEvent) {
-            this.unselectAfterEvent();
+            this.unselectAfterEvent(country);
         }
     }
 
