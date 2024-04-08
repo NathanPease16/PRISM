@@ -1,10 +1,6 @@
 const unselectedCountries = document.getElementById('unselected-countries');
 const selectedCountries = document.getElementById('selected-countries');
 
-// let speakingTime = 60;
-// currentTime = speakingTime;
-// let timerActive = false;
-
 const settings = document.getElementById('settings');
 const play = document.getElementById('play');
 const reset = document.getElementById('reset');
@@ -22,21 +18,6 @@ let speakersList = [];
 let countrySelector;
 
 const timer = new Timer(60, timeText, playImage, pauseImage);
-
-/*
-const pauseTime = () => {
-    playImage.style = '';
-    pauseImage.style = 'display: none;';
-    timerActive = false;
-}
-
-const resetTime = () => {
-    pauseTime();
-
-    currentTime = speakingTime;
-    timeText.textContent = `${formatTime(currentTime, 2, 2)} / ${formatTime(speakingTime, 2, 2)}`;
-}
-*/
 
 const updateSpeakersText = () => {
     totalSpeakers.textContent = `Speakers List | ${speakersList.length}`;
@@ -127,7 +108,6 @@ settings.addEventListener('click', () => {
         const min = minutes.value == '' ? initMinutes : parseFloat(minutes.value);
         const sec = seconds.value == '' ? initSeconds : parseFloat(seconds.value);
 
-        // speakingTime = min * 60 + sec;
         timer.setTime(min * 60 + sec);
         timer.reset();
 
