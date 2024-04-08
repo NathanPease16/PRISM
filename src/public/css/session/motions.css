@@ -14,6 +14,7 @@
 .motion-input {
     border: solid .15vw var(--gray);
     border-radius: .5vw;
+    max-height: calc( calc( calc( var(--font-small) * 1.2 ) + calc( var(--padding-small) * 2 ) ) + .3vw);
     box-sizing: border-box;
     font-size: var(--font-small);
     color: var(--dark-gray);
@@ -30,13 +31,13 @@
 .motion-submitting-country {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     margin-top: var(--padding);
 }
 
 .motion-page {
     display: flex;
     flex-direction: column;
+    height: 70vh;
     margin-top: var(--padding-small);
     overflow: auto;
 }
