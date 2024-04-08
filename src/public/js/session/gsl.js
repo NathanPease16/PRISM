@@ -30,7 +30,7 @@ function loadGSL() {
     updateSpeakersText();
 
     const unselected = {
-        countries: countries,
+        countries: [...countries],
         parent: unselectedCountries,
         sort: (a, b) => {
             const titleA = a.title.toLowerCase();
