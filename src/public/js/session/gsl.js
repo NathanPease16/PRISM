@@ -1,9 +1,9 @@
 const unselectedCountries = document.getElementById('unselected-countries');
 const selectedCountries = document.getElementById('selected-countries');
 
-let speakingTime = 60;
-currentTime = speakingTime;
-let timerActive = false;
+// let speakingTime = 60;
+// currentTime = speakingTime;
+// let timerActive = false;
 
 const settings = document.getElementById('settings');
 const play = document.getElementById('play');
@@ -21,6 +21,9 @@ let speakersList = [];
 
 let countrySelector;
 
+const timer = new Timer(60, timeText, playImage, pauseImage);
+
+/*
 const pauseTime = () => {
     playImage.style = '';
     pauseImage.style = 'display: none;';
@@ -33,6 +36,7 @@ const resetTime = () => {
     currentTime = speakingTime;
     timeText.textContent = `${formatTime(currentTime, 2, 2)} / ${formatTime(speakingTime, 2, 2)}`;
 }
+*/
 
 const updateSpeakersText = () => {
     totalSpeakers.textContent = `Speakers List | ${speakersList.length}`;
@@ -67,7 +71,7 @@ function loadGSL() {
         sort: (a, b) => 0,
         beforeEvent: (country) => {
             if (speakersList.length > 0 && country.title === speakersList[0].title) {
-                resetTime();
+                timer.reset();
             }
         },
         afterEvent: updateSpeakersText,
@@ -82,30 +86,10 @@ loadGSL();
 setupSearch('gsl');
 
 play.addEventListener('click', () => {
-    lastTime = Date.now();
-
-    if (!timerActive) {
-        pauseImage.style = '';
-        playImage.style = 'display: none;';
-        timerActive = true;
-
-        const run = () => {
-            if (timerActive) {
-                updateTimer();
-
-                timeText.textContent = `${formatTime(currentTime, 2, 2)} / ${formatTime(speakingTime, 2, 2)}`;
-
-                if (currentTime > 0) {
-                    requestAnimationFrame(run);
-                } else {
-                    pauseTime();
-                }
-            }
-        }
-        
-        run();
+    if (!timer.active) {
+        timer.play();
     } else {
-        pauseTime();
+        timer.pause();
     }
 });
 
@@ -116,17 +100,17 @@ next.addEventListener('click', () => {
         countrySelector.unselect(country.title);
     }
 
-    resetTime();
+    timer.reset();
 });
 
 reset.addEventListener('click', () => {
-    resetTime();
+    timer.reset();
 });
 
 settings.addEventListener('click', () => {
     const settingsPopup = new Popup();
-    const initMinutes = Math.floor(speakingTime / 60);
-    const initSeconds = Math.floor(speakingTime % 60);
+    const initMinutes = Math.floor(timer.time / 60);
+    const initSeconds = Math.floor(timer.time % 60);
 
     settingsPopup.addSmallHeader('Settings');
     settingsPopup.addText('Speaking Time (Minutes)');
@@ -140,13 +124,12 @@ settings.addEventListener('click', () => {
     seconds.type = 'number';
 
     settingsPopup.addButton('Confirm Changes', 'blue', () => {
-        pauseTime();
-
         const min = minutes.value == '' ? initMinutes : parseFloat(minutes.value);
         const sec = seconds.value == '' ? initSeconds : parseFloat(seconds.value);
 
-        speakingTime = min * 60 + sec;
-        resetTime();
+        // speakingTime = min * 60 + sec;
+        timer.setTime(min * 60 + sec);
+        timer.reset();
 
         settingsPopup.remove();
     });

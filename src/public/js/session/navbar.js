@@ -9,12 +9,15 @@ for (const tab of tabs) {
     tabDocs.push(document.getElementById(tab.getAttribute('data-id')));
 }
 
-const defaultTab = 'gsl';
+const defaultTab = 'unmod';
 
 let previousScripts;
 
+const events = {};
+
 for (const tab of tabs) {
-    const page = document.getElementById(tab.getAttribute('data-id'));
+    const name = tab.getAttribute('data-id');
+    const page = document.getElementById(name);
 
     const event = () => {
         for (const t of tabs) {
@@ -35,4 +38,10 @@ for (const tab of tabs) {
     if (tab.getAttribute('data-id') === defaultTab) {
         event();
     }
+
+    events[name] = event;
+}
+
+function setPage(name) {
+    events[name]();
 }

@@ -1,31 +1,79 @@
 // const socket = io();
 
-let lastTime = Date.now();
-let currentTime = 0;
+class Timer {
+    constructor(startTime, text, playImg, pauseImg) {
+        this.time = startTime;
+        this.currentTime = startTime;
+        this.lastTime = Date.now();
+        this.text = text;
+        this.playImg = playImg;
+        this.pauseImg = pauseImg;
+        
+        this.active = false;
+    }
 
-function formatTime(time, minuteLength, secondLength) {
-    // Divide by 60, convert to integer to get minutes and pad start
-    const minutes = Math.floor(time / 60).toString().padStart(minuteLength, '0');
-    // Get remainder after dividing by 60 to get seconds, pad start
-    const seconds = Math.floor(time % 60).toString().padStart(secondLength, '0');
+    static formatTime(time, minuteLength, secondLength) {
+        // Divide by 60, convert to integer to get minutes and pad start
+        const minutes = Math.floor(time / 60).toString().padStart(minuteLength, '0');
+        // Get remainder after dividing by 60 to get seconds, pad start
+        const seconds = Math.floor(time % 60).toString().padStart(secondLength, '0');
 
-    return `${minutes}:${seconds}`;
-}
+        return `${minutes}:${seconds}`;
+    }
 
-function updateTimer() {
-    // Get current time and subtract from previous time to get
-    // dt, which is time since last frame to accurately update
-    // the timer's text
-    const now = Date.now();
-    const deltaTime = (now - lastTime) / 1000;
-    lastTime = now;
+    updateTimer() {
+        const now = Date.now();
+        const deltaTime = (now - this.lastTime) / 1000;
+        this.lastTime = now;
 
-    // subtract dt from current time
-    currentTime -= deltaTime;
+        this.currentTime -= deltaTime;
 
-    // if the time is 0, reset and stop timer
-    if (currentTime <= 0) {
-        timerActive = false;
-        currentTime = 0;
+        if (this.currentTime <= 0) {
+            this.active = false;
+            this.currentTime = 0;
+        }
+    }
+
+    play() {
+        this.active = true;
+        this.lastTime = Date.now();
+
+        this.pauseImg.style.display = '';
+        this.playImg.style.display = 'none';
+
+        const run = () => {
+            if (this.active) {
+                this.updateTimer();
+                
+                this.text.textContent = `${Timer.formatTime(this.currentTime, 2, 2)} / ${Timer.formatTime(this.time, 2, 2)}`;
+    
+                if (this.currentTime > 0) {
+                    requestAnimationFrame(run);
+                } else {
+                    this.pause();
+                }
+            }
+        }
+
+        run();
+    }
+
+    pause() {
+        this.playImg.style.display = '';
+        this.pauseImg.style.display = 'none';
+        this.active = false;
+    }
+
+    reset() {
+        this.pause();
+        
+        this.currentTime = this.time;
+        this.text.textContent = `${Timer.formatTime(this.currentTime, 2, 2)} / ${Timer.formatTime(this.time, 2, 2)}`;
+    }
+
+    setTime(time) {
+        this.time = time;
+
+        this.reset();
     }
 }

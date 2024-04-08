@@ -41,7 +41,6 @@ app.use(require('./server/scripts/auth'));
 app.use(require('./server/routes/get/committeeRouter.js'));
 app.use(require('./server/routes/get/sessionRouter.js'));
 app.use(require('./server/routes/get/authRouter.js'));
-app.use(require('./server/routes/get/views.js'));
 app.use(require('./server/routes/get/getRouter.js'));
 app.use(require('./server/routes/get/badGatewayRouter.js'));
 
