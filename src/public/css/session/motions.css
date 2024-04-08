@@ -1,5 +1,7 @@
 .motions-container {
     display: flex;
+    flex-basis: 0;
+    flex-grow: 1;
 }
 
 .motion-creator {
