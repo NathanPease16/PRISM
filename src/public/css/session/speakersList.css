@@ -99,6 +99,14 @@
     background-color: var(--dark-orange);
 }
 
+.gsl-purple {
+    background-color: var(--purple);
+}
+
+.gsl-purple:hover {
+    background-color: var(--dark-purple);
+}
+
 .add-speakers {
     display: flex;
     flex-direction: column;
