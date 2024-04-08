@@ -1,0 +1,58 @@
+.unmod-container {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.unmod {
+    width: 50vw;
+    box-shadow: 0 0 .25vw .25vw var(--light-gray);
+    border-radius: .5vw;
+    margin-top: var(--padding);
+    padding-top: var(--padding);
+    padding-bottom: var(--padding);
+}
+
+.unmod-time {
+    font-size: calc(1.5 * var(--font-large));
+    text-align: center;
+    color: var(--dark-gray);
+    border: solid .15vw var(--gray);
+    border-radius: .5vw;
+    padding-bottom: var(--padding-small);
+    padding-top: var(--padding-small);
+    margin-left: var(--padding);
+    margin-right: var(--padding);
+    margin-top: var(--padding-small);
+    margin-bottom: var(--padding);
+}
+
+.unmod-buttons {
+    display: flex;
+    flex-direction: row;
+    padding-left: var(--padding);
+    padding-right: var(--padding);
+    justify-content: space-evenly;
+    padding-bottom: var(--padding-small);
+    padding-top: var(--padding-small);
+}
+
+.unmod-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: .5vw;
+    font-size: var(--font-medium);
+    color: white;
+    height: calc(var(--font-medium) + calc(var(--padding-small) * 2));
+    text-decoration: none;
+    min-width: 10vw;
+    transition: background-color 250ms;
+}
+
+.unmod-button-img {
+    justify-self: center;
+    width: 2.5vw;
+}

@@ -81,8 +81,8 @@ const reloadMotions = () => {
         }, {
             name: { textContent: motion.country.title },
             topic: { innerHTML: `<b>Topic: </b> ${motion.topic}` },
-            duration: { innerHTML: `<b>Duration: </b> ${formatTime(motion.duration, 2, 2)}` },
-            speakingTime: { innerHTML: `<b>Speaking Time: </b> ${formatTime(motion.speakingTime, 2, 2)}` },
+            duration: { innerHTML: `<b>Duration: </b> ${Timer.formatTime(motion.duration, 2, 2)}` },
+            speakingTime: { innerHTML: `<b>Speaking Time: </b> ${Timer.formatTime(motion.speakingTime, 2, 2)}` },
             speakers: { innerHTML: `<b>Speakers: </b> ${motion.speakers}` },
         });
 
@@ -200,6 +200,11 @@ pass.addEventListener('click', () => {
     }
 
     reloadMotions();
+
+    if (passed.type === 'unmod') {
+        setUnmodTime(passed.duration);
+        setPage('unmod');
+    }
 });
 
 fail.addEventListener('click', () => {       
