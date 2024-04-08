@@ -144,6 +144,7 @@ rollCall.addEventListener('click', () => {
             }
 
             loadGSL();
+            loadMod();
             setSubmittingCountryInput();
         }
 

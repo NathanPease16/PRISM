@@ -1,0 +1,83 @@
+.mod-container {
+    display: flex;
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.mod-speaker-amount {
+    position: absolute;
+    right: var(--padding);
+    top: var(--padding-small);
+    font-size: var(--font-medium);
+    color: var(--dark-gray);
+}
+
+.speakers-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    box-shadow: 0 0 .25vw .25vw var(--light-gray);
+    border-radius: .5vw;
+    box-sizing: border-box;
+    margin: var(--padding) var(--padding) var(--padding) var(--side-space);
+    width: 60vw;
+    height: 78vh;
+}
+
+.mod-total-time {
+    font-size: var(--font-large);
+    text-align: center;
+    color: var(--dark-gray);
+    border: solid .15vw var(--gray);
+    box-sizing: border-box;
+    border-radius: .5vw .5vw 0 0;
+    padding-bottom: var(--padding-small);
+    padding-top: var(--padding-small);
+    margin-left: var(--padding);
+    margin-right: var(--padding);
+    margin-top: var(--padding-small);
+    margin-bottom: -.15vw;
+}
+
+.mod-time {
+    font-size: calc(1.5 * var(--font-large));
+    text-align: center;
+    color: var(--dark-gray);
+    border: solid .15vw var(--gray);
+    box-sizing: border-box;
+    border-radius: 0 0 .5vw .5vw;
+    padding-bottom: var(--padding-small);
+    padding-top: var(--padding-small);
+    margin-left: var(--padding);
+    margin-right: var(--padding);
+}
+
+.speakers-buttons {
+    display: flex;
+    flex-direction: row;
+    padding-left: var(--padding);
+    padding-right: var(--padding);
+    justify-content: space-evenly;
+    border-bottom: solid .15vw var(--gray);
+    padding-bottom: var(--padding-small);
+    padding-top: var(--padding-small);
+}
+
+.mod-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: .5vw;
+    font-size: var(--font-medium);
+    color: white;
+    height: calc(var(--font-medium) + calc(var(--padding-small) * 2));
+    text-decoration: none;
+    min-width: 10vw;
+    transition: background-color 250ms;
+}
+
+.mod-button-img {
+    justify-self: center;
+    width: 2.5vw;
+}

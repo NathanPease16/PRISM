@@ -94,19 +94,23 @@ settings.addEventListener('click', () => {
     const initSeconds = Math.floor(timer.time % 60);
 
     settingsPopup.addSmallHeader('Settings');
-    settingsPopup.addText('Speaking Time (Minutes)');
+    settingsPopup.addText('Speaking Time');
 
-    const minutes = settingsPopup.addInput(`${initMinutes}`);
+    const minutes = settingsPopup.addInput(`Minutes`);
     minutes.type = 'number';
-
-    settingsPopup.addText('Speaking Time (Seconds)');
-
-    const seconds = settingsPopup.addInput(`${initSeconds}`);
+    const seconds = settingsPopup.addInput(`Seconds`);
     seconds.type = 'number';
 
     settingsPopup.addButton('Confirm Changes', 'blue', () => {
-        const min = minutes.value == '' ? initMinutes : parseFloat(minutes.value);
-        const sec = seconds.value == '' ? initSeconds : parseFloat(seconds.value);
+        let min;
+        let sec;
+        if (minutes.value === '' && seconds.value === '') {
+            min = initMinutes;
+            sec = initSeconds;
+        } else {
+            min = minutes.value == '' ? 0 : parseFloat(minutes.value);
+            sec = seconds.value == '' ? 0 : parseFloat(seconds.value);
+        }
 
         timer.setTime(min * 60 + sec);
         timer.reset();

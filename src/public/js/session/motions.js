@@ -195,15 +195,14 @@ pass.addEventListener('click', () => {
     const passed = motions[0];
     motions = [];
 
-    if (passed) {
-        console.log(passed);
-    }
-
     reloadMotions();
 
-    if (passed.type === 'unmod') {
+    if (passed.type === 'unmod' || passed.type === 'custom') {
         setUnmodTime(passed.duration);
         setPage('unmod');
+    } else if (passed.type === 'mod') {
+        setMod(passed.duration, passed.speakingTime, passed.topic);
+        setPage('mod');
     }
 });
 
