@@ -32,7 +32,22 @@ rollCall.addEventListener('click', () => {
     const container = document.createElement('div');
     container.className = 'rollCall-container';
 
-    for (const country of committee.countries) {
+    let copy = [...committee.countries];
+
+    copy = copy.sort((a, b) => {
+        const aTitle = a.title.toLowerCase();
+        const bTitle = b.title.toLowerCase();
+
+        if (aTitle > bTitle) {
+            return 1;
+        } else if (aTitle < bTitle) {
+            return -1;
+        } else {
+            return 0;
+        }
+    });
+
+    for (const country of copy) {
         if (!country.attendance) {
             country.attendance = 'A';
         }
