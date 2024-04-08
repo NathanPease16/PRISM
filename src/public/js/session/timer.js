@@ -14,9 +14,11 @@ class Timer {
 
     static formatTime(time, minuteLength, secondLength) {
         // Divide by 60, convert to integer to get minutes and pad start
-        const minutes = Math.floor(time / 60).toString().padStart(minuteLength, '0');
+        const roundedTime = Math.ceil(time);
+
+        const minutes = Math.floor(roundedTime / 60).toString().padStart(minuteLength, '0');
         // Get remainder after dividing by 60 to get seconds, pad start
-        const seconds = Math.floor(time % 60).toString().padStart(secondLength, '0');
+        const seconds = Math.floor(roundedTime % 60).toString().padStart(secondLength, '0');
 
         return `${minutes}:${seconds}`;
     }
@@ -58,6 +60,10 @@ class Timer {
         run();
     }
 
+    formatText() {
+        this.text.textContent = `${Timer.formatTime(this.currentTime, 2, 2)} / ${Timer.formatTime(this.time, 2, 2)}`;
+    }
+
     pause() {
         this.playImg.style.display = '';
         this.pauseImg.style.display = 'none';
@@ -75,5 +81,9 @@ class Timer {
         this.time = time;
 
         this.reset();
+    }
+
+    setCurrentTime(time) {
+        this.currentTime = time;
     }
 }
