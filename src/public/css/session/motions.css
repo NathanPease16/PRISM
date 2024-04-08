@@ -38,6 +38,7 @@
     display: flex;
     flex-direction: column;
     margin-top: var(--padding-small);
+    overflow: auto;
 }
 
 .motion-input-label {

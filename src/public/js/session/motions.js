@@ -6,7 +6,7 @@ let motions = [];
 let number = 0;
 
 // Buttons and values for moderated caucus
-const modSubmit = document.getElementById('submit-mod');
+const modSubmit = document.getElementById('submit-mod-page');
 const modTopic = document.getElementById('mod-topic');
 const modDurMin = document.getElementById('mod-dur-min');
 const modDurSec = document.getElementById('mod-dur-sec');
@@ -14,12 +14,12 @@ const modStMin = document.getElementById('mod-st-min');
 const modStSec = document.getElementById('mod-st-sec');
 
 // Buttons and values for unmoderated caucus
-const unmodSubmit = document.getElementById('submit-unmod');
+const unmodSubmit = document.getElementById('submit-unmod-page');
 const unmodDurMin = document.getElementById('unmod-min');
 const unmodDurSec = document.getElementById('unmod-sec');
 
 // Buttons and values for custom caucus
-const customSubmit = document.getElementById('submit-custom');
+const customSubmit = document.getElementById('submit-custom-page');
 const customTopic = document.getElementById('custom-topic');
 const customDurMin = document.getElementById('custom-min');
 const customDurSec = document.getElementById('custom-sec');
