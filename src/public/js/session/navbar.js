@@ -9,7 +9,7 @@ for (const tab of tabs) {
     tabDocs.push(document.getElementById(tab.getAttribute('data-id')));
 }
 
-const defaultTab = 'gsl';
+const defaultTab = 'voting';
 
 let previousScripts;
 
