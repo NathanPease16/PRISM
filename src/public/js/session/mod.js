@@ -40,8 +40,11 @@ const setModSpeakerText = () => {
 function loadMod() {
     modSpeakersList = [];
 
+    setModSpeakerText();
+
     const unselected = {
-        countries: countries,
+        // Create a shallow copy of the countries array to make sure it doesn't overlap with gsl
+        countries: [...countries],
         parent: modUnselectedCountries,
         sort: (a, b) => {
             const titleA = a.title.toLowerCase();
