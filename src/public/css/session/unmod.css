@@ -2,12 +2,13 @@
     display: flex;
     flex-basis: 0;
     flex-grow: 1;
+    overflow: auto;
     justify-content: center;
-    align-items: center;
 }
 
 .unmod {
     width: 50vw;
+    height: fit-content;
     box-shadow: 0 0 .25vw .25vw var(--light-gray);
     border-radius: .5vw;
     margin-top: var(--padding);

@@ -235,7 +235,62 @@
                 </div>
             </div>
 
-            <p id="voting" style="display: none;">Voting</p>
+            <div class="voting-container" style="display: none;" id="voting">
+                <div class="vote-status">
+                    <p class="vote-text">Dashboard</p>
+                    <div class="voting-buttons">
+                        <button class="voting-button gsl-orange" id="configure-vote">
+                            <svg class="gsl-button-img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z" />
+                            </svg>              
+                        </button>
+                        <button class="voting-button gsl-blue" id="reset-vote">
+                            <svg class="gsl-button-img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                            </svg>            
+                        </button>
+                    </div>
+                    <div class="vote-info">
+                        <div class="vote-info-text">
+                            <p id="favor-text">Favor 0</p>
+                            <p id="against-text">Against 0</p>
+                        </div>
+                        <div class="circles">
+                            <div class="" id="vote-amount-line"></div>
+                            <div class="fill-bg"></div>
+                            <div class="circle-container" style="rotate: 0deg;">
+                                <div class="circle" style="right: 100%;" id="favor">
+                                    <div class="favor-circle"></div>
+                                </div>
+                            </div>
+                            <div class="circle-container" style="rotate: 180deg;">
+                                <div class="circle" style="right: 100%;" id="against">
+                                    <div class="against-circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vote-info-text">
+                            <p id="abstain-text">Abstain 0</p>
+                            <p id="majority-text">Majority 0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="voting">
+                    <p class="vote-text">Voting</p>
+                    <div class="big-country">
+                        <div class="big-country-country">
+                            <img src="/global/flags/xx.png" id="currently-voting-img">
+                            <p id="currently-voting-name"></p>
+                        </div>
+                        <div class="voting-country-buttons">
+                            <button class="vote-button gsl-green" id="favor-button">Favor</button>
+                            <button class="vote-button gsl-red" id="against-button">Against</button>
+                            <button class="vote-button gsl-gray" id="abstain-button">Abstain</button>
+                        </div>
+                    </div>
+                    <div class="upcoming-countries" id="upcoming-countries"></div>
+                </div>
+            </div>
         </div>
 
         <svg class="side-panel" id="open-side-panel" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -332,6 +387,7 @@
     <script src="/js/session/motions.js"></script>
     <script src="/js/session/unmod.js"></script>
     <script src="/js/session/mod.js"></script>
+    <script src="/js/session/voting.js"></script>
 
     <!-- HAS to be last because it reloads scripts that rely on country attendance -->
     <script src="/js/session/rollCall.js"></script>
