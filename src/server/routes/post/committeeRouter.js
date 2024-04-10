@@ -54,4 +54,19 @@ route.post('/deleteAllCommittees', async (req, res) => {
     res.status(200).end();
 });
 
+route.post('/action/:id', async (req, res) => {
+    if (!req.body.action) {
+        res.status(400).json('Action is required');
+        return;
+    }
+
+    const id = parseInt(req.params.id);
+
+    delete req.body.action.id;
+
+    await Committee.findOneAndUpdate({ id }, { currentAction: req.body.action });
+
+    res.status(200).end();
+});
+
 module.exports = route;

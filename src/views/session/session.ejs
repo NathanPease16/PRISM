@@ -374,6 +374,7 @@
     </div>
     <script>let committee = <%- JSON.stringify(committee) %>;</script>
     <script>let countries = committee.countries.filter((country) => country.attendance != 'A');</script>
+    <script src="/js/session/action.js"></script>
     <script src="/js/popup.js"></script>
     <script src="/js/notification.js"></script>
     <script src="/js/session/sidePanel.js"></script>
@@ -381,13 +382,13 @@
     <script src="/js/templates.js"></script>
     <script src="/js/session/setAgenda.js"></script>
     <script src="/js/session/timer.js"></script>
-    <script src="/js/session/navbar.js"></script>
     <script src="/js/session/search.js"></script>
     <script src="/js/session/gsl.js"></script>
     <script src="/js/session/motions.js"></script>
     <script src="/js/session/unmod.js"></script>
     <script src="/js/session/mod.js"></script>
     <script src="/js/session/voting.js"></script>
+    <script src="/js/session/navbar.js"></script>
 
     <!-- HAS to be last because it reloads scripts that rely on country attendance -->
     <script src="/js/session/rollCall.js"></script>

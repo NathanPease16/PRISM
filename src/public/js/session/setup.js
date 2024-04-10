@@ -141,3 +141,10 @@ setCountryCount();
         }
     });
 })();
+
+const action = {
+    id: committee.id,
+    type: 'setup',
+}
+
+setCurrentAction(action);

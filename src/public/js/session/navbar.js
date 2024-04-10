@@ -31,6 +31,28 @@ for (const tab of tabs) {
         }
 
         page.style.display = '';
+
+        const action = {
+            id: committee.id,
+            type: name,
+        }
+
+        if (name === 'mod' || name === 'unmod' || name === 'gsl') {
+            let actionTimer;
+            if (name === 'mod') {
+                actionTimer = modTotalTimer;
+            } else if (name === 'unmod') {
+                actionTimer = unmodTimer;
+            } else {
+                actionTimer = timer;
+            }
+
+            action['totalTime'] = actionTimer.time;
+            action['currentTime'] = actionTimer.currentTime;
+            action['active'] = false;
+        }
+
+        setCurrentAction(action);
     }
 
     tab.addEventListener('click', event);
