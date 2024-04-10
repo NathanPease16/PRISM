@@ -133,6 +133,7 @@ setCountryCount();
         });
 
         if (response.ok) {
+            sessionUpdate({ updateType: 'attendance', countries, id: committee.id });
             window.location = `/session/${committee.id}`;
         } else {
             const error = await response.json();
