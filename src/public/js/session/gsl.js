@@ -23,6 +23,21 @@ const updateSpeakersText = () => {
     totalSpeakers.textContent = `Speakers List | ${speakersList.length}`;
 }
 
+const playTimer = () => {
+    timer.play();
+    setCurrentAction({ ...getLastAction(), totalTime: timer.time, currentTime: timer.currentTime, active: true });
+}
+
+const pauseTimer = () => {
+    timer.pause();
+    setCurrentAction({ ...getLastAction(), totalTime: timer.time, currentTime: timer.currentTime, active: false });
+}
+
+const resetTimer = () => {
+    timer.reset();
+    setCurrentAction({ ...getLastAction(), totalTime: timer.time, currentTime: timer.currentTime, active: false });
+}
+
 // All the logic to reload on attendance change (speaker's list data and what countries to render)
 function loadGSL() {
     speakersList = [];
@@ -52,7 +67,8 @@ function loadGSL() {
         sort: (a, b) => 0,
         beforeEvent: (country) => {
             if (speakersList.length > 0 && country.title === speakersList[0].title) {
-                timer.reset();
+                // timer.reset();
+                resetTimer();
             }
         },
         afterEvent: updateSpeakersText,
@@ -68,9 +84,11 @@ setupSearch('gsl');
 
 play.addEventListener('click', () => {
     if (!timer.active) {
-        timer.play();
+        // timer.play();
+        playTimer();
     } else {
-        timer.pause();
+        pauseTimer();
+        // timer.pause();
     }
 });
 
@@ -81,11 +99,13 @@ next.addEventListener('click', () => {
         countrySelector.unselect(country.title);
     }
 
-    timer.reset();
+    // timer.reset();
+    resetTimer();
 });
 
 reset.addEventListener('click', () => {
-    timer.reset();
+    // timer.reset();
+    resetTimer();
 });
 
 settings.addEventListener('click', () => {
@@ -113,7 +133,8 @@ settings.addEventListener('click', () => {
         }
 
         timer.setTime(min * 60 + sec);
-        timer.reset();
+        // timer.reset();
+        resetTimer();
 
         settingsPopup.remove();
     });

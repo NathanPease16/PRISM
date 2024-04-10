@@ -9,16 +9,31 @@ const unmodPauseImage = document.getElementById('unmod-pause-img');
 
 const unmodTimer = new Timer(60, unmodTimeText, unmodPlayImage, unmodPauseImage);
 
+const playUnmodTimer = () => {
+    unmodTimer.play();
+    setCurrentAction({ ...getLastAction(), totalTime: unmodTimer.time, currentTime: unmodTimer.currentTime, active: true });
+}
+
+const pauseUnmodTimer = () => {
+    unmodTimer.pause();
+    setCurrentAction({ ...getLastAction(), totalTime: unmodTimer.time, currentTime: unmodTimer.currentTime, active: false });
+}
+
+const resetUnmodTimer = () => {
+    unmodTimer.reset();
+    setCurrentAction({ ...getLastAction(), totalTime: unmodTimer.time, currentTime: unmodTimer.currentTime, active: false });
+}
+
 unmodPlay.addEventListener('click', () => {
     if (!unmodTimer.active) {
-        unmodTimer.play();
+        playUnmodTimer();
     } else {
-        unmodTimer.pause();
+        pauseUnmodTimer();
     }
 });
 
 unmodReset.addEventListener('click', () => {
-    unmodTimer.reset();
+    resetUnmodTimer();
 });
 
 unmodSettings.addEventListener('click', () => {
@@ -42,7 +57,7 @@ unmodSettings.addEventListener('click', () => {
         const sec = seconds.value == '' ? initSeconds : parseFloat(seconds.value);
 
         unmodTimer.setTime(min * 60 + sec);
-        unmodTimer.reset();
+        resetUnmodTimer();
 
         settingsPopup.remove();
     });
@@ -56,5 +71,5 @@ unmodSettings.addEventListener('click', () => {
 
 function setUnmodTime(time) {
     unmodTimer.setTime(time);
-    unmodTimer.reset();
+    resetUnmodTimer();
 }

@@ -24,12 +24,28 @@ let totalTimeOnPlay = 60;
 const modTotalTimer = new Timer(60, modTotalTimeText, modPlayImage, modPauseImage);
 const modTimer = new Timer(60, modTimeText, modPlayImage, modPauseImage);
 
-const resetTimer = () => {
+const playModTimer = () => {
+    modTotalTimer.play();
+    setCurrentAction({ ...getLastAction(), totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: true });
+}
+
+const pauseModTimer = () => {
+    modTotalTimer.pause();
+    setCurrentAction({ ...getLastAction(), totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: false });
+}
+
+const resetModTimer = () => {
     modTotalTimer.pause();
     modTimer.reset();
 
     modTotalTimer.currentTime = totalTimeOnPlay;
     modTotalTimer.formatText();
+    setCurrentAction({ ...getLastAction(), totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: false });
+}
+
+const resetModTimerAbsolute = () => {
+    modTotalTimer.reset();
+    setCurrentAction({ ...getLastAction(), totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: false });
 }
 
 const setModSpeakerText = () => {
@@ -66,7 +82,7 @@ function loadMod() {
         sort: (a, b) => 0,
         beforeEvent: (country) => {
             if (modSpeakersList.length > 0 && country.title === modSpeakersList[0].title) {
-                modTotalTimer.pause();
+                pauseModTimer();
     
                 if (modTotalTimer.currentTime % 1 != 0) {
                     modTotalTimer.setCurrentTime(Math.ceil(modTotalTimer.currentTime));
@@ -90,11 +106,11 @@ modPlay.addEventListener('click', () => {
     if (!modTimer.active) {
         totalTimeOnPlay = modTotalTimer.currentTime;
         modTimer.play();
-        modTotalTimer.play();
+        playModTimer();
 
         const run = () => {
             if (!modTimer.active && modTotalTimer.active) {
-                modTotalTimer.pause();
+                pauseModTimer();
             } else {
                 requestAnimationFrame(run);
             }
@@ -103,7 +119,7 @@ modPlay.addEventListener('click', () => {
         run();
     } else {
         modTimer.pause();
-        modTotalTimer.pause();
+        pauseModTimer();
     }
 });
 
@@ -114,7 +130,7 @@ modNext.addEventListener('click', () => {
         modCountrySelector.unselect(country.title);
     }
 
-    modTotalTimer.pause();
+    pauseModTimer();
 
     if (modTotalTimer.currentTime % 1 != 0) {
         modTotalTimer.setCurrentTime(Math.ceil(modTotalTimer.currentTime));
@@ -124,7 +140,7 @@ modNext.addEventListener('click', () => {
 });
 
 modReset.addEventListener('click', () => {
-    resetTimer();
+    resetModTimer();
 });
 
 modSettings.addEventListener('click', () => {
@@ -203,7 +219,7 @@ function setMod(totalTime, speakingTime, t) {
 
     setModSpeakerText();
 
-    modTotalTimer.reset();
+    resetModTimerAbsolute();
     modTimer.reset();
 
     loadMod();

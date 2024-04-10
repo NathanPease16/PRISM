@@ -1,6 +1,8 @@
 let lastAction;
 
 async function setCurrentAction(action) {
+    action.actionTime = Date.now();
+
     const response = await fetch(`/action/${action.id}`, {
         method: 'POST',
         headers: {
