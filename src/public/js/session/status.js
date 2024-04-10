@@ -53,8 +53,6 @@ function setCurrentAction() {
 }
 
 socket.on('sessionUpdate', (msg) => {
-    console.log(msg);
-
     if (msg.id != committee.id) {
         return;
     }
