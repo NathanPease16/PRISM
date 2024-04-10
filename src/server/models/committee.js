@@ -11,6 +11,10 @@ const committeeSchema = new mongoose.Schema({
         type: String,
         default: '',
     },
+    currentAction: {   
+        type: Object,
+        default: {},
+    },
     setup: {
         type: Boolean,
         default: false,
