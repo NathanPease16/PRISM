@@ -147,6 +147,8 @@ rollCall.addEventListener('click', () => {
             loadMod();
             setSubmittingCountryInput();
             resetVoting();
+
+            sessionUpdate({ updateType: 'attendance', countries: committee.countries });
         }
 
         popup.remove();

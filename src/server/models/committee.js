@@ -13,7 +13,7 @@ const committeeSchema = new mongoose.Schema({
     },
     currentAction: {   
         type: Object,
-        default: {},
+        default: { type: 'Out of Session' },
     },
     setup: {
         type: Boolean,

@@ -1,0 +1,36 @@
+.status-text {
+    padding-left: var(--padding);
+    padding-top: var(--padding);
+    font-size: var(--font-medium);
+    color: var(--dark-gray);
+}
+
+.status-countries {
+    height: 10vw;
+    overflow: auto;
+    margin-left: var(--padding);
+}
+
+.status-countries div:hover {
+    background-color: transparent;
+}
+
+.status-attendance-A, .status-attendance-P, .status-attendance-PV {
+    width: 1vw;
+    height: 1vw;
+    
+    border-radius: 50%;
+    margin-left: var(--padding-small);
+}
+
+.status-attendance-P {
+    background-color: var(--orange) !important;
+}
+
+.status-attendance-A {
+    background-color: var(--red) !important;
+}
+
+.status-attendance-PV {
+    background-color: var(--blue) !important;
+}

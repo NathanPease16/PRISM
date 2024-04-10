@@ -55,7 +55,11 @@ io.on('connection', (socket) => {
     // Emit the timer message to all clients
     socket.on('timer', (msg) => {
         io.emit('timer', msg);
-    })
+    });
+
+    socket.on('sessionUpdate', (msg) => {
+        io.emit('sessionUpdate', msg);
+    });
 
     socket.on('disconnect', () => {
     });
