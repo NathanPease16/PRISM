@@ -1,14 +1,14 @@
-let lastAction;
 const socket = io();
 
 function sessionUpdate(update) {
-    if (!update.id) {
-        update.id = committee.id;
-    }
     socket.emit('sessionUpdate', update);
 }
 
 async function setCurrentAction(action) {
+    if (!action.id) {
+        action.id = committee.id;
+    }
+
     action.actionTime = Date.now();
     action.updateType = 'action';
 
@@ -25,10 +25,4 @@ async function setCurrentAction(action) {
     } else {
         console.log('Failed to update action');
     }
-
-    lastAction = action;
-}
-
-function getLastAction() {
-    return lastAction;
 }

@@ -25,17 +25,17 @@ const updateSpeakersText = () => {
 
 const playTimer = () => {
     timer.play();
-    setCurrentAction({ ...getLastAction(), totalTime: timer.time, currentTime: timer.currentTime, active: true });
+    setCurrentAction({ type: 'gsl', totalTime: timer.time, currentTime: timer.currentTime, active: true });
 }
 
 const pauseTimer = () => {
     timer.pause();
-    setCurrentAction({ ...getLastAction(), totalTime: timer.time, currentTime: timer.currentTime, active: false });
+    setCurrentAction({ type: 'gsl', totalTime: timer.time, currentTime: timer.currentTime, active: false });
 }
 
 const resetTimer = () => {
     timer.reset();
-    setCurrentAction({ ...getLastAction(), totalTime: timer.time, currentTime: timer.currentTime, active: false });
+    setCurrentAction({ type: 'gsl', totalTime: timer.time, currentTime: timer.currentTime, active: false });
 }
 
 // All the logic to reload on attendance change (speaker's list data and what countries to render)
