@@ -1,6 +1,10 @@
 const socket = io();
 
 function sessionUpdate(update) {
+    if (!update.id) {
+        update.id = committee.id;
+    }
+
     socket.emit('sessionUpdate', update);
 }
 
