@@ -153,6 +153,7 @@ function loadVoting(votingCountries) {
 function resetVoting() {
     favorAmount = 0;
     againstAmount = 0;
+    abstainAmount = 0;
     loadVoting(countries);
     updateVoteGraphic();
 }
