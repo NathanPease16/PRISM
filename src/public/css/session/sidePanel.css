@@ -1,6 +1,7 @@
 .side-panel {
     position: absolute;
     left: var(--padding-small);
+    top: 0;
 
     width: 2.5vw;
     color: var(--gray);
@@ -81,6 +82,8 @@
 
 .side-panel-cover {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     background-color: var(--translucent-black);

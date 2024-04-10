@@ -26,12 +26,12 @@ const modTimer = new Timer(60, modTimeText, modPlayImage, modPauseImage);
 
 const playModTimer = () => {
     modTotalTimer.play();
-    setCurrentAction({ ...getLastAction(), totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: true });
+    setCurrentAction({ type: 'mod', totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: true });
 }
 
 const pauseModTimer = () => {
     modTotalTimer.pause();
-    setCurrentAction({ ...getLastAction(), totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: false });
+    setCurrentAction({ type: 'mod', totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: false });
 }
 
 const resetModTimer = () => {
@@ -40,12 +40,12 @@ const resetModTimer = () => {
 
     modTotalTimer.currentTime = totalTimeOnPlay;
     modTotalTimer.formatText();
-    setCurrentAction({ ...getLastAction(), totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: false });
+    setCurrentAction({ type: 'mod', totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: false });
 }
 
 const resetModTimerAbsolute = () => {
     modTotalTimer.reset();
-    setCurrentAction({ ...getLastAction(), totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: false });
+    setCurrentAction({ type: 'mod', totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: false });
 }
 
 const setModSpeakerText = () => {

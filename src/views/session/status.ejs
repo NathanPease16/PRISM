@@ -1,0 +1,28 @@
+<%- include ('../templates/_header.ejs', { title: 'Status'} ); %>
+<body>
+    <div class="country template" data-name="country">         
+        <img data-route="image">
+        <p data-route="name"></p>
+        <div data-route="attendance"></div>
+    </div>
+
+    <%- include('../templates/_topBar.ejs', { title: 'Status' }); %>
+    <%- include('../templates/_sidePanel.ejs'); %>
+    <div class="container">
+        <div class="box-container-grow">
+            <p class="status-text" id="name"><b>Name:</b></p>
+            <p class="status-text" id="agenda"><b>Agenda:</b></p>
+            <p class="status-text"><b>Countries:</b></p>
+            <div class="status-countries" id="countries">
+            </div>
+            <p class="status-text" id="current-action"><b>Current Action:</b></p>
+            <p class="status-text" style="display: none;" id="time"></p>
+        </div>
+    </div>
+    <script>let committee = <%- JSON.stringify(committee) %>;</script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/templates.js"></script>
+    <script src="/js/session/timer.js"></script>
+    <script src="/js/session/status.js"></script>
+</body>
+</html>

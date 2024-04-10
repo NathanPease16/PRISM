@@ -374,10 +374,11 @@
     </div>
     <script>let committee = <%- JSON.stringify(committee) %>;</script>
     <script>let countries = committee.countries.filter((country) => country.attendance != 'A');</script>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="/js/session/action.js"></script>
     <script src="/js/popup.js"></script>
     <script src="/js/notification.js"></script>
-    <script src="/js/session/sidePanel.js"></script>
+    <script src="/js/sidePanel.js"></script>
     <script src="/js/session/countrySelection.js"></script>
     <script src="/js/templates.js"></script>
     <script src="/js/session/setAgenda.js"></script>

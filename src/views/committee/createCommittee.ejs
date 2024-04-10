@@ -1,10 +1,14 @@
 <%- include ('../templates/_header.ejs', { title: 'Create'} ); %>
 <body>
-    <div class="spacing">
-        <p class="header">Create Committee</p>
-        <input class="full input item" type="text" name="name" id="name" placeholder="Committee Name">
-        <button class="full button item" id="create">Create</button>
-        <a class="full button item delete" href="/">Cancel</a>
+    <%- include('../templates/_topBar.ejs', { title: 'Create Committee' }); %>
+    <%- include('../templates/_sidePanel.ejs'); %>
+    <div class="container">
+        <div class="box-container-grow">
+            <p class="form-label">Name</p>
+            <input class="full input item" type="text" name="name" id="name" placeholder="Name">
+            <button class="full button item" id="create">Create</button>
+            <a class="full button item delete" href="/">Cancel</a>
+        </div>
     </div>
     <script src="/js/notification.js"></script>
     <script src="/js/committees/createCommittee.js"></script>

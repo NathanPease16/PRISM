@@ -20,6 +20,8 @@ setAgenda.addEventListener('click', () => {
             const error = await response.json();
             const notification = new Notification(error, 'red');
             notification.show();
+        } else {
+            sessionUpdate({ updateType: 'agenda', agenda: agenda.value });
         }
 
         agendaText.textContent = `Agenda: ${agenda.value}`;

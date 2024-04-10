@@ -1,13 +1,14 @@
 // const socket = io();
 
 class Timer {
-    constructor(startTime, text, playImg, pauseImg) {
+    constructor(startTime, text, playImg, pauseImg, useImages=true) {
         this.time = startTime;
         this.currentTime = startTime;
         this.lastTime = Date.now();
         this.text = text;
         this.playImg = playImg;
         this.pauseImg = pauseImg;
+        this.useImages = useImages;
         
         this.active = false;
     }
@@ -40,8 +41,10 @@ class Timer {
         this.active = true;
         this.lastTime = Date.now();
 
-        this.pauseImg.style.display = '';
-        this.playImg.style.display = 'none';
+        if (this.useImages) {
+            this.pauseImg.style.display = '';
+            this.playImg.style.display = 'none';
+        }
 
         const run = () => {
             if (this.active) {
@@ -65,8 +68,10 @@ class Timer {
     }
 
     pause() {
-        this.playImg.style.display = '';
-        this.pauseImg.style.display = 'none';
+        if (this.useImages) {
+            this.playImg.style.display = '';
+            this.pauseImg.style.display = 'none';
+        }
         this.active = false;
     }
 

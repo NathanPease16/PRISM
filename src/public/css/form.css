@@ -1,0 +1,7 @@
+.form-label {
+    padding-left: calc(var(--side-space) + var(--padding-small));
+    margin-top: var(--padding);
+    margin-bottom: calc(-1 * var(--padding));
+    font-size: var(--font-medium);
+    color: var(--dark-gray);
+}

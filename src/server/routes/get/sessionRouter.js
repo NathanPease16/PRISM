@@ -36,4 +36,18 @@ route.get('/session/:id/setup', async (req, res) => {
     res.render('session/setup', { committee });
 });
 
+route.get('/status/:id', async (req, res) => {
+    const id = req.params.id;
+
+    const committee = await Committee.findOne({ id });
+
+    if (!committee) {
+        res.redirect(`/badGateway?old=${req.originalUrl}`);
+        return;
+    }
+
+    res.status(200);
+    res.render('session/status', { committee });
+});
+
 module.exports = route;

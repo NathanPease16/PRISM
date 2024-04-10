@@ -17,6 +17,7 @@ confirmButton.addEventListener('click', async () => {
     });
 
     if (response.ok) {
+        sessionUpdate({ updateType: 'name', name: nameInput.value, id });
         window.location = '/';
     } else {
         const error = await response.json();
