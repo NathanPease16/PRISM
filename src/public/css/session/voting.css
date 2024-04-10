@@ -80,6 +80,39 @@
     height: 8vw;
 }
 
+/*
+.circles::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0vw;
+    bottom: 0vw;
+    width: .15vw;
+    background-color: white;
+    z-index: 100000;
+}
+*/
+
+.one-half-vote {
+    position: absolute;
+    left: 50%;
+    top: 0vw;
+    bottom: 0vw;
+    width: .15vw;
+    background-color: white;
+    z-index: 200;
+}
+
+.two-thirds-vote {
+    position: absolute;
+    left: 66.6666%;
+    top: 0vw;
+    bottom: 0vw;
+    width: .15vw;
+    background-color: white;
+    z-index: 200;
+}
+
 .circle-container {
     position: absolute;
     width: 8vw;
@@ -165,6 +198,7 @@
 
 .vote-button {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     border: none;
@@ -179,6 +213,10 @@
     transition: background-color 250ms;
 }
 
+.disabled {
+    opacity: .5;
+}
+
 .upcoming-countries {
     display: flex;
     flex-direction: column;
@@ -190,4 +228,32 @@
 
 .upcoming-countries div:hover {
     background-color: white !important;
+}
+
+.vote-type-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.radio-button-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: var(--padding-small);
+    margin-bottom: var(--padding-small);
+    margin-left: var(--padding);
+}
+
+.vote-type {
+    width: 1vw;
+    height: 1vw;
+    accent-color: var(--red);
+}
+
+.vote-type-text {
+    color: var(--dark-gray);
+    font-size: var(--font-small);
+    text-align: center;
+    padding-left: var(--padding-small);
 }

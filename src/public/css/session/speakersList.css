@@ -83,7 +83,7 @@
     background-color: var(--gray);
 }
 
-.gsl-gray:hover {
+.gsl-gray:not(.disabled):hover {
     background-color: var(--dark-gray);
 }
 
@@ -115,7 +115,7 @@
     background-color: var(--green);
 }
 
-.gsl-green:hover {
+.gsl-green:not(.disabled):hover {
     background-color: var(--dark-green);
 }
 
@@ -123,7 +123,7 @@
     background-color: var(--red);
 }
 
-.gsl-red:hover {
+.gsl-red:not(.disabled):hover {
     background-color: var(--dark-red);
 }
 

@@ -146,6 +146,7 @@ rollCall.addEventListener('click', () => {
             loadGSL();
             loadMod();
             setSubmittingCountryInput();
+            resetVoting();
         }
 
         popup.remove();
