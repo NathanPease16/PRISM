@@ -1,17 +1,24 @@
 <%- include ('./templates/_header.ejs', { title: 'Config'} ); %>
 <body>
-    <p class="header">Configure Server</p>
-    <% if (accessCode) { %>
-        <input class="full input item" type="text" name="accessCode" id="accessCode" placeholder="Access Code" value="<%= accessCode %>">
-    <% } else {%>
-        <input class="full input item" type="text" name="accessCode" id="accessCode" placeholder="Access Code">
-    <% } %>
-    <% if (adminCode) { %>
-        <input class="full input item" type="text" name="adminCode" id="adminCode" placeholder="Admin Code" value="<%= adminCode %>">
-    <% } else {%>
-        <input class="full input item" type="text" name="adminCode" id="adminCode" placeholder="Admin Code">
-    <% } %>
-    <button class="full button item" id="save">Save</button>
+    <%- include('./templates/_topBar.ejs', { title: 'Configure Server' }); %>
+    <%- include('./templates/_sidePanel.ejs'); %>
+    <div class="container">
+        <div class="box-container-grow">
+            <p class="form-label">Access Code</p>
+            <% if (accessCode) { %>
+                <input class="full input item" type="text" name="accessCode" id="accessCode" placeholder="Access Code" value="<%= accessCode %>">
+            <% } else { %>
+                <input class="full input item" type="text" name="accessCode" id="accessCode" placeholder="Access Code">
+            <% } %>
+            <p class="form-label">Admin Code</p>
+            <% if (adminCode) { %>
+                <input class="full input item" type="text" name="adminCode" id="adminCode" placeholder="Admin Code" value="<%= adminCode %>">
+            <% } else {%>
+                <input class="full input item" type="text" name="adminCode" id="adminCode" placeholder="Admin Code">
+            <% } %>
+            <button class="full button item" id="save">Save</button>
+        </div>
+    </div>
     <script src="/js/notification.js"></script>
     <script src="/js/config.js"></script>
 </body>

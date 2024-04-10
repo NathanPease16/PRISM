@@ -5,21 +5,42 @@
 }
 
 .committee-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: var(--font-medium);
     color: white;
     border-radius: .5vw;
+    min-width: 4vw;
     padding: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
+    text-align: center;
     margin-left: var(--padding-small);
     text-decoration: none;
     transition: background-color 250ms;
 }
 
-.edit {
+.session-btn {
     background-color: var(--blue) !important;
 }
 
-.edit:hover {
+.session-btn:hover {
     background-color: var(--dark-blue) !important;
+}
+
+.status-btn {
+    background-color: var(--purple) !important;
+}
+
+.status-btn:hover {
+    background-color: var(--dark-purple) !important;
+}
+
+.edit {
+    background-color: var(--orange) !important;
+}
+
+.edit:hover {
+    background-color: var(--dark-orange) !important;
 }
 
 .delete {
@@ -31,6 +52,37 @@
     background-color: var(--dark-red) !important;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.box-container {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 .25vw .25vw var(--light-gray);
+    max-width: 75vw;
+    height: 90vh;
+    max-height: 90vh;
+    flex-basis: 0;
+    flex-grow: 1;
+    margin-top: var(--padding);
+    border-radius: .5vw;
+}
+
+.box-container-grow {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 .25vw .25vw var(--light-gray);
+    max-width: 75vw;
+    flex-basis: 0;
+    flex-grow: 1;
+    margin-top: var(--padding);
+    padding-bottom: var(--padding);
+    border-radius: .5vw;
+}
+
 .committee {
     display: flex;
     width: calc(100% - calc(var(--side-space) * 2));
@@ -39,8 +91,8 @@
     margin-left: var(--side-space);
     margin-right: var(--side-space);
     margin-top: var(--padding);
-    box-shadow: 0 0 .25vw .25vw var(--light-gray);
-    border-radius: .5vw; 
+    border-radius: .5vw;
+    border: .15vw solid var(--gray);
     padding-top: var(--padding-small);
     padding-bottom: var(--padding-small);
 }
@@ -48,13 +100,29 @@
 .committee-buttons {
     display: flex;
     flex-grow: 1;
+    max-width: 30vw;
     justify-content: right;
     padding-right: var(--padding-small);
 }
 
+.committee-buttons-container {
+    display: flex;
+    flex-grow: 1;
+    justify-content: right;
+}
+
+.committee-button-img {
+    width: 2vw;
+    height: 2vw;
+    color: white !important;
+}
+
 .committee-container {
     margin-top: var(--padding);
-    height: 60vw;
-    max-height: 65vh;
+    flex-grow: 1;
     overflow-y: auto;
+}
+
+.pad-bottom {
+    margin-bottom: var(--padding);
 }

@@ -1,10 +1,15 @@
 <%- include ('../templates/_header.ejs', { title: 'Edit'} ); %>
 <body>
-    <div class="spacing">
-        <p class="header">Edit Committee | <%= committee.name %></p>
-        <input class="full input item" type="text" name="name" id="name" value="<%= committee.name %>" data-id="<%= committee.id %>">
-        <button class="full button item" id="confirm">Confirm Changes</button>
-        <a class="full button item delete" href="/">Cancel</a>
+    <% var pageTitle = 'Edit Committee | ' + committee.name %>
+    <%- include('../templates/_topBar.ejs', { title: pageTitle }); %>
+    <%- include('../templates/_sidePanel.ejs'); %>
+    <div class="container">
+        <div class="box-container-grow">
+            <p class="form-label">Name</p>
+            <input class="full input item" type="text" name="name" id="name" value="<%= committee.name %>" data-id="<%= committee.id %>">
+            <button class="full button item" id="confirm">Confirm Changes</button>
+            <a class="full button item delete" href="/">Cancel</a>
+        </div>
     </div>
     <script src="/js/notification.js"></script>
     <script src="/js/committees/editCommittee.js"></script>
