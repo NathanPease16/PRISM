@@ -111,6 +111,22 @@
     background-color: var(--dark-purple);
 }
 
+.gsl-green {
+    background-color: var(--green);
+}
+
+.gsl-green:hover {
+    background-color: var(--dark-green);
+}
+
+.gsl-red {
+    background-color: var(--red);
+}
+
+.gsl-red:hover {
+    background-color: var(--dark-red);
+}
+
 .add-speakers {
     display: flex;
     flex-direction: column;

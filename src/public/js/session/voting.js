@@ -1,12 +1,18 @@
 const againstButton = document.getElementById('against-button');
 const favorButton = document.getElementById('favor-button');
 
-let favorAmount = 0;
-let againstAmount = 0;
-const total = 20;
+const currentlyVotingImg = document.getElementById('currently-voting-img');
+const currentlyVotingName = document.getElementById('currently-voting-name');
 
 const favor = document.getElementById('favor');
 const against = document.getElementById('against');
+
+let currentlyVoting;
+let voted;
+
+let favorAmount = 0;
+let againstAmount = 0;
+let total = 0;
 
 const updateVoteGraphic = () => {
     if (total == 0) {
@@ -20,12 +26,11 @@ const updateVoteGraphic = () => {
 
 updateVoteGraphic();
 
-againstButton.addEventListener('click', () => {
-    againstAmount++;
-    updateVoteGraphic();
-});
+function loadVoting() {
+    const toVote = [...countries];
+    currentlyVoting = toVote.shift();
 
-favorButton.addEventListener('click', () => {
-    favorAmount++;
-    updateVoteGraphic();
-});
+    currentlyVotingImg.src = `/global/flags/${currentlyVoting.flagCode.toLowerCase()}.png`;
+}
+
+loadVoting();
