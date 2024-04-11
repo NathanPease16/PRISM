@@ -31,6 +31,33 @@ function establishSockets(app) {
             io.emit('deleteAllCommittees');
         });
 
+        socket.on('unlockSession', (id) => {
+            io.emit('unlockSession', id);
+
+            const removeOldSessionModerator = async () => {
+                if (socketInUse) {
+                    setTimeout(removeOldSessionModerator, 100);
+                } else {
+                    socketInUse = true;
+
+                    const committee = await Committee.findOne({ id }).exec();
+
+                    if (committee) {
+                        committee.sessionModerator = '';
+                        committee.currentAction = { type: 'Out of Session' };
+                        await committee.save();
+
+                        io.emit('sessionUpdate', { updateType: 'action', id: committee.id, type: 'Out of Session' });
+                        io.emit('changeSessionModerator', committee);
+                    }
+
+                    socketInUse = false;
+                }
+            }
+
+            removeOldSessionModerator();
+        });
+
         const splitRoute = socket.handshake.headers.referer.split('/');
         socket.inSession = splitRoute.length >= 4 && splitRoute[3] === 'session';
 

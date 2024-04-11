@@ -1,0 +1,36 @@
+.config-label {
+    margin-left: var(--side-space);
+    padding-top: var(--padding);
+    font-size: var(--font-medium);
+    color: var(--dark-gray);
+}
+
+.config-committee {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    align-items: center;
+    text-align: center;
+    margin-top: var(--padding);
+    margin-left: var(--side-space);
+}
+
+.config-lock {
+    width: 2vw;
+    height: 2vw;
+    justify-self: right;
+    background-color: var(--blue);
+    border-radius: .5vw;
+    color: white;
+    padding: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
+}
+
+.config-lock:not(.disabled):hover {
+    background-color: var(--dark-blue);
+}
+
+.config-text {
+    font-size: var(--font-medium);
+    color: var(--dark-gray);
+    margin-left: var(--padding);
+}

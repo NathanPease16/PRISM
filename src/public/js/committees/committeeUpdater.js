@@ -35,6 +35,8 @@ socket.on('editCommittee', (committee) => {
 socket.on('changeSessionModerator', (committee) => {
     const committeeDiv = document.getElementById(`committee-${committee.id}`);
 
+    console.log(committeeDiv);
+
     if (committeeDiv) {
         const session = committeeDiv.querySelector('.committee-session');
         const lock = committeeDiv.querySelector('.committee-lock');
