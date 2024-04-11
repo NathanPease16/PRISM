@@ -1,8 +1,14 @@
 <%- include ('../templates/_header.ejs', { title: 'Admin Auth'} ); %>
 <body>
-    <p class="header">Authorize Access</p>
-    <input class="full input item" type="text" name="adminCode" id="adminCode" placeholder="Admin Code">
-    <button class="full button item" id="submit">Submit</button>
+    <%- include('../templates/_topBar.ejs', { title: 'Admin Auth' }); %>
+    <div class="container">
+        <div class="box-container-grow">
+            <p class="form-label">Authorize Access</p>
+            <p class="form-label">Admin Code</p>
+            <input class="full input item" type="password" name="adminCode" id="adminCode" placeholder="Admin Code">
+            <button class="full button item" id="submit">Submit</button>
+        </div>
+    </div>
     <script src="/js/notification.js"></script>
     <script src="/js/auth/adminAuth.js"></script>
 </body>

@@ -74,6 +74,7 @@ function establishSockets(app) {
                 } else {                    
                     socketInUse = true;
                     const id = splitRoute[4];
+                    socket.id = id;
 
                     const committee = await Committee.findOne({ id }).exec();
 
@@ -105,7 +106,7 @@ function establishSockets(app) {
                         return;
                     }
 
-                    const committee = await Committee.findOne({ sessionModerator: socket.sessionModerator }).exec();
+                    const committee = await Committee.findOne({ id: socket.id }).exec();
 
                     if (committee) {
                         committee.sessionModerator = '';

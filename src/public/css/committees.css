@@ -84,7 +84,7 @@
 }
 
 .grow-with-max {
-    max-height: 40vh;
+    max-height: 35vh;
     overflow: auto;
 }
 
