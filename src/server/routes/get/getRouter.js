@@ -2,9 +2,11 @@ const express = require('express');
 const route = express.Router();
 
 const Config = require('../../models/config');
+const Committee = require('../../models/committee');
 
 route.get('/config', async (req, res) => {
     const config = await Config.findOne({});
+    const committees = await Committee.find();
     
     let accessCode;
     let adminCode;
@@ -14,11 +16,7 @@ route.get('/config', async (req, res) => {
     }
 
     res.status(200);
-    res.render('config', {accessCode, adminCode});
-});
-
-route.get('/test', (req, res) => {
-    res.render('test');
+    res.render('config', {accessCode, adminCode, committees});
 });
 
 module.exports = route;

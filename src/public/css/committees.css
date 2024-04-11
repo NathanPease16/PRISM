@@ -23,7 +23,7 @@
     background-color: var(--blue) !important;
 }
 
-.session-btn:hover {
+.session-btn:not(.disabled):hover {
     background-color: var(--dark-blue) !important;
 }
 
@@ -81,6 +81,11 @@
     margin-top: var(--padding);
     padding-bottom: var(--padding);
     border-radius: .5vw;
+}
+
+.grow-with-max {
+    max-height: 40vh;
+    overflow: auto;
 }
 
 .committee {

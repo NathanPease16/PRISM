@@ -15,6 +15,10 @@ const committeeSchema = new mongoose.Schema({
         type: Object,
         default: { type: 'Out of Session' },
     },
+    sessionModerator: {
+        type: String,
+        default: '',
+    },
     setup: {
         type: Boolean,
         default: false,

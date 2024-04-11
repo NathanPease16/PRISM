@@ -10,12 +10,10 @@ const path = require('path');
 const app = express();
 const PORT = 8080;
 
+const server = require('./server/routes/sockets')(app);
+
 dotenv.config({ path: '.env'});
 db(process.env.MONGO_URI);
-
-// Create a server for socket connections
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
 
 // Establish the view engine
 app.set('view engine', 'ejs');
@@ -48,22 +46,6 @@ app.use(require('./server/routes/post/authRouter.js'));
 app.use(require('./server/routes/post/committeeRouter.js'));
 app.use(require('./server/routes/post/postRouter.js'));
 app.use(require('./server/routes/post/sessionRouter.js'));
-
-
-// Establish socket connection
-io.on('connection', (socket) => {
-    // Emit the timer message to all clients
-    socket.on('timer', (msg) => {
-        io.emit('timer', msg);
-    });
-
-    socket.on('sessionUpdate', (msg) => {
-        io.emit('sessionUpdate', msg);
-    });
-
-    socket.on('disconnect', () => {
-    });
-});
 
 // Start the server
 server.listen(PORT, (error) => {

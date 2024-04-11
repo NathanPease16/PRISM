@@ -2,6 +2,8 @@ const accessCode = document.getElementById('accessCode');
 const adminCode = document.getElementById('adminCode');
 const save = document.getElementById('save');
 
+const socket = io();
+
 save.addEventListener('click', async () => {
     const response = await fetch('/config', {
         method: 'POST',
@@ -21,4 +23,76 @@ save.addEventListener('click', async () => {
         const notification = new Notification(error, 'red');
         notification.show();
     }
+});
+
+function reloadResets() {
+    const committees = document.querySelectorAll('.config-committee');
+
+    for (const committee of committees) {
+        const locked = committee.querySelector('.locked');
+        const unlocked = committee.querySelector('.unlocked');
+
+        locked.addEventListener('click', () => {
+            locked.style.display = 'none';
+            unlocked.style.display = '';
+
+            socket.emit('unlockSession', committee.id);
+        });
+    }
+}
+
+reloadResets();
+
+socket.on('changeSessionModerator', (committee) => {
+    const committeeDiv = document.getElementById(committee.id);
+
+    if (committeeDiv) {
+        const locked = committeeDiv.querySelector('.locked');
+        const unlocked = committeeDiv.querySelector('.unlocked');
+        if (committee.sessionModerator) {
+            locked.style.display = '';
+            unlocked.style.display = 'none';
+        } else {
+            locked.style.display = 'none';
+            unlocked.style.display = '';
+        }
+    }
+});
+
+const committees = document.getElementById('committees');
+socket.on('createCommittee', (committee) => {
+    let lockedStyle = 'display: none;';
+    let unlockedStyle = '';
+
+    if (committee.sessionModerator) {
+        lockedStyle = '';
+        unlockedStyle = 'display: none;';
+    }
+
+    instantiate('committee', committees, {
+        committee: { id: committee.id },
+        locked: { style: lockedStyle },
+        unlocked: { style: unlockedStyle },
+    }, {
+        name: { textContent: committee.name },
+    });
+
+    reloadResets();
+});
+
+socket.on('editCommittee', (committee) => {
+    const committeeDiv = document.getElementById(committee.id);
+
+    if (committeeDiv) {
+        const text = committeeDiv.querySelector('.config-text');
+        text.textContent = committee.name;
+    }
+});
+
+socket.on('deleteCommittee', (id) => {
+    document.getElementById(id).remove();
+});
+
+socket.on('deleteAllCommittees', () => {
+    committees.innerHTML = '';
 });

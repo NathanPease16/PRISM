@@ -30,3 +30,13 @@ async function setCurrentAction(action) {
         console.log('Failed to update action');
     }
 }
+
+socket.on('unlockSession', (id) => {
+    if (!committee) {
+        return;
+    }
+
+    if (committee.id == id) {
+        window.location = '/';
+    }
+});

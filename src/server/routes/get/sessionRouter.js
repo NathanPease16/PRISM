@@ -13,6 +13,13 @@ route.get('/session/:id', async (req, res) => {
         return;
     }
 
+    const name = `${req.cookies.firstName}.${req.cookies.lastName}`;
+
+    if (committee.sessionModerator !== '' && committee.sessionModerator !== name) {
+        res.redirect('/');
+        return;
+    }
+
     if (!committee.setup) {
         res.redirect(`/session/${id}/setup`);
         return;
@@ -29,6 +36,13 @@ route.get('/session/:id/setup', async (req, res) => {
 
     if (!committee) {
         res.redirect(`/badGateway?old=${req.originalUrl}`);
+        return;
+    }
+
+    const name = `${req.cookies.firstName}.${req.cookies.lastName}`;
+
+    if (committee.sessionModerator !== '' && committee.sessionModerator !== name) {
+        res.redirect('/');
         return;
     }
 

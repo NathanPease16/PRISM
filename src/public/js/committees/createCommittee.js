@@ -2,6 +2,8 @@
 const nameInput = document.getElementById('name');
 const submit = document.getElementById('create');
 
+socket = io();
+
 submit.addEventListener('click', async () => {
     // Send post req to server at /createCommittee with the input
     // name as the body
@@ -14,6 +16,8 @@ submit.addEventListener('click', async () => {
     });
 
     if (response.ok) {
+        const committee = await response.json();
+        socket.emit('createCommittee', committee)
         window.location = '/';
     } else {
         // Show error if failed (needs to be updated to discern error types)
