@@ -80,19 +80,6 @@
     height: 8vw;
 }
 
-/*
-.circles::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 0vw;
-    bottom: 0vw;
-    width: .15vw;
-    background-color: white;
-    z-index: 100000;
-}
-*/
-
 .one-half-vote {
     position: absolute;
     left: 50%;

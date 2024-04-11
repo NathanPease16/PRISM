@@ -17,8 +17,4 @@ route.get('/config', async (req, res) => {
     res.render('config', {accessCode, adminCode});
 });
 
-route.get('/test', (req, res) => {
-    res.render('test');
-});
-
 module.exports = route;

@@ -23,7 +23,7 @@
     background-color: var(--blue) !important;
 }
 
-.session-btn:hover {
+.session-btn:not(.disabled):hover {
     background-color: var(--dark-blue) !important;
 }
 

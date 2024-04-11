@@ -7,6 +7,16 @@ function setName() {
     name.innerHTML = `<b>Name:</b> ${committee.name}`;
 }
 
+const sessionModerator = document.getElementById('session-moderator');
+function setCurrentSessionModerator() {
+    if (!committee.sessionModerator) {
+        sessionModerator.innerHTML = `<b>Session Moderator:</b>`;
+    } else {
+        const split = committee.sessionModerator.split('.');
+        sessionModerator.innerHTML = `<b>Session Moderator:</b> ${split[0]} ${split[1]}`;
+    }
+}
+
 const agenda = document.getElementById('agenda');
 function setAgenda() {
     agenda.innerHTML = `<b>Agenda:</b> ${committee.agenda}`;
@@ -35,7 +45,6 @@ function setCurrentAction() {
     if (action.type === 'gsl' || action.type === 'unmod' || action.type === 'mod') {
         time.style.display = '';
 
-        // const timer = new Timer(action.totalTime, time, undefined, undefined, false);
         timer.time = action.totalTime;
         timer.currentTime = action.currentTime;
 
@@ -49,6 +58,11 @@ function setCurrentAction() {
         }
     } else {
         time.style.display = 'none';
+
+        if (action.type === 'Out of Session') {
+            committee.sessionModerator = '';
+            setCurrentSessionModerator();
+        }
     }
 }
 
@@ -69,6 +83,9 @@ socket.on('sessionUpdate', (msg) => {
     } else if (msg.updateType === 'name') {
         committee.name = msg.name;
         setName();
+    } else if (msg.updateType === 'moderating') {
+        committee.sessionModerator = msg.sessionModerator;
+        setCurrentSessionModerator();
     }
 });
 
@@ -76,3 +93,4 @@ setName();
 setAgenda();
 setCountries();
 setCurrentAction();
+setCurrentSessionModerator();
