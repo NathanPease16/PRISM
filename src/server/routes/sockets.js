@@ -11,6 +11,26 @@ function establishSockets(app) {
 
     // Establish socket connection
     io.on('connection', async (socket) => {
+        socket.on('sessionUpdate', (msg) => {
+            io.emit('sessionUpdate', msg);
+        });
+
+        socket.on('createCommittee', (committee) => {
+            io.emit('createCommittee', committee);
+        });
+
+        socket.on('editCommittee', (committee) => {
+            io.emit('editCommittee', committee);
+        });
+
+        socket.on('deleteCommittee', (id) => {
+            io.emit('deleteCommittee', id);
+        });
+
+        socket.on('deleteAllCommittees', () => {
+            io.emit('deleteAllCommittees');
+        });
+
         const splitRoute = socket.handshake.headers.referer.split('/');
         socket.inSession = splitRoute.length >= 4 && splitRoute[3] === 'session';
 
@@ -40,15 +60,12 @@ function establishSockets(app) {
                     socketInUse = false;
 
                     io.emit('sessionUpdate', { updateType: 'moderating', id: committee.id, sessionModerator: socket.sessionModerator });
+                    io.emit('changeSessionModerator', committee);
                 }
             }
 
             setSessionModerator();
         }
-
-        socket.on('sessionUpdate', (msg) => {
-            io.emit('sessionUpdate', msg);
-        });
 
         socket.on('disconnect', async (reason) => {
             const removeOldSessionModerator = async () => {
@@ -69,6 +86,7 @@ function establishSockets(app) {
                         await committee.save();
 
                         io.emit('sessionUpdate', { updateType: 'action', id: committee.id, type: 'Out of Session' });
+                        io.emit('changeSessionModerator', committee);
                     }
 
                     socketInUse = false;

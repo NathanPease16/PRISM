@@ -21,9 +21,10 @@ route.post('/createCommittee', async (req, res) => {
         return;
     }
 
-    await new Committee({id: committeeId, name: req.body.name}).save();
+    const committee = new Committee({id: committeeId, name: req.body.name}); 
+    await committee.save();
 
-    res.status(200).end();
+    res.status(200).json(committee);
 });
 
 route.post('/editCommittee/:id', async (req, res) => {

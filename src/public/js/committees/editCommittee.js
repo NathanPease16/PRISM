@@ -6,6 +6,8 @@ const nameInput = document.getElementById('name');
 
 const id = nameInput.getAttribute('data-id');
 
+const editSocket = io();
+
 confirmButton.addEventListener('click', async () => {
     // Post to /editCommittee/id with new name as body
     const response = await fetch(`/editCommittee/${id}`, {
@@ -17,6 +19,7 @@ confirmButton.addEventListener('click', async () => {
     });
 
     if (response.ok) {
+        editSocket.emit('editCommittee', { id, name: nameInput.value });
         sessionUpdate({ updateType: 'name', name: nameInput.value, id });
         window.location = '/';
     } else {
