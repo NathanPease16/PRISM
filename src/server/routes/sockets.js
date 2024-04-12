@@ -8,9 +8,12 @@ function establishSockets(app) {
     const io = require('socket.io')(server);
 
     let socketInUse = false;
+    const sockets = [];
 
     // Establish socket connection
     io.on('connection', async (socket) => {
+        sockets.push(socket);
+
         socket.on('sessionUpdate', (msg) => {
             io.emit('sessionUpdate', msg);
         });
@@ -74,6 +77,7 @@ function establishSockets(app) {
                 } else {                    
                     socketInUse = true;
                     const id = splitRoute[4];
+                    socket.id = id;
 
                     const committee = await Committee.findOne({ id }).exec();
 
@@ -105,7 +109,7 @@ function establishSockets(app) {
                         return;
                     }
 
-                    const committee = await Committee.findOne({ sessionModerator: socket.sessionModerator }).exec();
+                    const committee = await Committee.findOne({ id: socket.id }).exec();
 
                     if (committee) {
                         committee.sessionModerator = '';
@@ -120,9 +124,18 @@ function establishSockets(app) {
                 }
             }
 
+            for (const s of sockets) {
+                if (s.id == socket.id && s != socket) {
+                    sockets.splice(sockets.indexOf(socket), 1);
+                    return;
+                }
+            }
+
             if (socket.inSession) {
                 removeOldSessionModerator();
             }
+
+            sockets.splice(sockets.indexOf(socket), 1);
         });
     });
 
