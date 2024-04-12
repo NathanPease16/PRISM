@@ -1,3 +1,5 @@
+// Useful constants should be stored here for global access
+
 const JSON_DATA = 'json/data';
 const JSON_TEMPLATES = 'json/templates';
 const JSON_MODELS = 'json/models';

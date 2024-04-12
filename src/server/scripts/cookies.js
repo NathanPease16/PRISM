@@ -1,3 +1,9 @@
+/**
+ * Saves a cookie to the client's device with the given name and value
+ * @param {*} res The response to the client
+ * @param {*} name Name of the cookie
+ * @param {*} value Value to set the cookie to
+ */
 function save(res, name, value) {
     res.cookie(name, value, {
         httpOnly: true,

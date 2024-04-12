@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Establishes the schema for a committee in the database
 const committeeSchema = new mongoose.Schema({
     name: String,
     id: Number,

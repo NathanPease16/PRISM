@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 
+/**
+ * Connects the server to the mongo database using mongoose
+ * @param {*} mongoUri URI to the mongo database (must include user & password)
+ */
 async function connect(mongoUri) {
     try {
         await mongoose.connect(mongoUri);
