@@ -4,6 +4,8 @@ const route = express.Router();
 const Config = require('../../models/config');
 const Committee = require('../../models/committee');
 
+// Route the user to the config page and send them the
+// access code and the admin code (if they exist)
 route.get('/config', async (req, res) => {
     const config = await Config.findOne({});
     const committees = await Committee.find();
