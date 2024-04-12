@@ -4,7 +4,9 @@ const save = document.getElementById('save');
 
 const socket = io();
 
+// Makes a post request to the server to update the config file
 save.addEventListener('click', async () => {
+    // Make post req to /config with the access code and admin code as the body
     const response = await fetch('/config', {
         method: 'POST',
         headers: {
@@ -16,6 +18,7 @@ save.addEventListener('click', async () => {
         }),
     });
 
+    // Route the user to the home page if the response was okay
     if (response.ok) {
         window.location = '/';
     } else {

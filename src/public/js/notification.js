@@ -20,19 +20,27 @@ class Notification {
         notification.className = `notification notification-${this.color}`;
         notification.textContent = this.text;
 
+        // Append the notification to its container
         container.appendChild(notification);
 
         this.notification = container;
     }
 
+    /**
+     * Displays the notification on the web page
+     */
     show() {
         document.body.insertBefore(this.notification, document.body.firstChild);
 
+        // Remove the notification after 5 seconds
         setTimeout(() => {
             this.notification.remove();
         }, 5000);
     }
 
+    /**
+     * Removes the notification from the documment
+     */
     hide() {
         this.notification.remove();
     }
