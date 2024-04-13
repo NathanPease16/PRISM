@@ -1,3 +1,14 @@
+/**
+ * Handles motions made by countries by ordering them
+ * in order of most disruptive and least disruptive,
+ * and also allowing for motions to easily be removed
+ * if a mistake was made
+ * 
+ * @summary Handles motions made by countries
+ * 
+ * @author Nathan Pease
+ */
+
 const pass = document.getElementById('pass');
 const fail = document.getElementById('fail');
 
@@ -5,7 +16,6 @@ const motionsDiv = document.getElementById('motions');
 let motions = [];
 let number = 0;
 
-// definitely a better way to do this but no
 // :(
 const modSubmit = document.getElementById('submit-mod-page');
 const modTopic = document.getElementById('mod-topic');

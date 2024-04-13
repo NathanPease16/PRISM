@@ -37,7 +37,7 @@ Here’s how you can contribute to this project:
   * long description for the file
   *
   * @summary short description for the file
-  * @author Author1 <author1@email.com>, Author2 <author2@email.com>
+  * @author Author1, Author2
   */
   ```
 - **Update Documentation**: 

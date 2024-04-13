@@ -1,3 +1,13 @@
+/**
+ * Requests that an edit be made on a specific committee,
+ * and then emits a message from a socket alerting all
+ * listening clients that an edit was made
+ * 
+ * @summary Edits the information of a committee
+ * 
+ * @author Nathan Pease
+ */
+
 // Buttons for operations
 const confirmButton = document.getElementById('confirm');
 

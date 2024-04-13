@@ -4,7 +4,7 @@
  * 
  * @summary Stores useful constants
  * 
- * @author Nathan Pease <nspease@stu.naperville203.org>
+ * @author Nathan Pease
  */
 
 module.exports = {

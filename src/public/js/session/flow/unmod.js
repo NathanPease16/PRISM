@@ -1,3 +1,14 @@
+/**
+ * Handles unmoderated caucuses using the timer
+ * class to easily manage time, and alerts 
+ * all listening clients of the current time
+ * in the unmoderated caucus
+ * 
+ * @summary Handles unmoderated caucuses
+ * 
+ * @author Nathan Pease
+ */
+
 const unmodPlay = document.getElementById('unmod-play');
 const unmodReset = document.getElementById('unmod-reset');
 const unmodSettings = document.getElementById('unmod-settings');

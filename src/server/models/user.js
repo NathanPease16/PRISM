@@ -3,7 +3,7 @@
  * 
  * @summary Creates a schema for users
  * 
- * @author Nathan Pease <nspease@stu.naperville203.org>
+ * @author Nathan Pease
  */
 
 const mongoose = require('mongoose');

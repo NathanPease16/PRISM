@@ -4,7 +4,7 @@
  * 
  * @summary Handles general post requests
  * 
- * @author Nathan Pease <nspease@stu.naperville203.org>
+ * @author Nathan Pease
  */
 
 const express = require('express');

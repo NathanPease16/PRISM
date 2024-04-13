@@ -7,7 +7,7 @@
  * 
  * @summary Requests for a user to be authorized
  * 
- * @author Nathan Pease <nspease@stu.naperville203.org>
+ * @author Nathan Pease
  */
 
 const express = require('express');

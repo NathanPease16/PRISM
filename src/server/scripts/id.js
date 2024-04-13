@@ -5,7 +5,7 @@
  * 
  * @summary Generates random IDs
  * 
- * @author Nathan Pease <nspease@stu.naperville203.org>
+ * @author Nathan Pease
  */
 
 /**

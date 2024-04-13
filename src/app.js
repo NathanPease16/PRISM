@@ -10,7 +10,7 @@
  * 
  * @summary Creates the base app for the server to run
  * 
- * @author Nathan Pease <nspase@stu.naperville203.org>
+ * @author Nathan Pease
  */
 
 // Import needed modules

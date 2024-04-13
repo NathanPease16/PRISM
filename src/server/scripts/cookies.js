@@ -6,7 +6,7 @@
  * 
  * @summary Provides useful methods for conducting cookie operations
  * 
- * @author Nathan Pease <nspease@stu.naperville203.org>
+ * @author Nathan Pease
  */
 
 /**

@@ -5,7 +5,7 @@
  * 
  * @summary Routes the user to the config page
  * 
- * @author Nathan Pease <nspease@stu.naperville203.org>
+ * @author Nathan Pease
  */
 
 const Config = require('../models/config');

@@ -1,3 +1,16 @@
+/**
+ * Handles moderated caucuses using pre-defined
+ * methods in countrySelection and timer to avoid
+ * code repetition. Total timer and individual timer
+ * are also synced to ensure an accurate reflection
+ * of the time, and alerts all listening clients of
+ * the current time in the mod
+ * 
+ * @summary Handles moderated caucuses
+ * 
+ * @author Nathan Pease
+ */
+
 // Elements in the document needed for the mod
 const modUnselectedCountries = document.getElementById('mod-unselected-countries');
 const modSelectedCountries = document.getElementById('mod-selected-countries');

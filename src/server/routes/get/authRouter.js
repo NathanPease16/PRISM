@@ -3,7 +3,7 @@
  * 
  * @summary Routes the user to authorization pages
  * 
- * @author Nathan Pease <nspease@stu.naperville203.org>
+ * @author Nathan Pease
  */
 
 const express = require('express');

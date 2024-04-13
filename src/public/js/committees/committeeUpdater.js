@@ -1,3 +1,13 @@
+/**
+ * Uses sockets to update the committee page accordingly
+ * based on different events, such as when a committee
+ * is created or when a session becomes locked/unlocked
+ * 
+ * @summary Updates the committee page to reflect changes 
+ * 
+ * @author Nathan Pease
+ */
+
 const committeeContainer = document.getElementById('committee-container');
 
 // When a committee is created on someone else's client,

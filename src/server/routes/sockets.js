@@ -10,7 +10,7 @@
  * 
  * @summary Handles socket-related operations
  * 
- * @author Nathan Pease <nspease@stu.naperville203.org>
+ * @author Nathan Pease
  */
 
 const Committee = require('../models/committee');

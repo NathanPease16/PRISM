@@ -3,7 +3,7 @@
  * 
  * @summary Routes the user to the various committee pages
  * 
- * @author Nathan Pease <nspease@stu.naperville203.org>
+ * @author Nathan Pease
  */
 
 const express = require('express');

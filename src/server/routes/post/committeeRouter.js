@@ -4,7 +4,7 @@
  * 
  * @summary Handles requests for committees
  * 
- * @author Nathan Pease <nspease@stu.naperville203.org>
+ * @author Nathan Pease
  */
 
 const express = require('express');

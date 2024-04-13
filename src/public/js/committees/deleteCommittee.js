@@ -1,3 +1,13 @@
+/**
+ * Submits a request to the server for a committee to be
+ * deleted, and then emits a message from a socket to
+ * alert all other clients that a committee was deleted
+ * 
+ * @summary Submits a request for the deletion of a committee
+ * 
+ * @author Nathan Pease
+ */
+
 const deleteAll = document.getElementById('delete-all');
 
 const socket = io();

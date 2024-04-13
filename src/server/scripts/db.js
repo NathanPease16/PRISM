@@ -6,7 +6,7 @@
  * 
  * @summary Connects the app to the database
  * 
- * @author Nathan Pease <nspease@stu.naperville203.org>
+ * @author Nathan Pease
  */
 
 const mongoose = require('mongoose');

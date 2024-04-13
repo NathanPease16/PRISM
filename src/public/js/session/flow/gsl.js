@@ -1,3 +1,14 @@
+/**
+ * Handles the general speakers list (GSL), using
+ * countrySelection and timer to avoid code-repetition,
+ * and alerts all listening clients of the current
+ * individual speaking time
+ * 
+ * @summary Handles the general speakers list
+ * 
+ * @author Nathan Pease
+ */
+
 // Get needed elements from the document
 const unselectedCountries = document.getElementById('unselected-countries');
 const selectedCountries = document.getElementById('selected-countries');

@@ -1,3 +1,14 @@
+/**
+ * Submits the entered admin access code to the server for
+ * authorization, and then routes the user to the page
+ * they were attempting to access if authorization was
+ * successful
+ * 
+ * @summary Submits the entered admin access code for authorization
+ * 
+ * @author Nathan Pease
+ */
+
 const adminCode = document.getElementById('adminCode');
 const submit = document.getElementById('submit');
 

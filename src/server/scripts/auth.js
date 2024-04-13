@@ -5,7 +5,7 @@
  * 
  * @summary Authorizes users to access a certain page
  * 
- * @author Nathan Pease <nspease@stu.naperville203.org>
+ * @author Nathan Pease
  */
 
 const Config = require('../models/config');

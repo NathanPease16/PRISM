@@ -1,3 +1,13 @@
+/**
+ * Conducts roll call by making a request to the server
+ * and alerting any listening clients that roll call
+ * was conducted
+ * 
+ * @summary Conducts roll call
+ * 
+ * @author Nathan Pease
+ */
+
 const rollCall = document.getElementById('roll-call');
 
 const half = document.getElementById('half');

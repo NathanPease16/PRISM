@@ -1,3 +1,14 @@
+/**
+ * Handles voting by allowing countries to vote in
+ * favor, against, or abstain in a vote, unless they are 
+ * PV in which case they can only vote for or against. 
+ * Vote can also be set to a one-half or two-thirds majority
+ * 
+ * @summary Handles voting in committee session
+ * 
+ * @author Nathan Pease
+ */
+
 // Get elements from document
 const configureVote = document.getElementById('configure-vote');
 const resetVote = document.getElementById('reset-vote');

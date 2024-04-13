@@ -1,3 +1,13 @@
+/**
+ * Sets the agenda by making a request to the server,
+ * and notifying listening clients through the use
+ * of sockets that the agenda was updated
+ * 
+ * @summary Sets the agenda
+ * 
+ * @author Nathan Pease
+ */
+
 const agendaText = document.getElementById('agenda');
 const setAgenda = document.getElementById('set-agenda');
 

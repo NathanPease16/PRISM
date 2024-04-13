@@ -1,3 +1,12 @@
+/**
+ * Searches through all committees and displays ones
+ * that match the search input
+ * 
+ * @summary Searches through all committees
+ * 
+ * @author Nathan Pease
+ */
+
 const searchbar = document.getElementById('search');
 const committees = document.querySelectorAll('.committee');
 

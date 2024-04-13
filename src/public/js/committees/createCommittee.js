@@ -1,3 +1,12 @@
+/**
+ * Submits a request to the server for a committee to be
+ * created with the given name, then routes the user home
+ * 
+ * @summary Submits a request for a committe to be created
+ * 
+ * @author Nathan Pease
+ */
+
 // Get elements from document
 const nameInput = document.getElementById('name');
 const submit = document.getElementById('create');
