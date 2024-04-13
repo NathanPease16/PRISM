@@ -1,3 +1,4 @@
+// Elements in the document needed for the mod
 const modUnselectedCountries = document.getElementById('mod-unselected-countries');
 const modSelectedCountries = document.getElementById('mod-selected-countries');
 
@@ -20,34 +21,59 @@ let modSpeakersList = [];
 let modCountrySelector;
 let topic = '';
 
+// Create 2 timers, one for the total time, and one for individual speaking time
 let totalTimeOnPlay = 60;
+let hasReset = true;
 const modTotalTimer = new Timer(60, modTotalTimeText, modPlayImage, modPauseImage);
 const modTimer = new Timer(60, modTimeText, modPlayImage, modPauseImage);
 
+/**
+ * Play the total mod timer and set the current action
+ */
 const playModTimer = () => {
     modTotalTimer.play();
     setCurrentAction({ type: 'mod', totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: true });
 }
 
+/**
+ * Pause total mod timer and set current action
+ */
 const pauseModTimer = () => {
     modTotalTimer.pause();
     setCurrentAction({ type: 'mod', totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: false });
 }
 
+/**
+ * Reset total mod timer based on the mod timer and set the current action
+ */
 const resetModTimer = () => {
+    hasReset = true;
+
+    // Pause the total mod timer and reset the mod timer
     modTotalTimer.pause();
     modTimer.reset();
 
+    // Set the mod total timer to the time it was at
+    // when it first started playing, format its text,
+    // and set the current action
     modTotalTimer.currentTime = totalTimeOnPlay;
     modTotalTimer.formatText();
     setCurrentAction({ type: 'mod', totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: false });
 }
 
+/**
+ * Reset the total mod timer completely and set the current action
+ */
 const resetModTimerAbsolute = () => {
+    hasReset = true;
     modTotalTimer.reset();
     setCurrentAction({ type: 'mod', totalTime: modTotalTimer.time, currentTime: modTotalTimer.currentTime, active: false });
 }
 
+/**
+ * Set speaker text to reflect the number of speakers compared
+ * to the possible number of speakers
+ */
 const setModSpeakerText = () => {
     modSpeakers.textContent = `${modSpeakersList.length} / ${modTotalTimer.time / modTimer.time}`;
 }
@@ -58,6 +84,7 @@ function loadMod() {
 
     setModSpeakerText();
 
+    // Parameters for unselected (see countrySelection.js)
     const unselected = {
         // Create a shallow copy of the countries array to make sure it doesn't overlap with gsl
         countries: [...countries],
@@ -76,6 +103,7 @@ function loadMod() {
         afterEvent: setModSpeakerText,
     }
 
+    // Parameters for selected (see countrySelection.js)
     const selected = {
         countries: modSpeakersList,
         parent: modSelectedCountries,
@@ -94,6 +122,7 @@ function loadMod() {
         afterEvent: setModSpeakerText,
     }
 
+    // Create new country selector & render
     modCountrySelector = new CountrySelector('mod', unselected, selected);
     modCountrySelector.render();
 };
@@ -102,12 +131,23 @@ loadMod();
 
 setupSearch('mod');
 
+// Play the mod timer if paused, pause if playing
 modPlay.addEventListener('click', () => {
     if (!modTimer.active) {
-        totalTimeOnPlay = modTotalTimer.currentTime;
+        // Set time on play ONLY if it is directly after 
+        // a reset, as if it sets every time the user
+        // plays the timer then it can get off if they
+        // pause it and then play it again
+        if (hasReset) {
+            totalTimeOnPlay = modTotalTimer.currentTime;
+            hasReset = false;
+        }
+
+        // Play the mod timer and total timer
         modTimer.play();
         playModTimer();
 
+        // Constantly check to make sure the mod timer isn't paused
         const run = () => {
             if (!modTimer.active && modTotalTimer.active) {
                 pauseModTimer();
@@ -117,12 +157,14 @@ modPlay.addEventListener('click', () => {
         }
 
         run();
+    // Pause the timers
     } else {
         modTimer.pause();
         pauseModTimer();
     }
 });
 
+// Move on to the next country in the list of speakers
 modNext.addEventListener('click', () => {
     const country = modSpeakersList[0];
 
@@ -132,20 +174,25 @@ modNext.addEventListener('click', () => {
 
     pauseModTimer();
 
-    if (modTotalTimer.currentTime % 1 != 0) {
-        modTotalTimer.setCurrentTime(Math.ceil(modTotalTimer.currentTime));
-    }
+    // Since time is rendered by rounding up to the nearest
+    // second (meaning 59.01 seconds is display as 01:00), the
+    // mod total timer needs to be rounded up to stay in sync
+    // with the individual speaking time timer
+    modTotalTimer.setCurrentTime(Math.ceil(modTotalTimer.currentTime));
 
     modTimer.reset();
 });
 
+// Reset the mod timer
 modReset.addEventListener('click', () => {
     resetModTimer();
 });
 
+// Open a settings menu to modify the mod
 modSettings.addEventListener('click', () => {
     const modSettingsPopup = new Popup();
-    
+
+    // Get initial times for total time and individual speaking time
     const initTotalMinutes = Math.floor(modTotalTimer.time / 60);
     const initTotalSeconds = Math.floor(modTotalTimer.time % 60);
 
@@ -174,6 +221,9 @@ modSettings.addEventListener('click', () => {
 
         let totalMin;
         let totalSec;
+
+        // If times are unchanged set to original values, otherwise
+        // assign them to the value they were changed to
         if (totalMinutes.value === '' && totalSeconds.value === '') {
             totalMin = initTotalMinutes;
             totalSec = initTotalSeconds;
@@ -192,11 +242,13 @@ modSettings.addEventListener('click', () => {
             sec = seconds.value == '' ? 0 : parseFloat(seconds.value);
         }
 
+        // Make sure given time divides evenly
         if ((totalMin * 60 + totalSec) % (min * 60 + sec) != 0) {
             new Notification('Speaking time does not evenly divide into duration', 'red').show();
             return;
         }
 
+        // Set the mod's time
         setMod(totalMin * 60 + totalSec, min * 60 + sec, topic);
 
         modSettingsPopup.remove();
@@ -209,6 +261,12 @@ modSettings.addEventListener('click', () => {
     modSettingsPopup.show();
 });
 
+/**
+ * Set the mod's total time, speaking time, and topic
+ * @param {*} totalTime 
+ * @param {*} speakingTime 
+ * @param {*} t 
+ */
 function setMod(totalTime, speakingTime, t) {
     topic = t;
 
