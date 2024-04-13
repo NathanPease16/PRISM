@@ -1,0 +1,2 @@
+# Session Locking
+Whenever someone begins moderating a committee, that committee locks, meaning no one else can begin moderating it. This ensures that the correct data is being sent to the status page, as there can only ever be one source sending information. Whenever a moderator disconnects from a committee session, the committee then unlocks for others to use

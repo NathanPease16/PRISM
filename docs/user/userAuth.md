@@ -1,0 +1,2 @@
+# User Authorization
+All people who access the server must first authorize by inputting the correct user authentication code. This code can be set by administrators, or during the first-time server setup flow. Until a user authorizes with the correct access code, they are unable to access any portion of the website other than the authorization page
