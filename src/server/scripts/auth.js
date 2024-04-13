@@ -1,3 +1,13 @@
+/**
+ * Authorizes users to access a certain page by checking
+ * their cookies and determining if they have entered the
+ * correct access code (for both general and admin access routes)
+ * 
+ * @summary Authorizes users to access a certain page
+ * 
+ * @author Nathan Pease <nspease@stu.naperville203.org>
+ */
+
 const Config = require('../models/config');
 
 // All routes that should require admin authorization,

@@ -1,11 +1,12 @@
-// Useful constants should be stored here for global access
-
-const JSON_DATA = 'json/data';
-const JSON_TEMPLATES = 'json/templates';
-const JSON_MODELS = 'json/models';
+/**
+ * One script to hold all documents used by the SERVER 
+ * in the PRISM application
+ * 
+ * @summary Stores useful constants
+ * 
+ * @author Nathan Pease <nspease@stu.naperville203.org>
+ */
 
 module.exports = {
-    JSON_DATA,
-    JSON_TEMPLATES,
-    JSON_MODELS,
+    
 }

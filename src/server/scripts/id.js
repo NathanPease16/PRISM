@@ -1,5 +1,15 @@
 /**
- * Generates a random ID between 0 -> (2 ^ size) - 1
+ * Generates random IDs within a certain range, while preventing
+ * collisions with previously generated IDs to ensure each
+ * number generated is 100% unique
+ * 
+ * @summary Generates random IDs
+ * 
+ * @author Nathan Pease <nspease@stu.naperville203.org>
+ */
+
+/**
+ * Generates a random ID between 0 --> (2 ^ size)
  * @param {*} size Bit limit of the ID
  * @param {*} existingIds IDs that already exist to prevent collisions
  * @returns The generated ID (or -1 if one could not be generated)

@@ -1,3 +1,13 @@
+/**
+ * Determines if a config file exists or not, and if a config
+ * file does not exist routes the user to the config page,
+ * overriding any admin authorization previously required
+ * 
+ * @summary Routes the user to the config page
+ * 
+ * @author Nathan Pease <nspease@stu.naperville203.org>
+ */
+
 const Config = require('../models/config');
 
 /**

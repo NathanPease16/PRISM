@@ -1,3 +1,18 @@
+/**
+ * Creates the base app for the server to run by:
+ *  - Importing necessary modules
+ *  - Creating the app
+ *  - Creating a server with sockets
+ *  - Configuring the environment
+ *  - Adding the view engine and public routes
+ *  - Adding routers
+ *  - Starting the server 
+ * 
+ * @summary Creates the base app for the server to run
+ * 
+ * @author Nathan Pease <nspase@stu.naperville203.org>
+ */
+
 // Import needed modules
 const express = require('express');
 const bodyParser = require('body-parser');

@@ -1,3 +1,14 @@
+/**
+ * Using mongoose, it attempts to connect the app to 
+ * the given mongo URI. If the connection fails, the 
+ * application exists, as the database is an essentially
+ * component of the server
+ * 
+ * @summary Connects the app to the database
+ * 
+ * @author Nathan Pease <nspease@stu.naperville203.org>
+ */
+
 const mongoose = require('mongoose');
 
 /**

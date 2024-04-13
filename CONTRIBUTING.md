@@ -12,7 +12,7 @@ Before you begin, ensure that you have a GitHub account and that you have famili
 
 ## Making Contributions
 
-Here’s how you can contribute to our project:
+Here’s how you can contribute to this project:
 
 ### Issues
 
@@ -31,7 +31,15 @@ Here’s how you can contribute to our project:
 
 ### Best Practices
 
-- **Comment Your Code**: All non-trivial methods should have comments explaining their purpose and basic functionality
+- **Comment Your Code**: All non-trivial methods should have comments explaining their purpose and basic functionality, and each file should include a general overview of what it does at the top with the following format:
+  ```
+  /**
+  * long description for the file
+  *
+  * @summary short description for the file
+  * @author Author1 <author1@email.com>, Author2 <author2@email.com>
+  */
+  ```
 - **Update Documentation**: 
   - **User Documentation**: Ensure that all features or changes are reflected in the user documentation
   - **Developer Documentation**: Update API references and any architectural changes in the developer documentation
