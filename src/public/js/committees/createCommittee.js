@@ -15,12 +15,14 @@ submit.addEventListener('click', async () => {
         body: JSON.stringify({ name: nameInput.value })
     });
 
+    // Tell the server a committee was created and
+    // route the user back to the home page
     if (response.ok) {
         const committee = await response.json();
         socket.emit('createCommittee', committee)
         window.location = '/';
     } else {
-        // Show error if failed (needs to be updated to discern error types)
+        // Show error if failed
         const error = await response.json();
         const notification = new Notification(error, 'red');
         notification.show();
