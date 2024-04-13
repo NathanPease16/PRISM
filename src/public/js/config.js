@@ -1,3 +1,13 @@
+/**
+ * Handles all of the config page, which includes setting the
+ * access code and admin code, as well as unlocking committee
+ * sessions
+ * 
+ * @summary Handles all of the config page
+ * 
+ * @author Nathan Pease
+ */
+
 const accessCode = document.getElementById('accessCode');
 const adminCode = document.getElementById('adminCode');
 const save = document.getElementById('save');

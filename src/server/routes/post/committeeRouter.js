@@ -1,3 +1,12 @@
+/**
+ * Handles requests for committees, including creating,
+ * deleting, editing, and removing all committees
+ * 
+ * @summary Handles requests for committees
+ * 
+ * @author Nathan Pease <nspease@stu.naperville203.org>
+ */
+
 const express = require('express');
 const route = express.Router();
 

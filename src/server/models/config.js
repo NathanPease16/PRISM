@@ -1,3 +1,11 @@
+/**
+ * Creates a schema for config files
+ * 
+ * @summary Creates a schema for config files
+ * 
+ * @author Nathan Pease <nspease@stu.naperville203.org>
+ */
+
 const mongoose = require('mongoose');
 
 // Establishes the schema for a config file

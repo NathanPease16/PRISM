@@ -1,4 +1,14 @@
 /**
+ * Creates a class that allows for notifications to be easily
+ * displayed to the user, with the ability to customize both
+ * color and the text displayed
+ * 
+ * @summary Allows for notifications to be displayed to the user
+ * 
+ * @author Nathan Pease
+ */
+
+/**
  * Notifications that drop down from the top of the screen
  */
 class Notification {

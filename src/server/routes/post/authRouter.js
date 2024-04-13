@@ -1,3 +1,15 @@
+/**
+ * Handles all requests for both general and admin user
+ * authorization. When handling a request, it checks to
+ * make sure the given code lines up with the expected
+ * access code, and then authorizes the user by saving
+ * a cookie to their browser if that is the case
+ * 
+ * @summary Requests for a user to be authorized
+ * 
+ * @author Nathan Pease <nspease@stu.naperville203.org>
+ */
+
 const express = require('express');
 const route = express.Router();
 

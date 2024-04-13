@@ -1,3 +1,11 @@
+/**
+ * Creates a schema for committees
+ * 
+ * @summary Creates a schema for committees
+ * 
+ * @author Nathan Pease <nspease@stu.naperville203.org>
+ */
+
 const mongoose = require('mongoose');
 
 // Establishes the schema for a committee in the database

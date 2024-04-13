@@ -1,3 +1,23 @@
+/**
+ * Creates templates based on the elements currently in the document.
+ * First, it looks for all elements that, on load, have the class
+ * 'template' in their class list. Upon calling the instantiate function,
+ * a new instance of that object is created by cloning it. Data routes work
+ * by letting developers customize certain information on a specific element.
+ * Each template must also have a specified name for it to properly be instantiated.
+ * Parameters to alter a route should be as an object, where each key is the name
+ * of a route, and the value is another object where the key-value pairs are each
+ * attribute or property to modify on the element, and the value to set
+ * the attribute or property to
+ * 
+ * HTML-based attributes (like class, id, etc.) are routeAttributes, whereas JS-based
+ * properties (like innerHTML, textContent) are routeProperties
+ * 
+ * @summary Creates templates based on the elements currently in the document
+ * 
+ * @author Nathan Pease
+ */
+
 const templateElements = document.querySelectorAll('.template');
 
 const templates = {};

@@ -1,3 +1,18 @@
+/**
+ * Handles all operations related to the use of
+ * sockets within the app. This includes connections,
+ * session updates, committee creations, committee
+ * deletions, committee edits, etc. 
+ * This is where session updates are sent to each client
+ * so that information can update in real time on the 
+ * status page, as well as where most of the locking
+ * and unlocking logic is handled
+ * 
+ * @summary Handles socket-related operations
+ * 
+ * @author Nathan Pease <nspease@stu.naperville203.org>
+ */
+
 const Committee = require('../models/committee');
 const cookie = require('cookie');
 

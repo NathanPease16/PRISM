@@ -1,3 +1,11 @@
+/**
+ * Routes the user to misc pages
+ * 
+ * @summary Routes the user to misc pages
+ * 
+ * @author Nathan Pease <nspease@stu.naperville203.org>
+ */
+
 const express = require('express');
 const route = express.Router();
 

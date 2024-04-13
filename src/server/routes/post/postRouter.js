@@ -1,3 +1,12 @@
+/**
+ * Handles general post requests that don't neatly
+ * fit into one category
+ * 
+ * @summary Handles general post requests
+ * 
+ * @author Nathan Pease <nspease@stu.naperville203.org>
+ */
+
 const express = require('express');
 const route = express.Router();
 

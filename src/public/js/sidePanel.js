@@ -1,3 +1,11 @@
+/**
+ * Handles the opening and closing of the side panel
+ * 
+ * @summary Handles the opening and closing of the side panel
+ * 
+ * @author Nathan Pease
+ */
+
 const sidePanel = document.getElementById('side-panel');
 const cover = document.getElementById('side-panel-cover');
 

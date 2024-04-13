@@ -1,3 +1,13 @@
+/**
+ * Creates a class that allows for a popup to be easily displayed
+ * to the user. Headers, small headers, text, buttons, input boxes,
+ * and misc elements can all be easily added to the popup
+ * 
+ * @summary Allows for a popup to be displayed to the user
+ * 
+ * @author Nathan Pease
+ */
+
 const none = 'display: none;';
 
 /**

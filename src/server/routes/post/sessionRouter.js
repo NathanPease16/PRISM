@@ -1,3 +1,12 @@
+/**
+ * Handles all post requests for sessions, including
+ * setup, roll call, and agenda setting
+ * 
+ * @summary Handles requests related to sessions
+ * 
+ * @author Nathan Pease <nspease@stu.naperville203.org>
+ */
+
 const express = require('express');
 const route = express.Router();
 
