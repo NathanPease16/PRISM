@@ -185,6 +185,7 @@ modNext.addEventListener('click', () => {
         modCountrySelector.unselect(country.title);
     }
 
+    hasReset = true;
     pauseModTimer();
 
     // Since time is rendered by rounding up to the nearest

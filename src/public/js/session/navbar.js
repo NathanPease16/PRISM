@@ -68,7 +68,7 @@ for (const tab of tabs) {
             action['currentTime'] = actionTimer.currentTime;
             action['active'] = actionTimer.active;
         }
-
+        
         setCurrentAction(action);
     }
 
