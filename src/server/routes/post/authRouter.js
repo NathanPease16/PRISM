@@ -59,7 +59,7 @@ route.post('/auth', async (req, res) => {
             }
         }
 
-        logs.information(`<USER> authorized`, req);
+        logs.information(`${firstName} ${lastName} authorized`);
 
         res.status(200).end();
         return;

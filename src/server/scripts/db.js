@@ -4,7 +4,10 @@
  * application exits, as the database is an essential
  * component of the server
  * 
- * @summary Connects the app to the database
+ * Also includes safer database operations with automated
+ * error handling to avoid server crashes
+ * 
+ * @summary Creates safer database operations
  * 
  * @author Nathan Pease
  */

@@ -97,9 +97,13 @@ deleteAll.addEventListener('click', () => {
             },
         });
 
-        // Remove all committees from the document and alert all other clients
-        removeAll();
-        socket.emit('deleteAllCommittees');
+        if (response.ok) {
+            // Remove all committees from the document and alert all other clients
+            removeAll();
+            socket.emit('deleteAllCommittees');
+        } else {
+            new Notification('You are not authorized for this action', 'red').show();
+        }
 
         warning.remove();
     });

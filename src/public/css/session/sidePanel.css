@@ -52,7 +52,7 @@
 }
 
 .side-panel-open {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 15vw;
@@ -81,7 +81,7 @@
 }
 
 .side-panel-cover {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;

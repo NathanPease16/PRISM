@@ -10,6 +10,7 @@ const express = require('express');
 const route = express.Router();
 
 const db = require('../../scripts/db');
+const logs = require('../../scripts/logs');
 
 const Config = require('../../models/config');
 const Committee = require('../../models/committee');
@@ -33,6 +34,10 @@ route.get('/config', async (req, res) => {
 
     res.status(200);
     res.render('config', {accessCode, adminCode, committees});
+});
+
+route.get('/logs.prism', async (req, res) => {
+    res.status(200).sendFile(logs.logsPath);
 });
 
 module.exports = route;

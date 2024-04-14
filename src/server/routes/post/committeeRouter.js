@@ -107,7 +107,7 @@ route.post('/deleteCommittee/:id', async (req, res) => {
 
 // Removes all committees from the database
 route.post('/deleteAllCommittees', async (req, res) => {
-    const result = await db.deleteMany({});
+    const result = await db.deleteMany(Committee, {});
 
     if (result === -1) {
         return res.status(400).json('Failed to delete committees');

@@ -48,7 +48,7 @@ route.post('/config', async (req, res) => {
         return res.status(500).json('Failed to save config file');
     }
 
-    logs.information(`<USER> updated config; Access Code ${req.body.accessCode}; Admin Code ${req.body.adminCode}`, req);
+    logs.information(`<USER> updated config file`, req);
 
     res.status(200).end();
 });

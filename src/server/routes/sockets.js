@@ -17,10 +17,12 @@ const Committee = require('../models/committee');
 const cookie = require('cookie');
 const db = require('../scripts/db');
 
+let io;
+
 function establishSockets(app) {
     // Create a server for socket connections
     const server = require('http').createServer(app);
-    const io = require('socket.io')(server);
+    io = require('socket.io')(server);
 
     // To ensure no race conditions (especially with connecting and disconnecting)
     let socketInUse = false;
@@ -188,4 +190,13 @@ function establishSockets(app) {
     return server;
 }
 
-module.exports = establishSockets;
+function emit(name, message) {
+    if (io) {
+        io.emit(name, message);
+    }
+}
+
+module.exports = {
+    establishSockets,
+    emit,
+};
