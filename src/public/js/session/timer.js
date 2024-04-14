@@ -1,4 +1,15 @@
 /**
+ * Creates a timer class, which allows for multiple different
+ * timers to exist on the same page and lets you easily run
+ * a timer that automatically updates a text box and play
+ * button
+ * 
+ * @summary Creates a timer class
+ * 
+ * @author Nathan Pease
+ */
+
+/**
  * Easily handles timing and timers
  */
 class Timer {

@@ -1,3 +1,14 @@
+/**
+ * Controls the navigation bar at the bottom of the page,
+ * and also creates a function that allows script-based
+ * switching of tabs rather than clicking the buttons
+ * at the bottom
+ * 
+ * @summary Controls the navigation bar at the bottom of the page
+ * 
+ * @author Nathan Pease
+ */
+
 const sessionPage = document.getElementById('session-page');
 const sessionNavbar = document.getElementById('session-navbar');
 

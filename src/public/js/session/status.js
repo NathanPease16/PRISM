@@ -1,3 +1,15 @@
+/**
+ * Keeps track of all status updates received, disregarding
+ * any status updates that do not pertain to the committee
+ * being currently viewed. The socket listens for all updates,
+ * and then calls the corresponding method based on what the
+ * update is labeled as
+ * 
+ * @summary Keeps track of all status updates received
+ * 
+ * @author Nathan Pease
+ */
+
 const socket = io();
 
 const topBarText = document.getElementById('top-bar-text');

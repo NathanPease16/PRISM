@@ -1,4 +1,15 @@
 /**
+ * Provides re-usable code for selecting a country. This is used
+ * in things like setup and the GSL, places where countries need
+ * to be selected and unselected, as well as placed in a specific
+ * order
+ * 
+ * @summary Provides re-usable code for selecting a country
+ * 
+ * @author Nathan Pease
+ */
+
+/**
  * Reusable class for easily making a country selector (i.e. setup, mod, gsl, etc.)
  */
 class CountrySelector {

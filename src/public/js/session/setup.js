@@ -1,3 +1,13 @@
+/**
+ * Handles the setup of a committee by making a request to
+ * the server with all the countries that are currently
+ * selected
+ * 
+ * @summary Handles the setup of a committee
+ * 
+ * @author Nathan Pease
+ */
+
 const unselectedCountries = document.getElementById('unselected-countries');
 const selectedCountries = document.getElementById('selected-countries');
 

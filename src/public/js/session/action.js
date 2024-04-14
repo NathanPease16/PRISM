@@ -1,3 +1,17 @@
+/**
+ * Handles updating session actions and session updates. Session
+ * actions are any action taken during a session, such as voting,
+ * motions, mods, unmods, etc., which needs to be updated in
+ * the database for statuses. It also handles session updates,
+ * which are live updates sent to all listening clients about
+ * something that changed in a committee (such as the time on 
+ * a timer, the agenda, roll call, etc.)
+ * 
+ * @summary Handles updating session actions and session updates
+ * 
+ * @author Nathan Pease
+ */
+
 const socket = io();
 
 /**

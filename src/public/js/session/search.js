@@ -1,4 +1,16 @@
 /**
+ * Re-usable code for a search bar for countries. This specific
+ * search checks 3 different parameters;
+ * 1. Does the search match the name of the country?
+ * 2. Does the search match any alternative names for the country?
+ * 3. Does the search match the 3-digit country code?
+ * 
+ * @summary Re-usable code for a search bar for countries
+ * 
+ * @author Nathan Pease
+ */
+
+/**
  * Sets up the search functionality, allowing users to search for a country
  * @param {*} name The name of the search (for if there are multiple on a page)
  */
