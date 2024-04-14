@@ -32,7 +32,7 @@ const server = require('./server/routes/sockets')(app);
 
 // Configure the dotenv file and setup the database
 dotenv.config({ path: '.env'});
-db(process.env.MONGO_URI);
+db.connect(process.env.MONGO_URI);
 
 // Establish the view engine
 app.set('view engine', 'ejs');

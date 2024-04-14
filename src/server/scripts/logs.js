@@ -14,8 +14,29 @@ function date() {
     return `${dateObject.toLocaleString()}`;
 }
 
+function stampUser(logs, req) {
+    if (req) {
+        return logs.replace('<USER>', `${req.cookies.firstName} ${req.cookies.lastName}`);
+    }
+
+    return logs;
+}
+
 function log(serverLog) {
-    fs.appendFileSync(logsPath, `[${serverLog.type}] [${date()}] [${serverLog.information}]\n`);
+    fs.appendFileSync(logsPath, `[${serverLog.type}] [${date()}] [${serverLog.log}]\n`);
+}
+
+function error(serverLog, req) {
+    log({ type: 'error', log: stampUser(serverLog, req) });
+}
+
+function warning(serverLog, req) {
+    log({ type: 'warning', log: stampUser(serverLog, req) });
+}
+
+function information(serverLog, req) {
+
+    log({ type: 'information', log: stampUser(serverLog, req) });
 }
 
 function clear() {
@@ -24,5 +45,8 @@ function clear() {
 
 module.exports = {
     log,
+    error,
+    warning,
+    information,
     clear,
 };

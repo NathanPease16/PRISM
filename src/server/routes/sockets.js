@@ -15,7 +15,7 @@
 
 const Committee = require('../models/committee');
 const cookie = require('cookie');
-
+const db = require('../scripts/db');
 
 function establishSockets(app) {
     // Create a server for socket connections
@@ -62,7 +62,7 @@ function establishSockets(app) {
                     const id = splitRoute[4];
                     socket.id = id;
 
-                    const committee = await Committee.findOne({ id }).exec();
+                    const committee = await db.findOne(Committee, { id });
 
                     // If the committee can't be found, just return as nothing can be locked
                     if (!committee) {
@@ -131,7 +131,7 @@ function establishSockets(app) {
                 socketInUse = true;
 
                 // Find the committee to unlock
-                const committee = await Committee.findOne({ id }).exec();
+                const committee = await db.findOne(Committee, { id });
 
                 // Reset the session moderator and current action
                 if (committee) {

@@ -10,6 +10,8 @@
 const express = require('express');
 const route = express.Router();
 
+const db = require('../../scripts/db');
+
 const Committee = require('../../models/committee');
 
 // Attempts to set up a committee by storing in the database
@@ -17,7 +19,7 @@ const Committee = require('../../models/committee');
 route.post('/setup/:id', async (req, res) => {
     const id = req.params.id;
 
-    const committee = await Committee.findOne({ id }).exec();
+    const committee = await db.findOne(Committee, { id });
 
     // Checks if the committee exists and sorts all the countries in the
     // body in alphabetical order
@@ -35,10 +37,13 @@ route.post('/setup/:id', async (req, res) => {
         // as properly set up
         committee.countries = req.body.countries;
         committee.setup = true;
-        await committee.save();
+        const result = await db.save(committee);
+
+        if (result === -1) {
+            return res.status(500).json('Failed to save committee');
+        }
     } else {
-        res.status(400).json('Committee not found');
-        return;
+        return res.status(400).json('Committee not found');
     }
 
     res.status(200).end();
@@ -53,7 +58,11 @@ route.post('/rollCall/:id', async (req, res) => {
 
     const id = req.params.id;
 
-    const committee = await Committee.findOne({ id }).exec();
+    const committee = await db.findOne(Committee, { id });
+
+    if (committee === -1) {
+        return res.status(500).json('Failed to find committee');
+    }
 
     // Checks if the committee exists and then checks to make sure
     // each country in the committee has an attendance value 
@@ -69,7 +78,11 @@ route.post('/rollCall/:id', async (req, res) => {
         // Save the new country attendance data to the database
         committee.countries = req.body.countries;
 
-        await committee.save();
+        const result = await db.save(committee);
+
+        if (result === -1) {
+            return res.status(500).json('Failed to save committee');
+        }
     } else {
         res.status(400).json('Committee not found');
         return;
@@ -88,16 +101,19 @@ route.post('/setAgenda/:id', async (req, res) => {
 
     const id = req.params.id;
 
-    const committee = await Committee.findOne({ id }).exec();
+    const committee = await db.findOne(Committee, { id });
 
     // Checks if the committee exists, assigns its agenda, and saves it
     if (committee) {
         committee.agenda = req.body.agenda;
 
-        await committee.save();
+        const result = await db.save(committee);
+
+        if (result === -1) {
+            res.status(500).json('Failed to save committee');
+        }
     } else {
-        res.status(400).json('Committee not found');
-        return;
+        return res.status(400).json('Committee not found');
     }
 
     res.status(200).end();

@@ -14,6 +14,8 @@ const express = require('express');
 const route = express.Router();
 
 const saveCookie = require('../../scripts/cookies');
+const logs = require('../../scripts/logs');
+const db = require('../../scripts/db');
 
 const Config = require('../../models/config');
 const User = require('../../models/user');
@@ -21,7 +23,12 @@ const User = require('../../models/user');
 // Attempts to authorize the user based on the given access code
 route.post('/auth', async (req, res) => {
     // Get the correct access code from the config file
-    const config = await Config.findOne({});
+    const config = await db.findOne(Config, {});
+
+    if (config === -1) {
+        return res.status(500).json('A server error has occurred');
+    }
+    // const config = req.result;
     const accessCode = config.accessCode;
 
     // If the access code lines up with the one given by the user,
@@ -37,16 +44,28 @@ route.post('/auth', async (req, res) => {
         saveCookie(res, 'lastName', lastName);
 
         // Find a user that exists with that first name and last name
-        const user = await User.findOne({ firstName, lastName });
-
+        const user = await db.findOne(User, { firstName, lastName });
+        
+        if (user === -1) {
+            return res.status(500).json('Failed to access db');
+        }
+        
         // If a user with that name doesn't already exist, save one
         if (!user) {
-            await new User({ firstName, lastName }).save();
+            const result = await db.save(new User({firstName, lastName}));
+            
+            if (result === -1) {
+                return res.status(500).json('Failed to save new user');
+            }
         }
+
+        logs.information(`<USER> authorized`, req);
 
         res.status(200).end();
         return;
     }
+
+    logs.warning(`Authorization for <USER> failed`, req);
 
     res.status(400).json('Authorization failed');
 });
@@ -54,7 +73,11 @@ route.post('/auth', async (req, res) => {
 // Authorizes the user to access admin routes
 route.post('/adminAuth', async (req, res) => {
     // Get the admin code from the config file
-    const config = await Config.findOne({});
+    const config = await db.findOne(Config, {});
+
+    if (config === -1) {
+        return res.status(500).json('A server has occurred');
+    }
     const adminCode = config.adminCode;
 
     // Check if the admin code is equal to the code provided by the user
@@ -62,10 +85,14 @@ route.post('/adminAuth', async (req, res) => {
         // Save the correct admin code to the cookies
         saveCookie(res, 'adminCode', adminCode);
 
+        logs.information(`<USER> authorized with admin access`, req);
+
         res.status(200).end();
         return;
     }
 
+    logs.warning(`Admin authorization for <USER> failed`, req);
+    
     res.status(400).json('Admin authorization failed');
 });
 
