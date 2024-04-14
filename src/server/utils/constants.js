@@ -1,9 +1,12 @@
-const JSON_DATA = 'json/data';
-const JSON_TEMPLATES = 'json/templates';
-const JSON_MODELS = 'json/models';
+/**
+ * One script to hold all documents used by the SERVER 
+ * in the PRISM application
+ * 
+ * @summary Stores useful constants
+ * 
+ * @author Nathan Pease
+ */
 
 module.exports = {
-    JSON_DATA,
-    JSON_TEMPLATES,
-    JSON_MODELS,
+    
 }

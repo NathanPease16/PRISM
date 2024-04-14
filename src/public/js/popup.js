@@ -1,5 +1,18 @@
+/**
+ * Creates a class that allows for a popup to be easily displayed
+ * to the user. Headers, small headers, text, buttons, input boxes,
+ * and misc elements can all be easily added to the popup
+ * 
+ * @summary Allows for a popup to be displayed to the user
+ * 
+ * @author Nathan Pease
+ */
+
 const none = 'display: none;';
 
+/**
+ * Displays a popup where information can be entered, notices can be given, etc.
+ */
 class Popup {
     toggled;
     width;
@@ -7,6 +20,7 @@ class Popup {
     constructor(w) {
         this.width = w;
 
+        // Create all the HTML for the popup
         this.popup = document.createElement('div');
         this.popup.id = 'popup';
         this.popup.style = none + `width: ${this.width};`;
@@ -29,21 +43,31 @@ class Popup {
 
         document.body.appendChild(this.popup);
 
+        // If the area outside the popup is clicked, remove it
         this.blackout.addEventListener('click', () => {
             this.remove();
         });
     }
 
+    /**
+     * Shows the popup
+     */
     show() {
         this.popup.style = '';
         this.toggled = true;
     }
 
+    /**
+     * Hides the popup
+     */
     hide() {
         this.popup.style = none;
         this.toggled = false;
     }
 
+    /**
+     * Toggles the popup on or off depending on its current state
+     */
     toggle() {
         if (this.toggled) {
             this.popup.style = none;
@@ -54,6 +78,11 @@ class Popup {
         this.toggled = !this.toggled;
     }
 
+    /**
+     * Adds large text to the popup
+     * @param {*} text Text for the header
+     * @returns The header object
+     */
     addHeader(text) {
         const header = document.createElement('p');
         header.textContent = text;
@@ -64,6 +93,11 @@ class Popup {
         return header;
     }
 
+    /**
+     * Adds a small header to the popup
+     * @param {*} text Text of the small header
+     * @returns The small header object
+     */
     addSmallHeader(text) {
         const smallHeader = document.createElement('p');
         smallHeader.textContent = text;
@@ -74,6 +108,11 @@ class Popup {
         return smallHeader;
     }
 
+    /**
+     * Adds text to the popup
+     * @param {*} text The text for the text object
+     * @returns The text object
+     */
     addText(text) {
         const p = document.createElement('p');
         p.textContent = text;
@@ -84,6 +123,13 @@ class Popup {
         return p;
     }
 
+    /**
+     * Adds a button to the popup
+     * @param {*} text The text for the button
+     * @param {*} color What color the button should be
+     * @param {*} event 'click' event for the button
+     * @returns The button object
+     */
     addButton(text, color, event) {
         const button = document.createElement('button');
         button.textContent = text;
@@ -98,6 +144,13 @@ class Popup {
         return button;
     }
 
+    /**
+     * Adds an input field to the popup
+     * @param {*} placeholder Placeholder text
+     * @param {*} id The input field's ID
+     * @param {*} name name for the input field
+     * @returns The input field object
+     */
     addInput(placeholder, id, name) {
         const input = document.createElement('input');
         input.placeholder = placeholder;
@@ -110,10 +163,17 @@ class Popup {
         return input;
     }
 
+    /**
+     * Adds a given element to the popup
+     * @param {*} element The element to add
+     */
     addElement(element) {
         this.menu.appendChild(element);
     }
 
+    /**
+     * Removes the popup entirely from the document
+     */
     remove() {
         document.body.removeChild(this.popup);
     }

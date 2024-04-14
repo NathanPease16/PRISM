@@ -1,5 +1,14 @@
+/**
+ * Creates a schema for committees
+ * 
+ * @summary Creates a schema for committees
+ * 
+ * @author Nathan Pease
+ */
+
 const mongoose = require('mongoose');
 
+// Establishes the schema for a committee in the database
 const committeeSchema = new mongoose.Schema({
     name: String,
     id: Number,

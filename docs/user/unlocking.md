@@ -1,0 +1,2 @@
+# Admin Session Unlocking
+In the event that, for whatever reason, a session needs to be unlocked, this can be done from the admin side. On the config page, admins are presented with the ability to unlock any session that is locked by pressing the lock icon. When it is unlocked, it will kick the current session moderator out, leaving it open to be moderated 

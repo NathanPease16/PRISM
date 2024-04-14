@@ -1,3 +1,15 @@
+/**
+ * Handles voting by allowing countries to vote in
+ * favor, against, or abstain in a vote, unless they are 
+ * PV in which case they can only vote for or against. 
+ * Vote can also be set to a one-half or two-thirds majority
+ * 
+ * @summary Handles voting in committee session
+ * 
+ * @author Nathan Pease
+ */
+
+// Get elements from document
 const configureVote = document.getElementById('configure-vote');
 const resetVote = document.getElementById('reset-vote');
 
@@ -32,6 +44,10 @@ let previousFavor;
 let previousAgainst;
 let previousAbstain;
 
+/**
+ * Update the vote graphic to reflect the vote type (simple or super majority),
+ * as well as the actual results of the vote
+ */
 const updateVoteGraphic = () => {
     total = countries.length;
 
@@ -46,37 +62,51 @@ const updateVoteGraphic = () => {
     if (total == 0) {
         favor.style.right = '100%';
         against.style.right = '100%';
+    // Move in the circles to reflect the vote percentages
     } else {
         favor.style.right = `${(1 - (favorAmount / total)) * 100}%`;
         against.style.right = `${(1 - (againstAmount / total)) * 100}%`;
     }
 
+    // Set text to reflect how many people have voted and in what ways
     favorText.textContent = `Favor ${favorAmount}`;
     againstText.textContent = `Against ${againstAmount}`;
     abstainText.textContent = `Abstain ${abstainAmount}`;
     majorityText.textContent = `Majority ${majorityAmount}`;
 }
 
+/**
+ * Load the voting queue for all countries
+ * @param {*} votingCountries Countries that will be voting
+ * @returns 
+ */
 function loadVoting(votingCountries) {
     upcomingCountries.innerHTML = '';
 
+    // If no countries are voting, set to defaults
     if (votingCountries.length == 0) {
         currentlyVotingImg.src = '/global/flags/xx.png';
         currentlyVotingName.textContent = '';
 
+        // Disable all buttons
         favorButton.classList.add('disabled');
         againstButton.classList.add('disabled');
         abstainButton.classList.add('disabled');
 
+        // If the number of countries is over 0, but the
+        // number of countries left to vote is 0 then the
+        // vote is over
         if (total > 0) {
             const popup = new Popup();
 
+            // If vote succeeded
             if (favorAmount >= majorityAmount) {
                 popup.addSmallHeader('Congratulations!');
                 popup.addText('This vote passed!');
                 popup.addButton('Close', 'green', () => {
                     popup.remove();
                 });
+            // If vote did not succeed
             } else {
                 popup.addSmallHeader('Sorry!');
                 popup.addText('This vote did not pass...');
@@ -100,12 +130,15 @@ function loadVoting(votingCountries) {
     againstButton.removeEventListener('click', previousAgainst);
     abstainButton.removeEventListener('click', previousAbstain);
 
+    // All people that still need to vote
     const toVote = [...votingCountries];
+    // The country that is currently voting (done in alphabetical order)
     const currentlyVoting = toVote.shift();
 
     currentlyVotingImg.src = `/global/flags/${currentlyVoting.flagCode.toLowerCase()}.png`;
     currentlyVotingName.textContent = currentlyVoting.title;
 
+    // Instantiate each country
     for (const country of toVote) {
         instantiate('country', upcomingCountries, {
             flag: { src: `/global/flags/${country.flagCode.toLowerCase()}.png` }, 
@@ -114,6 +147,7 @@ function loadVoting(votingCountries) {
         });
     }
 
+    // If they vote in favor
     const favorEvent = () => {
         favorButton.removeEventListener('click', favorEvent);
         favorAmount++;
@@ -125,6 +159,7 @@ function loadVoting(votingCountries) {
     favorButton.addEventListener('click', favorEvent);
     previousFavor = favorEvent;
 
+    // If they vote against
     const againstEvent = () => {
         againstButton.removeEventListener('click', againstEvent);
         againstAmount++;
@@ -135,6 +170,7 @@ function loadVoting(votingCountries) {
     againstButton.addEventListener('click', againstEvent);
     previousAgainst = againstEvent;
 
+    // If they aren't present & voting and decide to abstain
     if (currentlyVoting.attendance != 'PV') {
         const abstainEvent = () => {
             abstainButton.removeEventListener('click', abstainEvent);
@@ -150,6 +186,7 @@ function loadVoting(votingCountries) {
     }
 }
 
+// Reset all voting values and update graphics accordingly
 function resetVoting() {
     favorAmount = 0;
     againstAmount = 0;
@@ -158,10 +195,13 @@ function resetVoting() {
     loadVoting(countries);
 }
 
+// Reset voting on button click
 resetVote.addEventListener('click', () => {
     resetVoting();
 });
 
+// Configure the vote to either be a simple majority
+// or a super majority based on what is selected
 configureVote.addEventListener('click', () => {
     const popup = new Popup();
     popup.addSmallHeader('Configure Vote');

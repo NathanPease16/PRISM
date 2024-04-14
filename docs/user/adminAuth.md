@@ -1,0 +1,2 @@
+# Admin Authorization
+Admin authorization is similar to user authorization, except that it protects vulnerable requests, such as the config page. Any request that is noted in the server as an admin request requires users to authorize their administrative access with the correct admin code before being allowed to continue. This code can be set by admins on the config page or during the first time server setup flow

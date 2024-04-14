@@ -1,14 +1,26 @@
+/**
+ * Conducts roll call by making a request to the server
+ * and alerting any listening clients that roll call
+ * was conducted
+ * 
+ * @summary Conducts roll call
+ * 
+ * @author Nathan Pease
+ */
+
 const rollCall = document.getElementById('roll-call');
 
 const half = document.getElementById('half');
 const twoThirds = document.getElementById('twoThirds');
 const all = document.getElementById('all');
 
+// Create a roll call popup menu
 rollCall.addEventListener('click', () => {
     const popup = new Popup('30vw');
 
     popup.addSmallHeader('Roll Call');
 
+    // Sets all countries to be present
     popup.addButton('All Present', 'orange', () => {
         for (const country of committee.countries) {
             country.attendance = 'P';
@@ -19,6 +31,7 @@ rollCall.addEventListener('click', () => {
         }
     });
 
+    // Sets all countries to be absent
     popup.addButton('All Absent', 'red', () => {
         for (const country of committee.countries) {
             country.attendance = 'A';
@@ -32,6 +45,7 @@ rollCall.addEventListener('click', () => {
     const container = document.createElement('div');
     container.className = 'rollCall-container';
 
+    // Create a copy of the countries to sort and modify
     let copy = [...committee.countries];
 
     copy = copy.sort((a, b) => {
@@ -48,6 +62,7 @@ rollCall.addEventListener('click', () => {
     });
 
     for (const country of copy) {
+        // Assign each country an attendance value if it doesn't have one
         if (!country.attendance) {
             country.attendance = 'A';
         }
@@ -64,6 +79,7 @@ rollCall.addEventListener('click', () => {
             a = 'rollCall-red-selected';
         }
 
+        // Create a new country instance
         const div = instantiate('country', container, {
             country: { class: 'rollCall-country', },
             flag: { src: `/global/flags/${country.flagCode.toLowerCase()}.png`, }
@@ -71,6 +87,7 @@ rollCall.addEventListener('click', () => {
             name: { textContent: country.title, },
         });
 
+        // Create all the HTML stuff for each country (boring)
         const buttons = document.createElement('div');
         buttons.className = 'rollCall-buttons';
 
@@ -89,6 +106,7 @@ rollCall.addEventListener('click', () => {
         absent.textContent = 'A';
         absent.id = `${country.title}-A`;
 
+        // Sets country's attendance to PV
         presentVoting.addEventListener('click', () => {
             presentVoting.className = 'rollCall-button rollCall-blue-selected';
             present.className = 'rollCall-button rollCall-orange';
@@ -96,6 +114,7 @@ rollCall.addEventListener('click', () => {
             country.attendance = 'PV';
         });
 
+        // Country attendance to P
         present.addEventListener('click', () => {
             presentVoting.className = 'rollCall-button rollCall-blue';
             present.className = 'rollCall-button rollCall-orange-selected';
@@ -103,6 +122,7 @@ rollCall.addEventListener('click', () => {
             country.attendance = 'P';
         });
 
+        // Country attendance to A
         absent.addEventListener('click', () => {
             presentVoting.className = 'rollCall-button rollCall-blue';
             present.className = 'rollCall-button rollCall-orange';
@@ -119,6 +139,7 @@ rollCall.addEventListener('click', () => {
 
     popup.addElement(container);
 
+    // Finishes attendance by alerting the server
     popup.addButton('Finish', 'blue', async () => {
         const response = await fetch(`/rollCall/${committee.id}`, {
             method: 'POST',
@@ -128,13 +149,16 @@ rollCall.addEventListener('click', () => {
             body: JSON.stringify(committee),
         });
 
+        // If the response WASN'T okay, show an error
         if (!response.ok) {
             const error = await response.json();
             const notification = new Notification(error, 'red');
             notification.show();
         } else {
+            // Set countries by filtering out absent ones
             countries = committee.countries.filter((c) => c.attendance != 'A');
 
+            // Assign the text that lets you know important attendance information
             all.textContent = countries.length;
             twoThirds.textContent = Math.ceil(countries.length * 2 / 3);
             if (countries.length == 0) {
@@ -143,11 +167,13 @@ rollCall.addEventListener('click', () => {
                 half.textContent = Math.floor(countries.length / 2) + 1;
             }
 
+            // Reload all pages that rely on countries
             loadGSL();
             loadMod();
             setSubmittingCountryInput();
             resetVoting();
 
+            // Send out a session update
             sessionUpdate({ updateType: 'attendance', countries: committee.countries });
         }
 
