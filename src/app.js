@@ -21,6 +21,8 @@ const dotenv = require('dotenv');
 const db = require('./server/scripts/db');
 const path = require('path');
 
+require('./server/scripts/logs');
+
 // Create the app and establish a port
 const app = express();
 const PORT = 8080;
