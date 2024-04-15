@@ -13,7 +13,6 @@
  */
 
 const mongoose = require('mongoose');
-const logs = require('../scripts/logs');
 
 /**
  * Connects the server to the mongo database using mongoose
@@ -40,7 +39,6 @@ const find = async (Model, query) => {
         const result = await Model.find(query);
         return result;
     } catch (err) {
-        logs.error(err);
         return undefined;
     }
 }
@@ -56,7 +54,6 @@ const findOne = async (Model, query) => {
         const result = await Model.findOne(query);
         return result;
     } catch (err) {
-        logs.error(err);
         return undefined;
     }
 }
@@ -73,7 +70,6 @@ const findOneAndUpdate = async (Model, query, update) => {
         await Model.findOneAndUpdate(query, update);
         return 1;
     } catch (err) {
-        logs.error(err);
         return -1;
     }
 }
@@ -89,7 +85,6 @@ const findOneAndDelete = async (Model, query) => {
         await Model.findOneAndDelete(query);
         return 1; 
     } catch (err) {
-        logs.error(err);
         return -1;
     }
 }
@@ -105,7 +100,6 @@ const deleteMany = async (Model, query) => {
         await Model.deleteMany(query);
         return 1;
     } catch (err) {
-        logs.error(err);
         return -1;
     }
 }
@@ -120,7 +114,6 @@ const save = async (model) => {
         await model.save();
         return 1;
     } catch (err) {
-        logs.error(err);
         return -1;
     }
 }
