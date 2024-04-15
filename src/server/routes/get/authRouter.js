@@ -16,13 +16,13 @@ route.get('/auth', (req, res) => {
     const firstName = req.cookies.firstName;
     const lastName = req.cookies.lastName;
 
-    res.status(200);
+    res.status(400);
     res.render('auth/auth', {firstName, lastName});
 });
 
 // Route the user to the admin page
 route.get('/adminAuth', (req, res) => {
-    res.status(200);
+    res.status(400);
     res.render('auth/adminAuth');
 });
 

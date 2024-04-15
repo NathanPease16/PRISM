@@ -11,6 +11,8 @@ const express = require('express');
 const route = express.Router();
 
 const id = require('../../scripts/id');
+const logs = require('../../scripts/logs');
+const db = require('../../scripts/db');
 
 const Committee = require('../../models/committee');
 
@@ -23,7 +25,12 @@ route.post('/createCommittee', async (req, res) => {
     }
 
     // Find all committees and create a list of their IDs
-    const committees = await Committee.find();
+    const committees = await db.find(Committee, {});
+
+    if (committees === -1) {
+        return res.status(500).json('Failed to create committee');
+    }
+
     const ids = committees.map((committee) => committee.id);
     // Generate a new random committee ID, while avoiding collisions
     // with pre-existing committee IDs
@@ -31,13 +38,20 @@ route.post('/createCommittee', async (req, res) => {
 
     // Check if the ID is -1, meaning the ID generation failed
     if (committeeId == -1) {
+        logs.error('Committee creation failed: ID = -1');
         res.status(500).json('Failed to create committee');
         return;
     }
 
     // Create a new committee with the generated ID and name given by the user
     const committee = new Committee({id: committeeId, name: req.body.name}); 
-    await committee.save();
+    const result = await db.save(committee);
+
+    if (result === -1) {
+        return res.status(500).json('Failed to save committee');
+    }
+
+    logs.information(`<USER> created committee '${committee.name}'`, req);
 
     res.status(200).json(committee);
 });
@@ -52,8 +66,20 @@ route.post('/editCommittee/:id', async (req, res) => {
 
     const id = parseInt(req.params.id);
 
+    const oldCommittee = await db.findOne(Committee, { id });
+
+    if (oldCommittee === -1) {
+        return res.status(500).json('Failed to find committee');
+    }
+
     // Find the committee with the given ID and update its name
-    await Committee.findOneAndUpdate({ id }, { name: req.body.name });
+    const result = await db.findOneAndUpdate(Committee, { id }, { name: req.body.name });
+
+    if (result === -1) {
+        return res.status(500).json('Failed to update committee');
+    }
+
+    logs.information(`<USER> edited committee '${oldCommittee.name}'; now ${req.body.name}`, req);
 
     res.status(200).end();
 });
@@ -62,14 +88,32 @@ route.post('/editCommittee/:id', async (req, res) => {
 route.post('/deleteCommittee/:id', async (req, res) => {
     const id = parseInt(req.params.id);
 
-    await Committee.findOneAndDelete({ id });
+    const committee = await db.findOne(Committee, { id });
+
+    if (committee === -1) {
+        return res.status(500).json('Failed to find committee');
+    }
+
+    const result = await db.findOneAndDelete(Committee, { id });
+
+    if (result === -1) {
+        return res.status(400).json('Failed to delete committee');
+    }
+
+    logs.information(`<USER> deleted committee ${committee.name}`, req);
 
     res.status(200).end();
 });
 
 // Removes all committees from the database
 route.post('/deleteAllCommittees', async (req, res) => {
-    await Committee.deleteMany({});
+    const result = await db.deleteMany(Committee, {});
+
+    if (result === -1) {
+        return res.status(400).json('Failed to delete committees');
+    }
+
+    logs.information('<USER> deleted all committees', req);
 
     res.status(200).end();
 });
@@ -88,7 +132,11 @@ route.post('/action/:id', async (req, res) => {
     delete req.body.action.id;
 
     // Find and update the committee with the new current action
-    await Committee.findOneAndUpdate({ id }, { currentAction: req.body.action });
+    const result = await db.findOneAndUpdate(Committee, { id }, { currentAction: req.body.action });
+
+    if (result === -1) {
+        return res.status(400).json('Failed to update committee action');
+    }
 
     res.status(200).end();
 });

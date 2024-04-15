@@ -34,3 +34,51 @@
     color: var(--dark-gray);
     margin-left: var(--padding);
 }
+
+.download-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.config-download {
+    width: 2vw;
+    height: 2vw;
+    margin-top: var(--padding);
+    margin-left: var(--padding-small);
+    color: var(--dark-gray);
+    transition: color 250ms;
+}
+
+.config-download:hover {
+    color: var(--dark-blue);
+}
+
+.logs {
+    margin-left: var(--side-space);
+    margin-right: var(--side-space);
+    margin-top: var(--padding);
+    background-color: var(--very-dark-blue);
+    height: 30vw;
+    flex-grow: 1;
+    border-radius: .5vw;
+    overflow-y: auto;
+}
+
+.log-information, .log-warning, .log-error {
+    padding-left: var(--padding-small);
+    padding-top: var(--padding-small);
+    padding-bottom: var(--padding-small);
+}
+
+.log-information {
+    color: var(--blue);
+}
+
+.log-warning {
+    color: var(--orange);
+}
+
+.log-error {
+    color: var(--red);
+}

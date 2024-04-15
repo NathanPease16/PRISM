@@ -80,6 +80,7 @@
     flex-grow: 1;
     margin-top: var(--padding);
     padding-bottom: var(--padding);
+    margin-bottom: var(--padding);
     border-radius: .5vw;
 }
 

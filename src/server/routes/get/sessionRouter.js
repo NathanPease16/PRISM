@@ -9,19 +9,20 @@
 const express = require('express');
 const route = express.Router();
 
+const db = require('../../scripts/db');
+
 const Committee = require('../../models/committee');
 
 // Route the user to the session page
 route.get('/session/:id', async (req, res) => {
-    const id = parseInt(req.params.id);
-    
+    const id = req.params.id;
+
     // Try to find the committee pased on the ID in the requests parameters
-    const committee = await Committee.findOne({ id });
+    const committee = await db.findOne(Committee, { id });
 
     // If it doesn't exist, route them to the bad gateway page
     if (!committee) {
-        res.redirect(`/badGateway?old=${req.originalUrl}`);
-        return;
+        return res.status(400).redirect(`/badGateway?old=${req.originalUrl}`);
     }
 
     const name = `${req.cookies.firstName}.${req.cookies.lastName}`;
@@ -45,14 +46,11 @@ route.get('/session/:id', async (req, res) => {
 
 // Routes the user to the setup page for a session
 route.get('/session/:id/setup', async (req, res) => {
-    const id = req.params.id;
-
-    const committee = await Committee.findOne({ id });
+    const committee = await db.findOne(Committee, { id: req.params.id });
 
     // If the committee doesn't exist, route the user to the bad gateway page
     if (!committee) {
-        res.redirect(`/badGateway?old=${req.originalUrl}`);
-        return;
+        return res.status(400).redirect(`/badGateway?old=${req.originalUrl}`);
     }
 
     const name = `${req.cookies.firstName}.${req.cookies.lastName}`;
@@ -70,14 +68,11 @@ route.get('/session/:id/setup', async (req, res) => {
 
 // Routes the user to the status page based on the id after /status/
 route.get('/status/:id', async (req, res) => {
-    const id = req.params.id;
-
-    const committee = await Committee.findOne({ id });
+    const committee = await db.findOne(Committee, { id: req.params.id });
 
     // If the committee doesn't exist, give bad gateway
     if (!committee) {
-        res.redirect(`/badGateway?old=${req.originalUrl}`);
-        return;
+        return res.status(400).redirect(`/badGateway?old=${req.originalUrl}`);
     }
 
     // Render the status page

@@ -9,12 +9,19 @@
 const express = require('express');
 const route = express.Router();
 
+const db = require('../../scripts/db');
+const logs = require('../../scripts/logs');
+
 const Committee = require('../../models/committee');
 
 // Route the user to the home page and give them
 // all of the committees that currently exist
 route.get('/', async (req, res) => {
-    const committees = await Committee.find();
+    const committees = await db.find(Committee, {});
+
+    if (!committees) {
+        return res.status(400).render('committee/index', { committees: [] });
+    }
 
     res.status(200);
     res.render('committee/index', { committees });
@@ -30,17 +37,15 @@ route.get('/createCommittee', (req, res) => {
 // anything, meaning this route handles editing for all
 // committees
 route.get('/edit/:id', async (req, res) => {
-    const id = req.params.id;
+    //const committee = req.result;
+    const committee = await db.findOne(Committee, { id: req.params.id });
  
-     const committee = await Committee.findOne({ id });
+    if (!committee) {
+        return res.status(400).redirect(`/badGateway?old=${req.originalUrl}`);
+    }
  
-     if (!committee) {
-         res.redirect(`/badGateway?old=${req.originalUrl}`);
-         return;
-     }
- 
-     res.status(200);
-     res.render('committee/edit', { committee });
+    res.status(200);
+    res.render('committee/edit', { committee });
  });
 
 module.exports = route;

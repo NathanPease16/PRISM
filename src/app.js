@@ -21,16 +21,18 @@ const dotenv = require('dotenv');
 const db = require('./server/scripts/db');
 const path = require('path');
 
+require('./server/scripts/logs');
+
 // Create the app and establish a port
 const app = express();
 const PORT = 8080;
 
 // Create the server from sockets.js is server routes using the express app
-const server = require('./server/routes/sockets')(app);
+const server = require('./server/routes/sockets').establishSockets(app);
 
 // Configure the dotenv file and setup the database
 dotenv.config({ path: '.env'});
-db(process.env.MONGO_URI);
+db.connect(process.env.MONGO_URI);
 
 // Establish the view engine
 app.set('view engine', 'ejs');

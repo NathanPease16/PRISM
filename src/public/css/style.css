@@ -29,6 +29,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+html, body {
+    height: 100%;
+}
+
 :root {
     --light-green: #b0ffc4;
     --green: #40cc63;
@@ -37,6 +41,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     --light-blue: #c8dcff;
     --blue: #679cff;
     --dark-blue: #314d81;
+    --very-dark-blue: #131e31;
 
     --light-red: #f5adad;
     --red: #d34b4b;

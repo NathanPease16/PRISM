@@ -9,12 +9,15 @@
  */
 
 const Config = require('../models/config');
+const logs = require('../scripts/logs');
 
 // All routes that should require admin authorization,
 // which is more extensive than regular authorization
 // (This can be expanded to both get and post requests)
 const adminRoutes = [
     '/config',
+    '/deleteAllCommittees',
+    '/logs.prism',
 ]
 
 /**
@@ -50,6 +53,7 @@ async function authorize(req, res, next) {
             // If the route they're trying to access is an admin route, route them to the
             // admin authorization page
             } else if (adminRoutes.includes(originalUrl) && userAdminCode != config.adminCode) {
+                logs.warning(`<USER> attempted to access ${originalUrl} without admin access`, req);
                 res.redirect(`/adminAuth?redirect=${encodeURIComponent(originalUrl)}`);
                 return;
             }
