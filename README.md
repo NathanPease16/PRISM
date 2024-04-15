@@ -31,6 +31,7 @@ PRISM is a website developed to aid in the management of Model United Nations co
 * Session Locking
   - [Session locking](./docs/user/locking.md)
   - [Admin-side session unlocking](./docs/user/unlocking.md)
+* Server logs
 
 ## Important Information
 * [Code of Conduction](./CODE_OF_CONDUCT.md)
