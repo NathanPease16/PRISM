@@ -29,6 +29,12 @@ async function connect(mongoUri) {
     }
 }
 
+/**
+ * Safely finds all instances of a query in a model
+ * @param {*} Model Model to search
+ * @param {*} query Query parameters to look for
+ * @returns All results
+ */
 const find = async (Model, query) => {
     try {
         const result = await Model.find(query);
@@ -39,6 +45,12 @@ const find = async (Model, query) => {
     }
 }
 
+/**
+ * Safely finds first instance of a query in a model
+ * @param {*} Model Model to search
+ * @param {*} query Query parameters to look for
+ * @returns The first search result
+ */
 const findOne = async (Model, query) => {
     try {
         const result = await Model.findOne(query);
@@ -49,6 +61,13 @@ const findOne = async (Model, query) => {
     }
 }
 
+/**
+ * Safely finds and updates the first instance of a query in a model
+ * @param {*} Model Model to search
+ * @param {*} query Query parameters to look for
+ * @param {*} update Values to update
+ * @returns 1 if successful, -1 if failed
+ */
 const findOneAndUpdate = async (Model, query, update) => {
     try {
         await Model.findOneAndUpdate(query, update);
@@ -59,6 +78,12 @@ const findOneAndUpdate = async (Model, query, update) => {
     }
 }
 
+/**
+ * Safely finds and deletes the first instance of a query in a model
+ * @param {*} Model Model to search
+ * @param {*} query Query parameters to look for
+ * @returns 1 if successful, -1 if failed
+ */
 const findOneAndDelete = async (Model, query) => {
     try {
         await Model.findOneAndDelete(query);
@@ -69,6 +94,12 @@ const findOneAndDelete = async (Model, query) => {
     }
 }
 
+/**
+ * Safely finds and deletes all instances of a query in a model
+ * @param {*} Model Model to search
+ * @param {*} query Query parameters to look for
+ * @returns 1 if successful, -1 if failed
+ */
 const deleteMany = async (Model, query) => {
     try {
         await Model.deleteMany(query);
@@ -79,6 +110,11 @@ const deleteMany = async (Model, query) => {
     }
 }
 
+/**
+ * Safely saves an instance of a model to the database
+ * @param {*} model Model instance to save
+ * @returns 1 if successful, -1 if failed
+ */
 const save = async (model) => {
     try {
         await model.save();
