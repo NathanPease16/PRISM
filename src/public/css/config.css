@@ -44,7 +44,7 @@
 .config-download {
     width: 2vw;
     height: 2vw;
-    margin-top: var(--padding);
+    margin-top: calc(var(--padding) + var(--padding-small));
     margin-left: var(--padding-small);
     color: var(--dark-gray);
     transition: color 250ms;

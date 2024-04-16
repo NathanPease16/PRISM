@@ -18,6 +18,7 @@ const adminRoutes = [
     '/config',
     '/deleteAllCommittees',
     '/logs.prism',
+    'clearLogs',
 ]
 
 /**

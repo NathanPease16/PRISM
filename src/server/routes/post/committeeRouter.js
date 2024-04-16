@@ -100,7 +100,7 @@ route.post('/deleteCommittee/:id', async (req, res) => {
         return res.status(400).json('Failed to delete committee');
     }
 
-    logs.information(`<USER> deleted committee ${committee.name}`, req);
+    logs.information(`<USER> deleted committee '${committee.name}'`, req);
 
     res.status(200).end();
 });

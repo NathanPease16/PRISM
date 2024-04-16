@@ -16,14 +16,13 @@ const { emit } = require('../routes/sockets');
  */
 
 const logsPath = path.resolve(__dirname, '../storage/logs.prism');
-const dateObject = new Date();
 
 /**
  * Returns back the current time as a string
  * @returns The current local time
  */
 function date() {
-    return `${dateObject.toLocaleString()}`;
+    return `${new Date().toLocaleString()}`;
 }
 
 /**

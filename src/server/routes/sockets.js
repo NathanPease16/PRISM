@@ -14,6 +14,7 @@
  */
 
 const Committee = require('../models/committee');
+const Config = require('../models/config');
 const cookie = require('cookie');
 const db = require('../scripts/db');
 
@@ -111,6 +112,10 @@ function establishSockets(app) {
             io.emit('deleteAllCommittees');
         });
 
+        socket.on('clearLogs', () => {
+            io.emit('clearLogs');
+        });
+
         // Removes old session moderators based on a given ID
         // This function is the main reason why socketInUse is required.
         // socketInuse acts as a lock for a potential race condition that
@@ -190,9 +195,23 @@ function establishSockets(app) {
     return server;
 }
 
+/**
+ * Emits an event using io that requires admin access
+ * @param {*} name Name of the event
+ * @param {*} message Message/data to send with the event
+ */
 function emit(name, message) {
     if (io) {
-        io.emit(name, message);
+        io.of('/').sockets.forEach(async (clientSocket) => {
+            const cookies = cookie.parse(clientSocket.handshake.headers.cookie);
+            const config = await db.findOne(Config, {});
+
+            if (config) {
+                if (cookies.adminCode === config.adminCode) {
+                    clientSocket.emit(name, message);
+                }
+            }
+        });
     }
 }
 
