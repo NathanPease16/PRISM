@@ -43,4 +43,5 @@ const addLog = (components) => {
 // Add any new logs that come in
 socket.on('log', (log) => {
     addLog(log);
+    logsDiv.scrollTo(0, logsDiv.scrollHeight);
 })
