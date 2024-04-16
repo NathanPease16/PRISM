@@ -8,6 +8,7 @@
  */
 
 const logsDiv = document.getElementById('logs');
+const clearLogsButton = document.getElementById('clear-logs');
 
 /**
  * Adds a log to the document
@@ -19,10 +20,14 @@ const addLog = (components) => {
     }
 
     const p = document.createElement('p');
-    p.className = `log-${components[0]}`;
+    p.className = `log-${components[0]} log`;
     p.textContent = `${components[1]} : ${components[2]}`;
 
     logsDiv.appendChild(p);
+}
+
+const clearLogs = () => {
+    logsDiv.innerHTML = '';
 }
 
 (async () => {
@@ -40,8 +45,26 @@ const addLog = (components) => {
     logsDiv.scrollTo(0, logsDiv.scrollHeight);
 })();
 
+clearLogsButton.addEventListener('click', async () => {
+    const response = await fetch('/clearLogs', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+    if (response.ok) {
+        clearLogs();
+        socket.emit('clearLogs');
+    }
+});
+
 // Add any new logs that come in
 socket.on('log', (log) => {
     addLog(log);
     logsDiv.scrollTo(0, logsDiv.scrollHeight);
-})
+});
+
+socket.on('clearLogs', () => {
+    clearLogs();
+});

@@ -112,6 +112,10 @@ function establishSockets(app) {
             io.emit('deleteAllCommittees');
         });
 
+        socket.on('clearLogs', () => {
+            io.emit('clearLogs');
+        });
+
         // Removes old session moderators based on a given ID
         // This function is the main reason why socketInUse is required.
         // socketInuse acts as a lock for a potential race condition that

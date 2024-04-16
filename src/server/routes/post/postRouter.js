@@ -53,4 +53,11 @@ route.post('/config', async (req, res) => {
     res.status(200).end();
 });
 
+route.post('/clearLogs', (req, res) => {
+    logs.clear();
+
+    res.status(200).end();
+});
+
+
 module.exports = route;
