@@ -158,10 +158,14 @@ function establishSockets(app) {
         }
 
         // Tell clients a session was unlocked AND unlock the session
-        socket.on('unlockSession', (id) => {
-            io.emit('unlockSession', id);
+        socket.on('unlockSession', async (id) => {
+            const cookies = cookie.parse(socket.handshake.headers.cookie);
+            const config = await db.findOne(Config, {});
 
-            removeOldSessionModerator(id);
+            if (config.adminCode === cookies.adminCode) {
+                io.emit('unlockSession', id);
+                removeOldSessionModerator(id);
+            }
         });
 
         // Triggered whenever a socket disconnects, whether it be because
