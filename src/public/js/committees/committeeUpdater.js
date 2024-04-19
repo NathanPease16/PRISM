@@ -26,6 +26,7 @@ socket.on('createCommittee', (committee) => {
         committee: { id: `committee-${committee.id}` },
         session: { href: `/session/${committee.id}`, style: sessionStyle },
         lock: { style: lockStyle },
+        chair: { href: `/char/${committee.id}` },
         status: { href: `/status/${committee.id}` },
         edit: { href:`/edit/${committee.id}` },
         delete: { id: committee.id, name: committee.name },

@@ -61,6 +61,7 @@ app.use(require('./server/scripts/auth'));
 app.use(require('./server/routes/get/committeeRouter.js'));
 app.use(require('./server/routes/get/sessionRouter.js'));
 app.use(require('./server/routes/get/authRouter.js'));
+app.use(require('./server/routes/get/chairRouter.js'));
 app.use(require('./server/routes/get/getRouter.js'));
 // This router MUST go last as it assumes control of ALL get routes
 // not yet defined

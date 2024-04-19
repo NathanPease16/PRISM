@@ -1,0 +1,54 @@
+.chair-notes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: 90vh;
+    justify-items: center;
+    overflow-y: auto;
+}
+
+.chair-note {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    height: 20vw;
+    box-shadow: 0 0 .25vw .25vw var(--light-gray);
+    border-radius: .5vw;
+    margin: var(--padding) var(--padding) var(--padding) var(--padding); 
+    padding: var(--padding) var(--padding) var(--padding) var(--padding);
+}
+
+.chair-note-title {
+    font-size: var(--font-medium);
+    color: var(--dark-gray);
+}
+
+.chair-note-text-container {
+    margin-top: var(--padding-small);
+    flex-basis: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.chair-note-text {
+    font-size: var(--font-small);
+    color: var(--dark-gray);
+}
+
+.large-input {
+    border: solid .15vw var(--gray) !important;
+    border-radius: .5vw;
+    box-sizing: border-box;
+    color: var(--dark-gray);
+    height: 10vw;
+    padding-left: var(--padding-small);
+    padding-top: var(--padding-small);
+    padding-bottom: var(--padding-small);
+    margin-left: var(--padding);
+    margin-right: var(--padding);
+    margin-top: var(--padding-small);
+    flex-grow: 1;
+}
+
+.large-input::selection {
+    border-color: var(--gray) !important;
+}

@@ -1,0 +1,16 @@
+<%- include ('./templates/_header.ejs', { title: 'Chair'} ); %>
+<body>
+    <%- include('./templates/_topBar.ejs', { title: 'Chair' }); %>
+    <%- include('./templates/_sidePanel.ejs'); %>
+    <div class="chair-notes-grid">
+        <div class="chair-note">
+            <p class="chair-note-title">Title</p>
+            <div class="chair-note-text-container">
+                <p class="chair-note-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste et, ipsam atque eaque perferendis architecto quod sequi hic earum unde?</p>
+            </div>
+        </div>
+    </div>
+    <script src="/js/popup.js"></script>
+    <script src="/js/chair/newNote.js"></script>
+</body>
+</html>
