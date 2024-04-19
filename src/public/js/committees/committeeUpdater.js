@@ -35,6 +35,7 @@ socket.on('createCommittee', (committee) => {
 
     // Reload the delete buttons created by deleteCommittee.js to
     // include the new committee
+    refreshMenus();
     refreshDelete();
 });
 
@@ -45,7 +46,7 @@ socket.on('editCommittee', (committee) => {
     const committeeDiv = document.getElementById(`committee-${committee.id}`);
 
     if (committeeDiv) {
-        const text = committeeDiv.querySelector('.committee-text');
+        const text = committeeDiv.querySelector('.committee-card-text');
         text.textContent = committee.name;
     }
 });
