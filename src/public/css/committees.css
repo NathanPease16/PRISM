@@ -35,11 +35,11 @@
     background-color: var(--dark-purple) !important;
 }
 
-.edit {
+.admin-btn {
     background-color: var(--orange) !important;
 }
 
-.edit:hover {
+.admin-btn:hover {
     background-color: var(--dark-orange) !important;
 }
 
@@ -131,4 +131,137 @@
 
 .pad-bottom {
     margin-bottom: var(--padding);
+}
+
+/* ------------------------------------------ */
+
+.committee-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    box-shadow: 0 0 .25vw .25vw var(--light-gray);
+    border-radius: .5vw;
+    box-sizing: border-box;
+    margin: var(--padding) var(--side-space) var(--padding) var(--padding);
+    padding: var(--padding) var(--padding) var(--padding) var(--padding);
+    width: 60vw;
+    height: 78vh;
+    overflow-y: auto;
+}
+
+.committee-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: .5vw;
+    width: 20vw;
+    height: fit-content;
+    background-color: white;
+    box-shadow: 0 0 .25vw .25vw var(--light-gray);
+    margin: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
+    padding: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
+}
+
+.committee-card-text {
+    text-align: center;
+    color: var(--dark-gray);
+    font-size: var(--font-medium);
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.committee-card-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.committee-card-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-medium);
+    color: white;
+    border-radius: .5vw;
+    min-width: 4vw;
+    padding: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
+    margin: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 250ms;
+}
+
+.other-actions {
+    position: absolute;
+    top: calc(var(--padding-small) * 1.5);
+    right: var(--padding-small);
+    z-index: 1000;
+}
+
+.other-actions svg {
+    width: 2vw;
+    color: var(--gray);
+    transition: color 250ms;
+}
+
+.other-actions svg:hover {
+    color: var(--dark-gray);
+}
+
+.actions-container {
+    position: absolute;
+    top: calc(var(--padding) * 1.5);
+    left: var(--padding);
+    width: fit-content;
+    background-color: white;
+    box-shadow: 0 0 .25vw .25vw var(--light-gray);
+    z-index: 200;
+}
+
+.actions-text {
+    display: flex;
+    flex-grow: 1;
+    color: var(--dark-gray);
+    font-size: var(--font-small);
+    padding: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
+    text-decoration: none;
+}
+
+.actions-text:hover {
+    background-color: var(--light-gray);
+}
+
+.committee-big-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    font-size: var(--font-medium);
+    color: white;
+    border-radius: .5vw;
+    padding: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
+    margin: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 250ms;
+}
+
+.committee-big-img {
+    width: 6vw;
+    height: 6vw;
+    color: white !important;
+}
+
+.large-actions {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    box-shadow: 0 0 .25vw .25vw var(--light-gray);
+    border-radius: .5vw;
+    box-sizing: border-box;
+    margin: var(--padding)  var(--padding) var(--padding) var(--side-space);
+    padding: var(--padding-small) var(--padding-small) var(--padding-small) var(--padding-small);
+    width: 40vw;
+    height: fit-content;
+    overflow: hidden;
 }

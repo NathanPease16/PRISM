@@ -29,7 +29,7 @@ const removeOne = (id) => {
  * Removes all committees from the document
  */
 const removeAll = () => {
-    const committees = document.querySelectorAll('.committee');
+    const committees = document.querySelectorAll('.committee-card');
 
     for (const committee of committees) {
         committee.remove();

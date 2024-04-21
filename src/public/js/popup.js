@@ -16,9 +16,11 @@ const none = 'display: none;';
 class Popup {
     toggled;
     width;
+    closeEvents;
 
-    constructor(w) {
+    constructor(w, closeEvents) {
         this.width = w;
+        this.closeEvents = closeEvents || [];
 
         // Create all the HTML for the popup
         this.popup = document.createElement('div');
@@ -50,6 +52,24 @@ class Popup {
     }
 
     /**
+     * Adds an event to be triggered when the popup is hidden
+     * or removed
+     * @param {*} event Event to add
+     */
+    addCloseEvent(event) {
+        this.closeEvents.push(event);
+    }
+
+    /**
+     * Executes all close events
+     */
+    executeCloseEvents() {
+        for (const event of this.closeEvents) {
+            event();
+        }
+    }
+
+    /**
      * Shows the popup
      */
     show() {
@@ -63,6 +83,7 @@ class Popup {
     hide() {
         this.popup.style = none;
         this.toggled = false;
+        this.executeCloseEvents();
     }
 
     /**
@@ -71,6 +92,7 @@ class Popup {
     toggle() {
         if (this.toggled) {
             this.popup.style = none;
+            this.executeCloseEvents();
         } else {
             this.popup.style = '';
         }
@@ -176,5 +198,6 @@ class Popup {
      */
     remove() {
         document.body.removeChild(this.popup);
+        this.executeCloseEvents();
     }
 }

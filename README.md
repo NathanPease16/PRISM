@@ -18,6 +18,7 @@ PRISM is a website developed to aid in the management of Model United Nations co
   - Moderated caucus management
   - Unmoderated caucus management
   - Voting procedure
+  - Chair notes
 
 ### Status and Updates
 - [Committee status viewing](./docs/user/status.md)
