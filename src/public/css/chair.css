@@ -8,6 +8,7 @@
 
 .chair-note {
     display: flex;
+    position: relative;
     flex-direction: column;
     width: 20vw;
     height: 20vw;

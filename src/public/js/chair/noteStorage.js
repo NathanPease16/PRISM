@@ -25,3 +25,22 @@ function storeNote(note) {
 
     localStorage.setItem('notes', JSON.stringify(currentStorage));
 }
+
+function setNotes(id, notes) {
+    let currentNotes = getNotes();
+    currentNotes[id] = notes; 
+
+    localStorage.setItem('notes', JSON.stringify(currentNotes));
+}
+
+function deleteNote(note) {
+    const notes = getNotes(note.id);
+
+    for (const n of notes) {
+        if (n.title === note.title && n.text === note.text) {
+            notes.splice(notes.indexOf(n), 1);
+            setNotes(note.id, notes);
+            return;
+        }
+    }
+}

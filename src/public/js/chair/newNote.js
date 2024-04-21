@@ -2,6 +2,7 @@ const notes = document.getElementById('notes');
 let popupActive = false;
 
 const id = window.location.href.split('/')[4];
+let noteNumber = 0;
 
 document.addEventListener('keydown', (e) => {
     if (popupActive) {
@@ -21,10 +22,20 @@ document.addEventListener('keydown', (e) => {
     popup.addElement(textArea);
 
     popup.addButton('Submit', 'blue', () => {
-        instantiate('note', notes, {}, {
+        const note = instantiate('note', notes, {
+            delete: { id: `note-${noteNumber}`},
+        }, {
             title: { innerHTML: titleInput.value },
             text: { innerHTML: textArea.value },
         });
+
+        const deleteButton = document.getElementById(`note-${noteNumber}`);
+        deleteButton.addEventListener('click', () => {
+            deleteNote({ id, title: titleInput.value, text: textArea.value });
+            note.remove();
+        });
+
+        noteNumber++;
 
         storeNote({ title: titleInput.value, text: textArea.value, id });
 
