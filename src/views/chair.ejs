@@ -2,15 +2,18 @@
 <body>
     <%- include('./templates/_topBar.ejs', { title: 'Chair' }); %>
     <%- include('./templates/_sidePanel.ejs'); %>
-    <div class="chair-notes-grid">
-        <div class="chair-note">
-            <p class="chair-note-title">Title</p>
-            <div class="chair-note-text-container">
-                <p class="chair-note-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste et, ipsam atque eaque perferendis architecto quod sequi hic earum unde?</p>
-            </div>
+    <div class="chair-note template" data-name="note">
+        <p class="chair-note-title" data-route="title"></p>
+        <div class="chair-note-text-container">
+            <p class="chair-note-text" data-route="text"></p>
         </div>
     </div>
+
+    <div class="chair-notes-grid" id="notes"></div>
+    <script src="/js/templates.js"></script>
     <script src="/js/popup.js"></script>
+    <script src="/js/chair/noteStorage.js"></script>
     <script src="/js/chair/newNote.js"></script>
+    <script src="/js/chair/loadNotes.js"></script>
 </body>
 </html>
