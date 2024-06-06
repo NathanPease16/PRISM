@@ -1,8 +1,5 @@
-<img src="./src/public/img/MUN_PRISM.png" alt="PRISM Logo" position="absolute" width="30" align="left" vspace="5">
-
-# **‎ MUN PRISM**
-#### ***Model United Nations Platform for Resolution, Integration, Simulation, and Management*** 
-
+# **‎ MUN PRISM** [<img src="./src/public/img/MUN_PRISM.png" width="30"/>](./src/public/img/MUN_PRISM.png)
+#### ***Model United Nations Platform for Resolution, Integration, Simulation, and Management***
 ![PRISM Home Page](./docs/images/PRIMS_Home.png)
 
 ## 👀 **Overview**
