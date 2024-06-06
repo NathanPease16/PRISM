@@ -6,7 +6,7 @@
 PRISM is an open-source web-based service that allows for easier management of Model UN conferences. It makes use of real-time communication and dynamic pages to ensure everyone involved in the running of a conference has the most up-to-date information
 
 ## 🌟 **Feature Overview**
-1. 📝 [**Committee Management:**](link_to_more_info) PRISM allows users to easily create, edit, and delete committees, all synced in real time across clients
+1. 📝 [**Committee Management:**](./docs/user/committee_management.md) PRISM allows users to easily create, edit, and delete committees, all synced in real time across clients
 
 2. ⚖️ [**Session Management:**](link_to_more_info) Committee sessions can be easily managed using PRISM, with users being able to handle motions, caucuses, the agenda, roll call, and various other session-related actions
 
@@ -15,13 +15,13 @@ PRISM is an open-source web-based service that allows for easier management of M
 4. 🔒 [**Advanced Security:**](link_to_more_info) Various security features have been put in place to ensure bad-faith actors can't ruin your conference
 
 ## ❗ **Important References**
-1. 🤝 [**Code of Conduct:**](link_to_more_info) Before contributing to this project, please review the code of conduct
+1. 🤝 [**Code of Conduct:**](./CODE_OF_CONDUCT.md) Before contributing to this project, please review the code of conduct
 
-2. ✍️ [**Contributing:**](link_to_more_info) Please also review documentation on proper contributions before contributing to the project
+2. ✍️ [**Contributing:**](./CONTRIBUTING.md) Please also review documentation on proper contributions before contributing to the project
 
-3. 📜 [**License:**](link_to_more_info) Finally, please also review the project's license to understand what can and cannot be done with
+3. 📜 [**License:**](./LICENSE) Finally, please also review the project's license to understand what can and cannot be done with
 
-4. 🖥️ [**Installation Guide:**](link_to_more_info) The installation guide provides an in-depth explanation on how to run PRISM for your own conference
+4. 🖥️ [**Installation Guide:**](./docs/user/installing.md) The installation guide provides an in-depth explanation on how to run PRISM for your own conference
 
 ## 👤 **Attribution**
 Development of PRISM was started at Naperville North High School for NNMUN
