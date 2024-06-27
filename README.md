@@ -24,7 +24,7 @@ PRISM is an open-source web-based service that allows for easier management of M
 4. 🖥️ [**Installation Guide:**](./docs/user/installing.md) The installation guide provides an in-depth explanation on how to run PRISM for your own conference
 
 ## 👤 **Attribution**
-Development of PRISM was started at Naperville North High School for NNMUN
+View a list of all developers who have contributed [here](Contributors.md)
 
 ## ✉️ **Contact**
 |  | |
