@@ -3,7 +3,7 @@
 ## 👀 **Overview**
 PRISM allows users to easily create, edit, and delete committees. All operations that are done are also seamlessly synced across clients so that each user has accurate information while viewing the home page. Admin authorized users also have the ability to delete ALL committees, useful for easily resetting the server
 
-## 📑 References
+## 📑 **References**
 * [📝 Creating Committees](#-creating-committees)
 
 * [✏️ Editing Committees](#️-editing-committees)

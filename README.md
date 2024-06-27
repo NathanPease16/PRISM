@@ -10,7 +10,7 @@ PRISM is an open-source web-based service that allows for easier management of M
 
 2. ⚖️ [**Session Management:**](./docs/user/session_management.md) Committee sessions can be easily managed using PRISM, with users being able to handle motions, caucuses, the agenda, roll call, and various other session-related actions
 
-3. 🕒 [**Live Session Updates:**](link_to_more_info) Actions taken during committee are communicated in real-time across clients so that everyone has the most up-to-date information on what is transpiring
+3. 🕒 [**Live Session Updates:**](./docs/user/live_session_updates.md) Actions taken during committee are communicated in real-time across clients so that everyone has the most up-to-date information on what is transpiring
 
 4. 🔒 [**Advanced Security:**](link_to_more_info) Various security features have been put in place to ensure bad-faith actors can't ruin your conference
 
