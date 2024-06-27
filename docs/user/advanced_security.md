@@ -6,19 +6,19 @@
 The security features implemented in PRISM make it harder for people with malicious intent to disrupt your conference. Features dictate what users are and aren't able to access the site, who can access committees, among other features to best protect conferences
 
 ## 📑 **References**
-* [🔑 User Authorization]
-    * [👤 Access Authorization]
+* [🔑 User Authorization](#-user-authorization)
+    * [👤 Access Authorization](#-access-authorization)
 
-    * [🛡️ Admin Authorization]
+    * [🛡️ Admin Authorization](#️-admin-authorization)
 
-    * [✏️ Editing Authorization]
+    * [✏️ Editing Authorization](#️-editing-authorization)
 
-* [🔒 Committee Session Locking]
-    * [🔐 Locking & Unlocking]
+* [🔒 Committee Session Locking](#-committee-session-locking)
+    * [🔐 Locking & Unlocking](#-locking--unlocking)
 
-    * [🔓 Force Unlocking]
+    * [🔓 Force Unlocking](#-force-unlocking)
 
-* [📜 Logging]
+* [📜 Logging](#-logging)
 
 ## 🔑 **User Authorization**
 When the server is first started, an `Access Code` and an `Admin Code` must be created before anything else can be done
