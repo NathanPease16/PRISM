@@ -1,0 +1,22 @@
+<%- include ('./templates/_header.ejs', { title: 'Chair'} ); %>
+<body>
+    <%- include('./templates/_topBar.ejs', { title: 'Chair' }); %>
+    <%- include('./templates/_sidePanel.ejs'); %>
+    <div class="chair-note template" data-name="note">
+        <p class="chair-note-title" data-route="title"></p>
+        <div class="chair-note-text-container">
+            <p class="chair-note-text" data-route="text"></p>
+        </div>
+        <svg class="motion-x" data-route="delete" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+    </div>
+
+    <div class="chair-notes-grid" id="notes"></div>
+    <script src="/js/templates.js"></script>
+    <script src="/js/popup.js"></script>
+    <script src="/js/chair/noteStorage.js"></script>
+    <script src="/js/chair/newNote.js"></script>
+    <script src="/js/chair/loadNotes.js"></script>
+</body>
+</html>

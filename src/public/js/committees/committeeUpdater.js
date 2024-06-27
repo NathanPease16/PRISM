@@ -26,6 +26,7 @@ socket.on('createCommittee', (committee) => {
         committee: { id: `committee-${committee.id}` },
         session: { href: `/session/${committee.id}`, style: sessionStyle },
         lock: { style: lockStyle },
+        chair: { href: `/char/${committee.id}` },
         status: { href: `/status/${committee.id}` },
         edit: { href:`/edit/${committee.id}` },
         delete: { id: committee.id, name: committee.name },
@@ -35,6 +36,7 @@ socket.on('createCommittee', (committee) => {
 
     // Reload the delete buttons created by deleteCommittee.js to
     // include the new committee
+    refreshMenus();
     refreshDelete();
 });
 
@@ -45,7 +47,7 @@ socket.on('editCommittee', (committee) => {
     const committeeDiv = document.getElementById(`committee-${committee.id}`);
 
     if (committeeDiv) {
-        const text = committeeDiv.querySelector('.committee-text');
+        const text = committeeDiv.querySelector('.committee-card-text');
         text.textContent = committee.name;
     }
 });

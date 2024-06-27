@@ -1,48 +1,32 @@
-# MUN PRISM
-###### Model United Nations Platform for Resolution, Integration, Simulation, and Management
+# **‎ MUN PRISM** [<img src="./src/public/img/MUN_PRISM.png" width="30"/>](./src/public/img/MUN_PRISM.png)
+#### ***Model United Nations Platform for Resolution, Integration, Simulation, and Management***
+![PRISM Home Page](./docs/images/PRIMS_Home.png)
 
-PRISM is a website developed to aid in the management of Model United Nations conferences by allowing for the smooth and real-time syncing of clients to allow moderators, chairs, and home government alike to access the information they need to most successfully run their conference.
+## 👀 **Overview**
+PRISM is an open-source web-based service that allows for easier management of Model UN conferences. It makes use of real-time communication and dynamic pages to ensure everyone involved in the running of a conference has the most up-to-date information
 
-## Features Overview
+## 🌟 **Feature Overview**
+1. 📝 [**Committee Management:**](./docs/user/committee_management.md) PRISM allows users to easily create, edit, and delete committees, all synced in real time across clients
 
-### Committee Management
-- [Committee creation, editing, and deletion synced across clients](./docs/user/committee.md)
+2. ⚖️ [**Session Management:**](./docs/user/session_management.md) Committee sessions can be easily managed using PRISM, with users being able to handle motions, caucuses, the agenda, roll call, and various other session-related actions
 
-### Session Management
-- [Committee sessions overview](./docs/user/session.md)
-  - Adding and changing countries in a committee
-  - Roll call
-  - Agenda setting
-  - General Speakers List
-  - Motions (mods, unmods, and custom)
-  - Moderated caucus management
-  - Unmoderated caucus management
-  - Voting procedure
+3. 🕒 [**Live Session Updates:**](./docs/user/live_session_updates.md) Actions taken during committee are communicated in real-time across clients so that everyone has the most up-to-date information on what is transpiring
 
-### Status and Updates
-- [Committee status viewing](./docs/user/status.md)
-  - Viewing live updates for agendas, attendance, and what is currently happening in session
-  - Live timer synced with speakers list, and moderated and unmoderated caucuses
+4. 🔒 [**Advanced Security:**](./docs/user/advanced_security.md) Various security features have been put in place to ensure bad-faith actors can't ruin your conference
 
-### Security Features
-* Access Control
-  - [User access authorization](./docs/user/userAuth.md)
-  - [Admin access authorization](./docs/user/adminAuth.md)
-* Session Locking
-  - [Session locking](./docs/user/locking.md)
-  - [Admin-side session unlocking](./docs/user/unlocking.md)
-* Server logs
+## ❗ **Important References**
+1. 🤝 [**Code of Conduct:**](./CODE_OF_CONDUCT.md) Before contributing to this project, please review the code of conduct
 
-## Important Information
-* [Code of Conduction](./CODE_OF_CONDUCT.md)
-* [Contributing](./CONTRIBUTING.md)
-* [License](./LICENSE)
+2. ✍️ [**Contributing:**](./CONTRIBUTING.md) Please also review documentation on proper contributions before contributing to the project
 
-## Installation Guide
-A guide to installing and running PRISM can be found [here](./docs/user/installing.md)
+3. 📜 [**License:**](./LICENSE) Finally, please also review the project's license to understand what can and cannot be done with
 
-## Contact Information
+4. 🖥️ [**Installation Guide:**](./docs/user/installing.md) The installation guide provides an in-depth explanation on how to run PRISM for your own conference
 
-| Type | Contact Information |
+## 👤 **Attribution**
+View a list of all developers who have contributed [here](Contributors.md)
+
+## ✉️ **Contact**
+|  | |
 |-------------|----------------------------------|
 | E-Mail      | nspease@stu.naperville203.org    |
