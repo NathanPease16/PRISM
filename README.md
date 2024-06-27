@@ -12,7 +12,7 @@ PRISM is an open-source web-based service that allows for easier management of M
 
 3. 🕒 [**Live Session Updates:**](./docs/user/live_session_updates.md) Actions taken during committee are communicated in real-time across clients so that everyone has the most up-to-date information on what is transpiring
 
-4. 🔒 [**Advanced Security:**](link_to_more_info) Various security features have been put in place to ensure bad-faith actors can't ruin your conference
+4. 🔒 [**Advanced Security:**](./docs/user/advanced_security.md) Various security features have been put in place to ensure bad-faith actors can't ruin your conference
 
 ## ❗ **Important References**
 1. 🤝 [**Code of Conduct:**](./CODE_OF_CONDUCT.md) Before contributing to this project, please review the code of conduct

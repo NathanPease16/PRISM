@@ -1,5 +1,7 @@
 # 🕒 **Live Session Updates**
 
+[*back*](../../README.md)
+
 ## 👀 **Overview**
 What sets PRISM apart from other session and conference management software is its ability to provide live updates on a committee. Different information is tracked, such as the name of the committee and current actions
 
