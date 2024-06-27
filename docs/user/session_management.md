@@ -4,7 +4,7 @@
 Managing a committee session is incredibly easy with PRISM. The tools offered allow users to easily add countries, conduct roll call, set the agenda, handle the speakers list, manage mods and unmods, and vote. All actions taken are synced with the PRISM server to allow for easy conference management (which is touched on more [here]())
 
 ## 📑 References
-* [🛠️ Setup](#-setup)
+* [🛠️ Setup](#️-setup)
     * [🌍 Adding UN Countries](#-adding-un-countries)
 
     * [✨ Adding Custom Countries](#-adding-custom-countries)
