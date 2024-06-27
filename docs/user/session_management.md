@@ -3,6 +3,46 @@
 ## 👀 **Overview**
 Managing a committee session is incredibly easy with PRISM. The tools offered allow users to easily add countries, conduct roll call, set the agenda, handle the speakers list, manage mods and unmods, and vote. All actions taken are synced with the PRISM server to allow for easy conference management (which is touched on more [here]())
 
+## 📑 References
+* [🛠️ Setup](#-setup)
+    * [🌍 Adding UN Countries](#-adding-un-countries)
+
+    * [✨ Adding Custom Countries](#-adding-custom-countries)
+
+    * [❌ Removing Countries](#-removing-countries)
+
+* [📢 Conducting Roll Call](#-conducting-roll-call)
+
+* [📝 Setting the Agenda](#-setting-the-agenda)
+
+* [🎤 Managing Speakers List](#-managing-speakers-list)
+    * [🌍 Adding & Removing Countries](#-adding--removing-countries)
+    
+    * [🎙️ Managing Speakers](#️-managing-speakers)
+
+    * [✏️ Editing Speakers List Time](#️-editing-speakers-list-time)
+
+* [✋ Handling Motions](#-handling-motions)
+    * [📝 Taking Motions](#-taking-motions)
+
+    * [❌ Deleting Motions](#-deleting-motions)
+
+    * [🗳️ Passing & Failing Motions](#️-passing--failing-motions)
+
+* [🗣️ Moderated Caucuses](#️-moderated-caucuses)
+    * [🌍 Adding & Removing Countries](#-adding--removing-countries-1)
+
+    * [🎙️ Managing Speakers](#️-managing-speakers-1)
+
+    * [✏️ Editing Moderated Caucus Information](#️-editing-moderated-caucus-information)
+
+* [🤝 Unmoderated Caucuses](#-unmoderated-caucuses)
+
+* [🗳️ Voting Procedure](#️-voting-procedure)
+    * [✅ Logging Votes](#-logging-votes)
+
+    * [📋 Handling Voting Procedure](#-handling-voting-procedure)
+
 ## 🛠️ **Setup**
 Ensure you have properly navigated to the `Setup` page of the committee you wish to edit
 
@@ -140,3 +180,75 @@ Ensure you have navigated to the `Motions` tab located on the left side of the b
         3. Higher number of speakers (if applicable)
 
         4. Order added
+
+## 🗣️ **Moderated Caucuses**
+The recommended way to start a mod is uing [motions](#-handling-motions)
+
+Ensure you have navigated to the `Mod` tab located in the center of the bottom navbar
+
+* ### 🌍 Adding & Removing Countries
+    * Click on a country under `Add Speakers` to add them to the list of speakers for the mod
+
+    * Click a country currently on the list of speakers to remove them
+
+        * All countries after them will move up one spot
+
+    * The total number of speakers as well as maximum possible speakers are both displayed in the top right of the moderated caucus box
+
+* ### 🎙️ Managing Speakers
+    * Press the blue `Play Arrow` button to start a speaker's time
+
+    * Click the blue `Pause Sign` button to pause a speaker's time
+
+    * Press the purple `Circular Arrows` button to restart a speaker's time
+        * This does not reset the entire mod, just an individual speaker's time (as well as setting the overall mod time back to what it was before the current speaker)
+
+    * Click the orange `>>` button to automatically move to the next speaker in the list
+
+* ### ✏️ Editing Moderated Caucus Information
+    1. Click on the gray `Wrench Icon` button
+
+    2. Input all information you wish to change
+        * Leaving the `Topic` blank will not change the topic
+
+        * Leaving any `Total Time` or `Speaking Time` values blank will default them to `0`
+
+        * A notification will appear if `Speaking Time` does not divide evenly into `Total Time`
+
+    3. Press `Confirm Changes` to save the changes to the speakers list
+
+## 🤝 **Unmoderated Caucuses**
+The recommended way to start an unmod is uing [motions](#-handling-motions)
+
+Ensure you have navigated to the `Unmod` tab located on the left side of the bottom navbar
+
+* Click the blue `Play Arrow` button to start the unmod timer
+
+* Press the purple `Circular Arrows` button to restart the unmod timer
+
+* Click the gray `Wrench Icon` button to edit the details of the unmod
+
+## 🗳️ **Voting Procedure**
+Ensure you have navigated to the `Voting` tab located on the left side of the bottom navbar
+
+* ### ✅ Logging Votes
+    * Click the green `Favor` button to have a country vote in favor
+
+    * Click the red `Against` button to have a country vote against
+
+    * Press the gray `Abstain` button to have a country abstain
+        * Countries that are `PV` have this button grayed out as they cannot abstain from votes
+
+    * Countries vote in alphabetical order
+
+* ### 📋 Handling Voting Procedure
+    * Press the orange `Wrench Icon` button to edit the vote method
+        * `Simple Majority` &#8594; $\frac{1}{2} + 1$
+
+        * `Super Majority` &#8594; $\frac{2}{3}$
+
+        * Changing this automatically resets the vote
+    
+    * Click the blue `Circular Arrows` button to reset the vote entirely
+
+* Once all countries have voted, a display pops up alerting the committee as to whether or not the vote passed
