@@ -35,6 +35,8 @@ addNote.addEventListener('click', () => {
         storeNote({ title: titleInput.value, text: textArea.value, id });
 
         popup.remove();
+
+        note.addEventListener('click', () => { expand(note); });
     });
 
     popup.addButton('Cancel', 'red', () => {

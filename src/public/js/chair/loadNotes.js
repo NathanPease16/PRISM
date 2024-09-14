@@ -14,5 +14,7 @@ for (const note of storedNotes) {
         n.remove();
     });
 
+    n.addEventListener('click', () => { expand(n); });
+
     noteNumber++;
 }
