@@ -55,3 +55,13 @@
 .large-input::selection {
     border-color: var(--gray) !important;
 }
+
+.chair-plus {
+    color: var(--gray);
+    transition: color 250ms;
+    padding: var(--padding-large);
+}
+
+.chair-plus:hover {
+    color: var(--dark-gray);
+}

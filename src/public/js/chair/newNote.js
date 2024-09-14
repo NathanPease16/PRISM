@@ -1,15 +1,10 @@
 const notes = document.getElementById('notes');
-let popupActive = false;
+const addNote = document.getElementById('add-note');
 
 const id = window.location.href.split('/')[4];
 let noteNumber = 0;
 
-document.addEventListener('keydown', (e) => {
-    if (popupActive) {
-        return;
-    }
-    popupActive = true;
-
+addNote.addEventListener('click', () => {
     const popup = new Popup();
     popup.addSmallHeader('New Note');
     popup.addText('Note Title');
@@ -48,8 +43,4 @@ document.addEventListener('keydown', (e) => {
     });
 
     popup.show();
-
-    popup.addCloseEvent(() => {
-        popupActive = false;
-    });
 });
