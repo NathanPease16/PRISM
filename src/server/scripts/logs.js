@@ -22,7 +22,7 @@ const logsPath = path.resolve(__dirname, '../storage/logs.prism');
  * @returns The current local time
  */
 function date() {
-    return `${new Date().toLocaleString()}`;
+    return new Date().toLocaleString('en-US', { timeZone: 'CST' });
 }
 
 /**
