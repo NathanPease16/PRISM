@@ -19,7 +19,7 @@ PRISM is an open-source web-based service that allows for easier management of M
 
 2. ✍️ [**Contributing:**](./CONTRIBUTING.md) Please also review documentation on proper contributions before contributing to the project
 
-3. 📜 [**License:**](./LICENSE) Finally, please also review the project's license to understand what can and cannot be done with
+3. 📜 [**License:**](./LICENSE) Finally, please also review the project's license to understand what can and cannot be done with it
 
 4. 🖥️ [**Installation Guide:**](./docs/user/installing.md) The installation guide provides an in-depth explanation on how to run PRISM for your own conference
 
@@ -29,4 +29,4 @@ View a list of all developers who have contributed [here](Contributors.md)
 ## ✉️ **Contact**
 |  | |
 |-------------|----------------------------------|
-| E-Mail      | nspease@stu.naperville203.org    |
+| E-Mail      | nspease16@gmail.com    |
